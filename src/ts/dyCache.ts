@@ -109,7 +109,7 @@ class dyCache {
     }
 
     /**
-     * This will push new value in an array.
+     * This will push new value in an array at the right side.
      *
      * @param {string} key
      * @param value
@@ -121,6 +121,56 @@ class dyCache {
             this._cache[key] = [];
         }
         this._cache[key].push(value);
+    }
+
+    /**
+     * This function will push value at the left side of the array
+     * referred by the given key.
+     *
+     * @param {string} key
+     * @param value
+     */
+    public arrLPush(key: string, value: any): void {
+
+        // create array for the key if not exists
+        if (!this.exists(key)) {
+            this._cache[key] = [];
+            this._cache[key].push(value);
+        } else {
+            this._cache[key].unshift(value);
+        }
+    }
+
+    /**
+     * This method will pop element of the array from the right
+     * referred by the given key.
+     *
+     * If array does not exists then return null.
+     *
+     * @param {string} key
+     * @returns {any}
+     */
+    public arrPop(key: string): any {
+        if (this.exists(key)) {
+            return this._cache[key].pop();
+        }
+        return null;
+    }
+
+    /**
+     * This method will pop element of the array from the left
+     * referred by the given key.
+     *
+     * If array does not exists then return null.
+     *
+     * @param {string} key
+     * @returns {any}
+     */
+    public arrLPop(key: string): any {
+        if (this.exists(key)) {
+            return this._cache[key].shift();
+        }
+        return null;
     }
 
     /**

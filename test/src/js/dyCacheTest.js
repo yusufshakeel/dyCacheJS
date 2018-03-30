@@ -16,3 +16,6 @@
 
 const assert = require('chai').assert;
 const dyCache = require('../../../src/js/dyCache');
+
+describe('Testing dyCacheJS', function () {
+});

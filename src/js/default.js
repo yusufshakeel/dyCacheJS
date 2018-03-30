@@ -194,6 +194,37 @@ output("Get value of a key having JSON object value in an array: myCacheObj2.arr
 outputJSON(myCacheObj2.arrGet('users'));
 console.log(myCacheObj2);
 
+// pop the last element
+output("Pop the last element: myCacheObj2.arrPop('users')");
+outputJSON(myCacheObj2.arrPop('users'));
+console.log(myCacheObj2);
+
+// get value of a key having JSON object value in an array
+output("Get value of a key having JSON object value in an array: myCacheObj2.arrGet('users')");
+outputJSON(myCacheObj2.arrGet('users'));
+console.log(myCacheObj2);
+
+// set a key having JSON object value in an array
+myCacheObj2.arrLPush('users', {username: 'qwerty', points: 60});
+output("Push JSON value in an array key from the LEFT: myCacheObj2.arrLPush('users', {username: 'qwerty', points: 60})");
+console.log(myCacheObj2);
+
+// get value of a key having JSON object value in an array
+output("Get value of a key having JSON object value in an array: myCacheObj2.arrGet('users')");
+outputJSON(myCacheObj2.arrGet('users'));
+console.log(myCacheObj2);
+
+// pop the first element
+output("Pop the first element: myCacheObj2.arrLPop('users')");
+outputJSON(myCacheObj2.arrLPop('users'));
+console.log(myCacheObj2);
+
+// get value of a key having JSON object value in an array
+output("Get value of a key having JSON object value in an array: myCacheObj2.arrGet('users')");
+outputJSON(myCacheObj2.arrGet('users'));
+console.log(myCacheObj2);
+
+
 
 //--------- purge ----------//
 // purge the cache

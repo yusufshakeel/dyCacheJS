@@ -97,7 +97,7 @@ var dyCache = /** @class */ (function () {
         return this._cache[key];
     };
     /**
-     * This will push new value in an array.
+     * This will push new value in an array at the right side.
      *
      * @param {string} key
      * @param value
@@ -108,6 +108,53 @@ var dyCache = /** @class */ (function () {
             this._cache[key] = [];
         }
         this._cache[key].push(value);
+    };
+    /**
+     * This function will push value at the left side of the array
+     * referred by the given key.
+     *
+     * @param {string} key
+     * @param value
+     */
+    dyCache.prototype.arrLPush = function (key, value) {
+        // create array for the key if not exists
+        if (!this.exists(key)) {
+            this._cache[key] = [];
+            this._cache[key].push(value);
+        }
+        else {
+            this._cache[key].unshift(value);
+        }
+    };
+    /**
+     * This method will pop element of the array from the right
+     * referred by the given key.
+     *
+     * If array does not exists then return null.
+     *
+     * @param {string} key
+     * @returns {any}
+     */
+    dyCache.prototype.arrPop = function (key) {
+        if (this.exists(key)) {
+            return this._cache[key].pop();
+        }
+        return null;
+    };
+    /**
+     * This method will pop element of the array from the left
+     * referred by the given key.
+     *
+     * If array does not exists then return null.
+     *
+     * @param {string} key
+     * @returns {any}
+     */
+    dyCache.prototype.arrLPop = function (key) {
+        if (this.exists(key)) {
+            return this._cache[key].shift();
+        }
+        return null;
     };
     /**
      * This will return elements of the array referred by given key.
