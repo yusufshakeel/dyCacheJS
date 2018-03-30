@@ -16,6 +16,9 @@ Cache data using JavaScript in the browser.
 * From jsDelivr CDN: `https://www.jsdelivr.com/package/npm/dycachejs`
 
 
+### Documentation
+Check the index.html file of this project.
+
 ### License
 It's free and released under [MIT License](https://github.com/yusufshakeel/dyCacheJS/blob/master/LICENSE) Copyright (c) 2018 Yusuf Shakeel
 
