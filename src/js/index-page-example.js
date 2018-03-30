@@ -38,6 +38,19 @@ output("Instance of dyCache class created!", 'collapse-new-object');
 outputJSON(obj, 'collapse-new-object');
 
 // set('num', 10);
-output("Adding a num key having value 10", 'collapse-set');
+output("Adding a num key having numeric value 10.", 'collapse-set');
 obj.set('num', 10);
 outputJSON(obj, 'collapse-set');
+
+// set('str', 'Yusuf Shakeel');
+output("Adding a str key having string value 'Yusuf Shakeel'.", 'collapse-set');
+obj.set('str', 'Yusuf Shakeel');
+outputJSON(obj, 'collapse-set');
+
+// get('num');
+output("Get the value of key num", 'collapse-get');
+outputJSON(obj.get('num'), 'collapse-get');
+
+// get('str');
+output("Get the value of key str", 'collapse-get');
+outputJSON(obj.get('str'), 'collapse-get');
