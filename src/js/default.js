@@ -109,13 +109,13 @@ outputJSON(myCacheObj2.keys());
 console.log(myCacheObj2);
 
 // set a key having JSON object value
-myCacheObj2.oset('user', {username: 'yusufshakeel', points: 10});
-output("Set a key having JSON object value: myCacheObj2.oset('user', { username: 'yusufshakeel', points: 10 })");
+myCacheObj2.oSet('user', {username: 'yusufshakeel', points: 10});
+output("Set a key having JSON object value: myCacheObj2.oSet('user', { username: 'yusufshakeel', points: 10 })");
 console.log(myCacheObj2);
 
 // get value of a key having JSON object value
-output("Get value of a key having JSON object value: myCacheObj2.oget('user')");
-outputJSON(myCacheObj2.oget('user'));
+output("Get value of a key having JSON object value: myCacheObj2.oGet('user')");
+outputJSON(myCacheObj2.oGet('user'));
 console.log(myCacheObj2);
 
 // get all the keys
@@ -214,7 +214,7 @@ output("Get value of a key having JSON object value in an array: myCacheObj2.arr
 outputJSON(myCacheObj2.arrGet('users'));
 console.log(myCacheObj2);
 
-// pop the first element
+// lpop the first element
 output("Pop the first element: myCacheObj2.arrLPop('users')");
 outputJSON(myCacheObj2.arrLPop('users'));
 console.log(myCacheObj2);
@@ -224,25 +224,61 @@ output("Get value of a key having JSON object value in an array: myCacheObj2.arr
 outputJSON(myCacheObj2.arrGet('users'));
 console.log(myCacheObj2);
 
+// insert a key: value pair in an object
+output("Add a key value pair in a object key: myCacheObj.oMSet('players', 'p01', { playerid: 'p01', name: 'Yusuf Shakeel', points: 10 })");
+myCacheObj.oMSet('players', 'p01', { playerid: 'p01', name: 'Yusuf Shakeel', points: 10 });
+console.log(myCacheObj);
+
+// insert a key: value pair in an object
+output("Add a key value pair in a object key: myCacheObj.oMSet('players', 'p02', { playerid: 'p02', name: 'Dawood Shakeel', points: 20 })");
+myCacheObj.oMSet('players', 'p02', { playerid: 'p02', name: 'Dawood Shakeel', points: 20 });
+console.log(myCacheObj);
+
+// insert a key: value pair in an object
+output("Add a key value pair in a object key: myCacheObj.oMSet('players', 'a01', { playerid: 'a01', name: 'John Doe', points: 30 })");
+myCacheObj.oMSet('players', 'a01', { playerid: 'a01', name: 'John Doe', points: 30 });
+console.log(myCacheObj);
+
+// insert a key: value pair in an object
+output("Add a key value pair in a object key: myCacheObj.oMSet('players', '101', { playerid: '101', name: 'Jane Doe', points: 40 })");
+myCacheObj.oMSet('players', '101', { playerid: '101', name: 'Jane Doe', points: 40 });
+console.log(myCacheObj);
+
+// get total number of key value pair in an object
+output("Total number of key value pair in the object: myCacheObj.length('players')");
+outputJSON(myCacheObj.length('players'));
+console.log(myCacheObj);
+
+// get value of specific key in an object
+output("Get value of specific key: myCacheObj.oMGet('players', 'p01')");
+outputJSON(myCacheObj.oMGet('players', 'p01'));
+console.log(myCacheObj);
+
+// get all key value pair for an object referred by a given key in cache
+output("Get all the key value pairs of an object referred by key: myCacheObj.oMGetAll('players')");
+outputJSON(myCacheObj.oMGetAll('players'));
+console.log(myCacheObj);
+
+
 
 
 //--------- purge ----------//
-// purge the cache
-myCacheObj.purge();
-output("Purge the cache: myCacheObj.purge()");
-console.log(myCacheObj);
-
-// get all the keys
-output("Get all the keys: ");
-outputJSON(myCacheObj.keys());
-console.log(myCacheObj);
-
-// purge the cache
-myCacheObj2.purge();
-output("Purge the cache: myCacheObj2.purge()");
-console.log(myCacheObj2);
-
-// get all the keys
-output("Get all the keys: myCacheObj2.keys()");
-outputJSON(myCacheObj2.keys());
-console.log(myCacheObj2);
+// // purge the cache
+// myCacheObj.purge();
+// output("Purge the cache: myCacheObj.purge()");
+// console.log(myCacheObj);
+//
+// // get all the keys
+// output("Get all the keys: ");
+// outputJSON(myCacheObj.keys());
+// console.log(myCacheObj);
+//
+// // purge the cache
+// myCacheObj2.purge();
+// output("Purge the cache: myCacheObj2.purge()");
+// console.log(myCacheObj2);
+//
+// // get all the keys
+// output("Get all the keys: myCacheObj2.keys()");
+// outputJSON(myCacheObj2.keys());
+// console.log(myCacheObj2);

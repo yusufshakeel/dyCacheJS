@@ -4,7 +4,8 @@
     <title>Index Page</title>
 
     <!-- twitter bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
 </head>
 <body>
@@ -18,7 +19,8 @@
                 <p>Cache data using JavaScript in the browser.</p>
 
                 <div class="text-center">
-                    <a class="btn btn-default btn-lg" href='https://github.com/yusufshakeel/dyCacheJS/releases'>Download</a>
+                    <a class="btn btn-default btn-lg"
+                       href='https://github.com/yusufshakeel/dyCacheJS/releases'>Download</a>
                     <a class="btn btn-default btn-lg" href='https://github.com/yusufshakeel/dyCacheJS'>GitHub</a>
                 </div>
 
@@ -28,7 +30,57 @@
 
             <div class="text-center">
                 <h3>License</h3>
-                <p>It's free and released under <a href="https://github.com/yusufshakeel/dyCacheJS/blob/master/LICENSE">MIT License</a> Copyright (c) 2018 <a href="https://github.com/yusufshakeel">Yusuf Shakeel</a></p>
+                <p>It's free and released under <a href="https://github.com/yusufshakeel/dyCacheJS/blob/master/LICENSE">MIT
+                    License</a> Copyright (c) 2018 <a href="https://github.com/yusufshakeel">Yusuf Shakeel</a></p>
+            </div>
+
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-6 col-md-offset-3">
+
+            <h3 class="text-center">Getting Started</h3>
+
+            <hr>
+
+            <h4>Instantiate an object</h4>
+
+            <p>First we instantiate an object of the <code>dyCache</code> class.</p>
+
+            <pre><code>var obj = new dyCache();</code></pre>
+
+            <div>
+                <a class="btn btn-primary"
+                   role="button"
+                   data-toggle="collapse"
+                   href="#collapse-new-object"
+                   aria-expanded="false"
+                   aria-controls="collapse-new-object">Output</a>
+            </div>
+            <div class="collapse" id="collapse-new-object">
+            </div>
+
+
+            <h3 class="text-center">Methods</h3>
+
+            <hr>
+
+            <h4><code>set(key, value)</code></h4>
+
+            <p>This will create a key in the cache and will set a value.</p>
+
+            <p>The <code>value</code> can be number or string.</p>
+
+            <pre><code>obj.set('num', 10);</code></pre>
+
+            <div>
+                <a class="btn btn-primary"
+                   role="button"
+                   data-toggle="collapse"
+                   href="#collapse-set"
+                   aria-expanded="false"
+                   aria-controls="collapse-set">Output</a>
+            </div>
+            <div class="collapse" id="collapse-set">
             </div>
 
         </div>
@@ -54,5 +106,13 @@
 </div>
 
 <!-- javascript -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script src="dist/js/dyCache.min.js"></script>
+<script src="src/js/index-page-example.js"></script>
 </body>
 </html>

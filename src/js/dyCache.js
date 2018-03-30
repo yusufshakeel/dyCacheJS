@@ -80,20 +80,20 @@ var dyCache = /** @class */ (function () {
         return this._cache[key];
     };
     /**
-     * This method will set a key having JSON object value.
+     * This method will set a key having object value.
      *
      * @param {string} key
      * @param value
      */
-    dyCache.prototype.oset = function (key, value) {
+    dyCache.prototype.oSet = function (key, value) {
         this._cache[key] = value;
     };
     /**
-     * This function will return the JSON object value for given key.
+     * This function will return the object value for given key.
      *
      * @param {string} key
      */
-    dyCache.prototype.oget = function (key) {
+    dyCache.prototype.oGet = function (key) {
         return this._cache[key];
     };
     /**
@@ -183,6 +183,42 @@ var dyCache = /** @class */ (function () {
      */
     dyCache.prototype.arrMerge = function (key, arr) {
         this._cache[key] = this._cache[key].concat(arr);
+    };
+    /**
+     * This will create an object by the reference by key.
+     * Then it will add a property okey and set it to oValue value.
+     *
+     * @param {string} key
+     * @param {string} oKey
+     * @param oValue
+     */
+    dyCache.prototype.oMSet = function (key, oKey, oValue) {
+        // if key does not exists in the cache
+        if (!this.exists(key)) {
+            this._cache[key] = {};
+        }
+        this._cache[key][oKey] = oValue;
+    };
+    /**
+     * This will return the value of oKey property of the given key
+     * in the cache.
+     *
+     * @param {string} key
+     * @param {string} oKey
+     * @returns {any}
+     */
+    dyCache.prototype.oMGet = function (key, oKey) {
+        return this._cache[key][oKey];
+    };
+    /**
+     * This will return all the key value pairs in the
+     * object referred by the given key in the cache.
+     *
+     * @param {string} key
+     * @returns {any}
+     */
+    dyCache.prototype.oMGetAll = function (key) {
+        return this._cache[key];
     };
     return dyCache;
 }());

@@ -90,21 +90,21 @@ class dyCache {
     }
 
     /**
-     * This method will set a key having JSON object value.
+     * This method will set a key having object value.
      *
      * @param {string} key
      * @param value
      */
-    public oset(key: string, value: any): void {
+    public oSet(key: string, value: any): void {
         this._cache[key] = value;
     }
 
     /**
-     * This function will return the JSON object value for given key.
+     * This function will return the object value for given key.
      *
      * @param {string} key
      */
-    public oget(key: string): any {
+    public oGet(key: string): any {
         return this._cache[key];
     }
 
@@ -201,6 +201,47 @@ class dyCache {
      */
     public arrMerge(key: string, arr: any): void {
         this._cache[key] = this._cache[key].concat(arr);
+    }
+
+    /**
+     * This will create an object by the reference by key.
+     * Then it will add a property okey and set it to oValue value.
+     *
+     * @param {string} key
+     * @param {string} oKey
+     * @param oValue
+     */
+    public oMSet(key:string, oKey: string, oValue: any): void {
+
+        // if key does not exists in the cache
+        if (!this.exists(key)) {
+            this._cache[key] = {};
+        }
+
+        this._cache[key][oKey] = oValue;
+    }
+
+    /**
+     * This will return the value of oKey property of the given key
+     * in the cache.
+     *
+     * @param {string} key
+     * @param {string} oKey
+     * @returns {any}
+     */
+    public oMGet(key: string, oKey: string): any {
+        return this._cache[key][oKey];
+    }
+
+    /**
+     * This will return all the key value pairs in the
+     * object referred by the given key in the cache.
+     *
+     * @param {string} key
+     * @returns {any}
+     */
+    public oMGetAll(key: string): any {
+        return this._cache[key];
     }
 
 }
