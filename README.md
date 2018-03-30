@@ -7,6 +7,7 @@ Cache data using JavaScript in the browser.
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/yusufshakeel/dyCacheJS)
 [![npm version](https://img.shields.io/badge/npm-1.0.0-blue.svg)](https://www.npmjs.com/package/dycachejs)
 [![](https://data.jsdelivr.com/v1/package/npm/dycachejs/badge)](https://www.jsdelivr.com/package/npm/dycachejs)
+[![Build Status](https://travis-ci.org/yusufshakeel/dycachejs.svg?branch=master)](https://travis-ci.org/yusufshakeel/dycachejs)
 
 
 ### Getting Started
