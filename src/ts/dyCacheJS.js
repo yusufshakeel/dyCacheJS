@@ -27,7 +27,6 @@ var dyCacheJS = /** @class */ (function () {
      */
     dyCacheJS.prototype.length = function (key) {
         if (typeof key !== 'undefined') {
-            console.log('key set');
             return Object.keys(this._cache[key]).length;
         }
         return Object.keys(this._cache).length;
@@ -104,7 +103,8 @@ var dyCacheJS = /** @class */ (function () {
      * @param {string} key
      * @param value
      */
-    dyCacheJS.prototype.arrSet = function (key, value) {
+    dyCacheJS.prototype.arrPush = function (key, value) {
+        // create array for the key if not exists
         if (!this.exists(key)) {
             this._cache[key] = [];
         }
@@ -114,10 +114,29 @@ var dyCacheJS = /** @class */ (function () {
      * This will return elements of the array referred by given key.
      *
      * @param {string} key
+     * @param {number} index    (optional)
+     * @param {number} end      (optional)
      * @returns {any}
      */
-    dyCacheJS.prototype.arrGet = function (key) {
-        return this._cache[key];
+    dyCacheJS.prototype.arrGet = function (key, index, end) {
+        if (typeof index !== "undefined") {
+            if (typeof end !== "undefined") {
+                return this._cache[key].slice(index, end + 1);
+            }
+            else {
+                return this._cache[key][index];
+            }
+        }
+        return this._cache[key].slice(0);
+    };
+    /**
+     * This will merge arr array in given array denoted by given key.
+     *
+     * @param {string} key
+     * @param arr
+     */
+    dyCacheJS.prototype.arrMerge = function (key, arr) {
+        this._cache[key] = this._cache[key].concat(arr);
     };
     return dyCacheJS;
 }());

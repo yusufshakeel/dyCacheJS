@@ -29,7 +29,6 @@ class dyCacheJS {
      */
     public length(key?: string): number {
         if (typeof key !== 'undefined') {
-            console.log('key set');
             return Object.keys(this._cache[key]).length;
         }
         return Object.keys(this._cache).length
@@ -115,7 +114,9 @@ class dyCacheJS {
      * @param {string} key
      * @param value
      */
-    public arrSet(key: string, value: any): void {
+    public arrPush(key: string, value: any): void {
+
+        // create array for the key if not exists
         if (!this.exists(key)) {
             this._cache[key] = [];
         }
@@ -126,10 +127,30 @@ class dyCacheJS {
      * This will return elements of the array referred by given key.
      *
      * @param {string} key
+     * @param {number} index    (optional)
+     * @param {number} end      (optional)
      * @returns {any}
      */
-    public arrGet(key: string): any {
-        return this._cache[key];
+    public arrGet(key: string, index?: number, end?: number): any {
+
+        if (typeof index !== "undefined") {
+            if (typeof end !== "undefined") {
+                return this._cache[key].slice(index, end + 1);
+            } else {
+                return this._cache[key][index];
+            }
+        }
+        return this._cache[key].slice(0);
+    }
+
+    /**
+     * This will merge arr array in given array denoted by given key.
+     *
+     * @param {string} key
+     * @param arr
+     */
+    public arrMerge(key: string, arr: any): void {
+        this._cache[key] = this._cache[key].concat(arr);
     }
 
 }

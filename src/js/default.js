@@ -98,6 +98,9 @@ window.onload = function () {
     outputJSON(myCacheObj.keys());
     console.log(myCacheObj);
 
+
+
+
     // create another object of dyCacheJS class
     var myCacheObj2 = new dyCacheJS();
     output('myCacheObj2 created!: var myCacheObj2 = new dyCacheJS()');
@@ -123,9 +126,11 @@ window.onload = function () {
     outputJSON(myCacheObj2.keys());
     console.log(myCacheObj2);
 
+
+
     // set a key having JSON object value in an array
-    myCacheObj2.arrSet('users', { username: 'yusufshakeel', points: 10 });
-    output("Set a key having JSON object value: myCacheObj2.arrSet('users', { username: 'yusufshakeel', points: 10 })");
+    myCacheObj2.arrPush('users', { username: 'yusufshakeel', points: 10 });
+    output("Push JSON value in an array key: myCacheObj2.arrPush('users', { username: 'yusufshakeel', points: 10 })");
     console.log(myCacheObj2);
 
     // get value of a key having JSON object value in an array
@@ -134,8 +139,28 @@ window.onload = function () {
     console.log(myCacheObj2);
 
     // set a key having JSON object value in an array
-    myCacheObj2.arrSet('users', { username: 'dawoodshakeel', points: 20 });
-    output("Set a key having JSON object value: myCacheObj2.arrSet('users', { username: 'dawoodshakeel', points: 20 })");
+    myCacheObj2.arrPush('users', { username: 'dawoodshakeel', points: 20 });
+    output("Push JSON value in an array key: myCacheObj2.arrPush('users', { username: 'dawoodshakeel', points: 20 })");
+    console.log(myCacheObj2);
+
+    // get value of a key having JSON object value in an array
+    output("Get value of a key having JSON object value in an array: myCacheObj2.arrGet('users')");
+    outputJSON(myCacheObj2.arrGet('users'));
+    console.log(myCacheObj2);
+
+    // set a key having JSON object value in an array
+    myCacheObj2.arrPush('users', { username: 'janedoe', points: 30 });
+    output("Push JSON value in an array key: myCacheObj2.arrPush('users', { username: 'janedoe', points: 30 })");
+    console.log(myCacheObj2);
+
+    // get value of a key having JSON object value in an array
+    output("Get value of a key having JSON object value in an array: myCacheObj2.arrGet('users')");
+    outputJSON(myCacheObj2.arrGet('users'));
+    console.log(myCacheObj2);
+
+    // set a key having JSON object value in an array
+    myCacheObj2.arrPush('users', { username: 'johndoe', points: 40 });
+    output("Push JSON value in an array key: myCacheObj2.arrPush('users', { username: 'johndoe', points: 40 })");
     console.log(myCacheObj2);
 
     // get value of a key having JSON object value in an array
@@ -147,6 +172,32 @@ window.onload = function () {
     output("Total number of elements in array key: myCacheObj2.length('users')");
     output(myCacheObj2.length('users'));
     console.log(myCacheObj2);
+
+    // get value of a key having JSON object value in an array at index 1
+    output("Get value of a key having JSON object value in an array at index 1: myCacheObj2.arrGet('users', 1)");
+    outputJSON(myCacheObj2.arrGet('users', 1));
+    console.log(myCacheObj2);
+
+    // get value of a key having JSON object value in an array from index 1 to 3
+    output("Get value of a key having JSON object value in an array from index 1 to 3: myCacheObj2.arrGet('users', 1, 3)");
+    outputJSON(myCacheObj2.arrGet('users', 1, 3));
+    console.log(myCacheObj2);
+
+    // merge array
+    myCacheObj2.arrMerge('users', [{ username: 'helloworld', points: 50 }, { username: 'qwerty', points: 60 }]);
+    output("Merge array: myCacheObj2.arrMerge('users', [{ username: 'helloworld', points: 50 }, { username: 'qwerty', points: 60 }])");
+    console.log(myCacheObj2);
+
+    // find total number of keys in the cache
+    output("Total number of elements in array key: myCacheObj2.length('users')");
+    output(myCacheObj2.length('users'));
+    console.log(myCacheObj2);
+
+    // get value of a key having JSON object value in an array
+    output("Get value of a key having JSON object value in an array: myCacheObj2.arrGet('users')");
+    outputJSON(myCacheObj2.arrGet('users'));
+    console.log(myCacheObj2);
+
 
 
     //--------- purge ----------//
