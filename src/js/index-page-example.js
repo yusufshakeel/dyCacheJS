@@ -88,6 +88,35 @@ outputJSON(obj, 'collapse-oSet');
 output("Fetch the object value stored in <code>user</code> key in the cache.", 'collapse-oGet');
 outputJSON(obj.oGet('user'), 'collapse-oGet');
 
+// arrPush();
+output("Create an <code>users</code> key in the cache which is an array and insert some data.", 'collapse-arrPush');
+obj.arrPush('users', {username: 'yusufshakeel', points: 10});
+obj.arrPush('users', {username: 'dawoodshakeel', points: 20});
+obj.arrPush('users', {username: 'janedoe', points: 30});
+obj.arrPush('users', {username: 'johndoe', points: 40});
+output("Content of the cache.", 'collapse-arrPush');
+outputJSON(obj, 'collapse-arrPush');
+output("To know the total number of elements in the <code>users</code> array use <code>obj.length('users')</code>", 'collapse-arrPush');
+outputJSON(obj.length('users'), 'collapse-arrPush');
+
+// arrLPush();
+output("Create an <code>users</code> key (if not exists) in the cache which is an array and insert given data from the left.", 'collapse-arrLPush');
+obj.arrLPush('users', {username: 'qwerty', points: 50});
+output("Content of the cache.", 'collapse-arrLPush');
+outputJSON(obj, 'collapse-arrLPush');
+output("Total number of elements in the <code>users</code> array use <code>obj.length('users')</code>", 'collapse-arrLPush');
+outputJSON(obj.length('users'), 'collapse-arrLPush');
+
+// arrGet();
+output("Fetch all the elements of the array referred by <code>users</code> key in the cache", 'collapse-arrGet');
+outputJSON(obj.arrGet('users'), 'collapse-arrGet');
+output("Fetch element of an array referred by <code>unknown</code> key that does not exists in the cache", 'collapse-arrGet');
+outputJSON(obj.arrGet('unknown'), 'collapse-arrGet');
+output("Fetch element at index 1 in the array referred by <code>users</code> key in the cache", 'collapse-arrGet');
+outputJSON(obj.arrGet('users', 1), 'collapse-arrGet');
+output("Fetch elements from index 1 to 3 in the array referred by <code>users</code> key in the cache", 'collapse-arrGet');
+outputJSON(obj.arrGet('users', 1, 3), 'collapse-arrGet');
+
 
 
 

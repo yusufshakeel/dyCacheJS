@@ -183,7 +183,15 @@ class dyCache {
      */
     public arrGet(key: string, index?: number, end?: number): any {
 
+        // if key does not exists then return null
+        if (!this.exists(key)) {
+            return null;
+        }
+
+        // if index is set
         if (typeof index !== "undefined") {
+
+            // if end is set
             if (typeof end !== "undefined") {
                 return this._cache[key].slice(index, end + 1);
             } else {
