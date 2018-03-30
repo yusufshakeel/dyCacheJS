@@ -1,6 +1,5 @@
 language: node_js
 node_js:
-  - "0.11"
-  - "0.10"
-before_install: npm install -g mocha chai grunt-cli
+  - "7.7.2"
+before_install: npm install -g grunt-cli grunt-mocha mocha chai
 install: npm install
