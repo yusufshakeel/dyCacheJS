@@ -16,7 +16,7 @@
 
 const assert = chai.assert;
 
-describe('Testing dyCacheJS', function() {
+describe('Testing dyCacheJS', function () {
 
     let obj;
 
@@ -24,14 +24,14 @@ describe('Testing dyCacheJS', function() {
      * Before each test instantiate and object of the
      * dyCacheJS class.
      */
-    beforeEach(function(){
+    beforeEach(function () {
         obj = new dyCache();
     });
 
     /**
      * Assert that obj is an instance of the dyCacheJS class.
      */
-    it('should assert that obj is an instance of dyCacheJS class.', function () {
+    it('should assert obj is an instance of dyCacheJS class.', function () {
         assert.instanceOf(obj, dyCache, 'obj is instance of dyCacheJS class');
     });
 
@@ -106,7 +106,10 @@ describe('Testing dyCacheJS', function() {
         assert.equal(obj.exists('users'), true);
 
         // assert that the value matches
-        assert.deepEqual(obj.arrGet('users'), [{username: 'yusufshakeel', points: 10}, {username: 'dawoodshakeel', points: 20}]);
+        assert.deepEqual(obj.arrGet('users'), [{username: 'yusufshakeel', points: 10}, {
+            username: 'dawoodshakeel',
+            points: 20
+        }]);
     });
 
     /**
@@ -131,6 +134,124 @@ describe('Testing dyCacheJS', function() {
             obj.arrLPush('numData', i);
         }
         assert.deepEqual(obj.arrGet('numData'), data);
+    });
+
+    /**
+     * assert arrGet
+     */
+    it('should assert obj.arrGet() returns all the values', function () {
+        let data = [];
+        for (let i = 1; i <= 10; i++) {
+            data.push(i);
+            obj.arrPush('numData', i);
+        }
+        assert.deepEqual(obj.arrGet('numData'), data);
+    });
+
+    /**
+     * assert arrGet(key, index)
+     */
+    it('should assert obj.arrGet(key, index) returns the value at an index', function () {
+        let data = [];
+        for (let i = 0; i <= 10; i++) {
+            data.push(i);
+            obj.arrPush('numData', i);
+        }
+        assert.deepEqual(obj.arrGet('numData', 5), 5);
+    });
+
+    /**
+     * assert arrGet(key, index, end)
+     */
+    it('should assert obj.arrGet(key, index, end) returns the value from start index to end', function () {
+        let data = [];
+        for (let i = 0; i <= 10; i++) {
+            data.push(i);
+            obj.arrPush('numData', i);
+        }
+        assert.deepEqual(obj.arrGet('numData', 3, 5), [3, 4, 5]);
+    });
+
+    /**
+     * assert arrPop(key)
+     */
+    it('should assert obj.arrPop(key) returns the value from the end', function () {
+        let data = [];
+        for (let i = 1; i <= 10; i++) {
+            data.push(i);
+            obj.arrPush('numData', i);
+        }
+        assert.deepEqual(obj.arrPop('numData'), 10);
+    });
+
+    /**
+     * assert arrLPop(key)
+     */
+    it('should assert obj.arrLPop(key) returns the value from the start', function () {
+        let data = [];
+        for (let i = 1; i <= 10; i++) {
+            data.push(i);
+            obj.arrPush('numData', i);
+        }
+        assert.deepEqual(obj.arrLPop('numData'), 1);
+    });
+
+    /**
+     * assert arrMerge(key, value)
+     */
+    it('should assert obj.arrMerge(key, value) matches the new array', function () {
+        obj.arrPush('numArr', 1);
+        obj.arrPush('numArr', {a: 1});
+        obj.arrPush('numArr', {b: 2});
+        obj.arrMerge('numArr', [10, 20, 30]);
+        assert.deepEqual(obj.arrGet('numArr'), [1, {a: 1}, {b: 2}, [10, 20, 30]]);
+    });
+
+    /**
+     * assert arrLMerge(key, value)
+     */
+    it('should assert obj.arrLMerge(key, value) matches the new array', function () {
+        obj.arrPush('numArr', 1);
+        obj.arrPush('numArr', {a: 1});
+        obj.arrPush('numArr', {b: 2});
+        obj.arrLMerge('numArr', [10, 20, 30]);
+        assert.deepEqual(obj.arrGet('numArr'), [[10, 20, 30], 1, {a: 1}, {b: 2}]);
+    });
+
+    /**
+     * assert oMSet(key, oKey, oValue)
+     */
+    it('should assert obj.oMSet(key, oKey, oValue) matches the value obj.oMGetAll(key)', function () {
+        obj.oMSet('players', 'p1', {id: 'p1', username: 'yusufshakeel'});
+        obj.oMSet('players', 'p2', {id: 'p2', username: 'dawoodshakeel'});
+
+        let match = {
+            "p1": {
+                "id": "p1",
+                "username": "yusufshakeel"
+            },
+            "p2": {
+                "id": "p2",
+                "username": "dawoodshakeel"
+            }
+        };
+
+        assert.deepEqual(obj.oMGetAll('players'), match);
+    });
+
+    /**
+     * assert oMGet(key, oKey)
+     */
+    it('should assert obj.oMGet(key, oKey, oValue) matches the right value', function () {
+        obj.oMSet('players', 'p1', {id: 'p1', username: 'yusufshakeel'});
+        obj.oMSet('players', 'p2', {id: 'p2', username: 'dawoodshakeel'});
+
+        let match = {
+            "id": "p1",
+            "username": "yusufshakeel"
+        };
+
+        assert.deepEqual(obj.oMGet('players', 'p1'), match);
     });
 
 });
