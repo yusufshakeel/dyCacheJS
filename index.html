@@ -490,13 +490,6 @@
 
             <!-- arrLMerge() ends here -->
 
-
-
-
-
-
-
-
             <hr>
 
             <!-- purge() -->
@@ -520,6 +513,81 @@
             </div>
 
             <!-- purge() ends here -->
+
+            <hr>
+
+            <!-- oMSet() -->
+            <a name="oMSet"></a>
+            <h4><code>oMSet(key, oKey, oValue)</code></h4>
+
+            <p>This will create a <code>key</code> in cache that will in turn save <code>oKey</code>
+                and <code>oValue</code>.</p>
+
+            <p>If <code>oKey</code> exists in the <code>key</code> then it will be overwritten.</p>
+
+            <pre><code>obj.oMSet('players', 'p1', { id: 'p1', username: 'yusufshakeel' });</code></pre>
+            <pre><code>obj.oMSet('players', 'p2', { id: 'p2', username: 'dawoodshakeel' });</code></pre>
+
+            <div>
+                <a class="btn btn-primary"
+                   role="button"
+                   data-toggle="collapse"
+                   href="#collapse-oMSet"
+                   aria-expanded="false"
+                   aria-controls="collapse-oMSet">Output</a>
+            </div>
+            <div class="collapse" id="collapse-oMSet">
+            </div>
+
+            <!-- oMSet() ends here -->
+
+            <hr>
+
+            <!-- oMGet() -->
+            <a name="oMGet"></a>
+            <h4><code>oMGet(key, oKey)</code></h4>
+
+            <p>This will fetch value saved in the <code>oKey</code> key inside the
+                given <code>key</code> of the cache.</p>
+
+            <pre><code>obj.oMGet('players', 'p1');</code></pre>
+
+            <div>
+                <a class="btn btn-primary"
+                   role="button"
+                   data-toggle="collapse"
+                   href="#collapse-oMGet"
+                   aria-expanded="false"
+                   aria-controls="collapse-oMGet">Output</a>
+            </div>
+            <div class="collapse" id="collapse-oMGet">
+            </div>
+
+            <!-- oMGet() ends here -->
+
+            <hr>
+
+            <!-- oMGetAll() -->
+            <a name="oMGetAll"></a>
+            <h4><code>oMGetAll(key)</code></h4>
+
+            <p>This will fetch all values saved in the
+                given <code>key</code> of the cache.</p>
+
+            <pre><code>obj.oMGetAll('players');</code></pre>
+
+            <div>
+                <a class="btn btn-primary"
+                   role="button"
+                   data-toggle="collapse"
+                   href="#collapse-oMGetAll"
+                   aria-expanded="false"
+                   aria-controls="collapse-oMGetAll">Output</a>
+            </div>
+            <div class="collapse" id="collapse-oMGetAll">
+            </div>
+
+            <!-- oMGetAll() ends here -->
 
         </div>
 

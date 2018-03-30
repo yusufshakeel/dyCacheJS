@@ -151,10 +151,27 @@ outputJSON(obj.arrLMerge('users', 'Happy'), 'collapse-arrLMerge');
 output("Fetch all the elements of the array referred by <code>users</code> key in the cache after merge.", 'collapse-arrLMerge');
 outputJSON(obj.arrGet('users'), 'collapse-arrLMerge');
 
-
-
-
 // purge()
 obj.purge();
 output("After purge", 'collapse-purge');
 outputJSON(obj, 'collapse-purge');
+
+// oMSet();
+output("This will add <code>p1</code> oKey having value <code>{ id: 'p1', username: 'yusufshakeel' }</code> in the key <code>players</code> of the cache.", 'collapse-oMSet');
+obj.oMSet('players', 'p1', { id: 'p1', username: 'yusufshakeel' });
+output("Content of the cache.", 'collapse-oMSet');
+outputJSON(obj, 'collapse-oMSet');
+output("This will add <code>p2</code> oKey having value <code>{ id: 'p2', username: 'dawoodshakeel' }</code> in the key <code>players</code> of the cache.", 'collapse-oMSet');
+obj.oMSet('players', 'p2', { id: 'p2', username: 'dawoodshakeel' });
+output("Content of the cache.", 'collapse-oMSet');
+outputJSON(obj, 'collapse-oMSet');
+
+// oMGet();
+output("This will fetch the value of oKey <code>p1</code> saved in the key <code>players</code> of the cache.", 'collapse-oMGet');
+outputJSON(obj.oMGet('players', 'p1'), 'collapse-oMGet');
+
+// oMGetAll();
+output("This will fetch all the values saved in the key <code>players</code> of the cache.", 'collapse-oMGetAll');
+outputJSON(obj.oMGetAll('players'), 'collapse-oMGetAll');
+output("User <code>obj.length('players')</code> to get total number of oKey-oValue pairs in the key <code>players</code> of the cache.", 'collapse-oMGetAll');
+outputJSON(obj.length('players'), 'collapse-oMGetAll');
