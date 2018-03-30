@@ -38,7 +38,7 @@ describe('Testing dyCacheJS', function() {
     /**
      * set key "num" is set to 10 and then asser that it is equal to 10.
      */
-    it('should assert that value of key "num" is equal to 10.', function () {
+    it('should assert obj.set("num", 10) and obj.get("num") i.e. key "num" exists and its value is 10', function () {
         obj.set('num', 10);
         assert.equal(obj.get('num'), 10);
     });
@@ -46,7 +46,7 @@ describe('Testing dyCacheJS', function() {
     /**
      * assert the total number of keys in the cache
      */
-    it('should assert that total number of keys in the cache is 3', function () {
+    it('should assert obj.length() i.e. total number of keys in the cache is 3', function () {
         obj.set('num', 1);
         obj.set('str', 'Yusuf shakeel');
         obj.set('prj', 'p1');
@@ -56,7 +56,7 @@ describe('Testing dyCacheJS', function() {
     /**
      * assert the keys in the cache
      */
-    it('should assert that the cache has three keys', function () {
+    it('should assert obj.keys() i.e. match the keys of the cache', function () {
         obj.set('num', 1);
         obj.set('str', 'Yusuf shakeel');
         obj.set('prj', 'p1');
@@ -66,7 +66,7 @@ describe('Testing dyCacheJS', function() {
     /**
      * delete key and assert that it is removed
      */
-    it('should assert that a key is deleted from the cache', function () {
+    it('should assert obj.del("prj") that is a key is deleted from the cache', function () {
         obj.set('num', 1);
         obj.set('str', 'Yusuf shakeel');
         obj.set('prj', 'p1');
@@ -77,27 +77,18 @@ describe('Testing dyCacheJS', function() {
     /**
      * assert that a key exists in the cache
      */
-    it('should assert that a key exists in the cache', function () {
+    it('should assert obj.exists("num") i.e. a key exists in the cache', function () {
         obj.set('num', 1);
         obj.set('str', 'Yusuf shakeel');
         obj.set('prj', 'p1');
         assert.equal(obj.exists('num'), true);
-    });
-
-    /**
-     * assert that a key does not exists in the cache
-     */
-    it('should assert that a key does not exists in the cache', function () {
-        obj.set('num', 1);
-        obj.set('str', 'Yusuf shakeel');
-        obj.set('prj', 'p1');
         assert.equal(obj.exists('unknown'), false);
     });
 
     /**
      * assert that a key having object value is present in the cache
      */
-    it('should assert that the key has an object value', function () {
+    it('should assert obj.oSet() and obj.oGet() i.e. the key has an object value', function () {
         obj.oSet('user', {username: 'yusufshakeel', points: 10});
         assert.equal(obj.exists('user'), true);
         assert.deepEqual(obj.oGet('user'), {username: 'yusufshakeel', points: 10});
@@ -107,7 +98,7 @@ describe('Testing dyCacheJS', function() {
      * assert that an array referred by a key in cache exists and
      * has the expected values
      */
-    it('should assert an array referred by key exists and the value matches', function () {
+    it('should assert obj.arrPush() and obj.arrGet() i.e. an array referred by key exists and the value matches', function () {
         obj.arrPush('users', {username: 'yusufshakeel', points: 10});
         obj.arrPush('users', {username: 'dawoodshakeel', points: 20});
 
@@ -121,7 +112,7 @@ describe('Testing dyCacheJS', function() {
     /**
      * assert that length of the cache is 0 after purge
      */
-    it('should assert that length of the cache is 0 after purge', function () {
+    it('should assert obj.purge() i.e. length of the cache is 0 after purge', function () {
         obj.set('num', 1);
         obj.set('str', 'Yusuf shakeel');
         obj.set('prj', 'p1');
@@ -130,6 +121,16 @@ describe('Testing dyCacheJS', function() {
         assert.equal(obj.length(), 0);
     });
 
-
+    /**
+     * assert that after arrLPush the data matches
+     */
+    it('should assert obj.arrLPush() and obj.arrGet() i.e. the data in the key matches after arrLPush', function () {
+        let data = [];
+        for (let i = 1; i <= 10; i++) {
+            data.unshift(i);
+            obj.arrLPush('numData', i);
+        }
+        assert.deepEqual(obj.arrGet('numData'), data);
+    });
 
 });
