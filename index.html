@@ -59,6 +59,13 @@
             <div class="collapse" id="collapse-new-object">
             </div>
 
+            <br>
+
+            <p class="text-center">Note!
+                <br>
+                Output represents the state of the cache after the execution of the last method.
+            </p>
+
 
             <h3 class="text-center">Methods</h3>
 
@@ -113,6 +120,183 @@
             </div>
 
             <!-- get() ends here -->
+
+            <hr>
+
+            <!-- length() -->
+
+            <h4><code>length()</code></h4>
+
+            <p>This will give the total number of keys in the cache.</p>
+
+            <p>Returns a number.</p>
+
+            <pre><code>obj.length();</code></pre>
+
+            <div>
+                <a class="btn btn-primary"
+                   role="button"
+                   data-toggle="collapse"
+                   href="#collapse-length"
+                   aria-expanded="false"
+                   aria-controls="collapse-length">Output</a>
+            </div>
+            <div class="collapse" id="collapse-length">
+            </div>
+
+            <!-- length() ends here -->
+
+            <hr>
+
+            <!-- keys() -->
+
+            <h4><code>keys()</code></h4>
+
+            <p>This will give all the keys in the cache.</p>
+
+            <p>Returns an array.</p>
+
+            <pre><code>obj.keys();</code></pre>
+
+            <div>
+                <a class="btn btn-primary"
+                   role="button"
+                   data-toggle="collapse"
+                   href="#collapse-keys"
+                   aria-expanded="false"
+                   aria-controls="collapse-keys">Output</a>
+            </div>
+            <div class="collapse" id="collapse-keys">
+            </div>
+
+            <!-- keys() ends here -->
+
+            <hr>
+
+            <!-- del() -->
+
+            <h4><code>del(key)</code></h4>
+
+            <p>This will delete a key from the cache.</p>
+
+            <pre><code>obj.del('num');</code></pre>
+
+            <div>
+                <a class="btn btn-primary"
+                   role="button"
+                   data-toggle="collapse"
+                   href="#collapse-del"
+                   aria-expanded="false"
+                   aria-controls="collapse-del">Output</a>
+            </div>
+            <div class="collapse" id="collapse-del">
+            </div>
+
+            <!-- del() ends here -->
+
+            <hr>
+
+            <!-- exists() -->
+
+            <h4><code>exists(key)</code></h4>
+
+            <p>This checks if a given key exists in the cache.</p>
+
+            <p>Returns boolean value: true/false.</p>
+
+            <pre><code>obj.exists('num');</code></pre>
+
+            <pre><code>obj.exists('str');</code></pre>
+
+            <div>
+                <a class="btn btn-primary"
+                   role="button"
+                   data-toggle="collapse"
+                   href="#collapse-exists"
+                   aria-expanded="false"
+                   aria-controls="collapse-exists">Output</a>
+            </div>
+            <div class="collapse" id="collapse-exists">
+            </div>
+
+            <!-- exists() ends here -->
+
+            <hr>
+
+            <!-- oSet() -->
+
+            <h4><code>oSet(key, value)</code></h4>
+
+            <p>This will create a key in the cache that holds an object value.</p>
+
+            <pre><code>obj.oSet('user', {username: 'yusufshakeel', points: 10});</code></pre>
+            <pre><code>obj.oSet('awesome', { a: 10, b: 20, c: 'super'});</code></pre>
+
+            <div>
+                <a class="btn btn-primary"
+                   role="button"
+                   data-toggle="collapse"
+                   href="#collapse-oSet"
+                   aria-expanded="false"
+                   aria-controls="collapse-oSet">Output</a>
+            </div>
+            <div class="collapse" id="collapse-oSet">
+            </div>
+
+            <!-- oSet() ends here -->
+
+            <hr>
+
+            <!-- oGet() -->
+
+            <h4><code>oGet(key)</code></h4>
+
+            <p>This will fetch the object value saved in the given key in the cache.</p>
+
+            <pre><code>obj.oGet('user');</code></pre>
+
+            <div>
+                <a class="btn btn-primary"
+                   role="button"
+                   data-toggle="collapse"
+                   href="#collapse-oGet"
+                   aria-expanded="false"
+                   aria-controls="collapse-oGet">Output</a>
+            </div>
+            <div class="collapse" id="collapse-oGet">
+            </div>
+
+            <!-- oGet() ends here -->
+
+
+
+
+
+
+
+
+            <hr>
+
+            <!-- purge() -->
+
+            <h4><code>purge()</code></h4>
+
+            <p>This will remove all the keys from the cache.</p>
+
+            <pre><code>obj.purge();</code></pre>
+
+            <div>
+                <a class="btn btn-primary"
+                   role="button"
+                   data-toggle="collapse"
+                   href="#collapse-purge"
+                   aria-expanded="false"
+                   aria-controls="collapse-purge">Output</a>
+            </div>
+            <div class="collapse" id="collapse-purge">
+            </div>
+
+            <!-- purge() ends here -->
 
         </div>
 
