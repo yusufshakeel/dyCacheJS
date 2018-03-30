@@ -1,0 +1,25 @@
+{
+  "name": "dycachejs",
+  "version": "1.0.0",
+  "description": "Cache data using JavaScript in the browser.",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yusufshakeel/dyCacheJS.git"
+  },
+  "keywords": [
+    "dyCacheJS",
+    "JavaScript",
+    "Caching",
+    "JSON"
+  ],
+  "author": "Yusuf Shakeel",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yusufshakeel/dyCacheJS/issues"
+  },
+  "homepage": "https://github.com/yusufshakeel/dyCacheJS#readme"
+}
