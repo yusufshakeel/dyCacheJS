@@ -24,12 +24,12 @@ module.exports = function (grunt) {
         uglify: {
             distVersion: {
                 options: {
-                    banner: "/*! dyCacheJS | Author: Yusuf Shakeel | GitHub Link: https://github.com/yusufshakeel/dyCacheJS | MIT license | Copyright (c) 2018 Yusuf Shakeel | Date: 2016-12-27 Tuesday | Build: <%= grunt.template.today(\"yyyy-mm-dd HH:MM:ss\") %> */",
+                    banner: "/*! dyCacheJS v<%= pkg.version %> | https://github.com/yusufshakeel/dyCacheJS | MIT license | Copyright (c) 2018 Yusuf Shakeel | Date: 2016-12-27 Tuesday | Build: <%= grunt.template.today(\"yyyy-mm-dd HH:MM:ss\") %> */",
                     mangle: true
                 },
                 files: {
                     'dist/js/dyCache.min.js': [
-                        'src/ts/dyCache.js'
+                        'src/js/dyCache.js'
                     ]
                 }
             }

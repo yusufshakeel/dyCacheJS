@@ -39,7 +39,7 @@ function outputJSON(data) {
 
 // create object of dyCacheJS class
 var myCacheObj = new dyCache();
-output('myCacheObj created!: var myCacheObj = new dyCacheJS()');
+output('myCacheObj created!: var myCacheObj = new dyCache()');
 console.log(myCacheObj);
 
 // get all the keys
@@ -100,7 +100,7 @@ console.log(myCacheObj);
 
 // create another object of dyCacheJS class
 var myCacheObj2 = new dyCache();
-output('myCacheObj2 created!: var myCacheObj2 = new dyCacheJS()');
+output('myCacheObj2 created!: var myCacheObj2 = new dyCache()');
 console.log(myCacheObj2);
 
 // get all the keys
