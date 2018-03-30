@@ -130,15 +130,26 @@ output("Fetch all the elements of the array referred by <code>users</code> key i
 outputJSON(obj.arrGet('users'), 'collapse-arrLPop');
 
 // arrMerge();
-output("This will merge an array with existing array referred by <code>users</code> key in the cache at the right side.", 'collapse-arrMerge');
-output("Merge: obj.arrMerge('users', [{username: 'qwerty', points: 50}])", 'collapse-arrMerge');
+output("This will merge a value with existing array referred by <code>users</code> key in the cache at the right side.", 'collapse-arrMerge');
+output("Merge Array: obj.arrMerge('users', [{username: 'qwerty', points: 50}])", 'collapse-arrMerge');
 outputJSON(obj.arrMerge('users', [{username: 'qwerty', points: 50}]), 'collapse-arrMerge');
-output("Merge: obj.arrMerge('users', {username: 'John Doe', points: 40})", 'collapse-arrMerge');
+output("Merge Object: obj.arrMerge('users', {username: 'John Doe', points: 40})", 'collapse-arrMerge');
 outputJSON(obj.arrMerge('users', {username: 'John Doe', points: 40}), 'collapse-arrMerge');
-output("Merge: obj.arrMerge('unknown', {username: 'John Doe', points: 40})", 'collapse-arrMerge');
+output("Merge Number: obj.arrMerge('users', 10)", 'collapse-arrMerge');
+outputJSON(obj.arrMerge('users', 10), 'collapse-arrMerge');
+output("Merge String: obj.arrMerge('users', 'Hello World')", 'collapse-arrMerge');
+outputJSON(obj.arrMerge('users', 'Hello World'), 'collapse-arrMerge');
+output("Merge to unknown key: obj.arrMerge('unknown', {username: 'John Doe', points: 40})", 'collapse-arrMerge');
 outputJSON(obj.arrMerge('unknown', {username: 'John Doe', points: 40}), 'collapse-arrMerge');
 output("Fetch all the elements of the array referred by <code>users</code> key in the cache after merge.", 'collapse-arrMerge');
 outputJSON(obj.arrGet('users'), 'collapse-arrMerge');
+
+// arrLMerge();
+output("This will merge a value with existing array referred by <code>users</code> key in the cache at the left side.", 'collapse-arrLMerge');
+output("Merge String: obj.arrLMerge('users', 'Happy')", 'collapse-arrLMerge');
+outputJSON(obj.arrLMerge('users', 'Happy'), 'collapse-arrLMerge');
+output("Fetch all the elements of the array referred by <code>users</code> key in the cache after merge.", 'collapse-arrLMerge');
+outputJSON(obj.arrGet('users'), 'collapse-arrLMerge');
 
 
 

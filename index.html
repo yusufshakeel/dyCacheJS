@@ -446,6 +446,8 @@
 
             <pre><code>obj.arrMerge('users', [{username: 'qwerty', points: 50}]);   // return true</code></pre>
             <pre><code>obj.arrMerge('users', {username: 'John Doe', points: 40});   // return true</code></pre>
+            <pre><code>obj.arrMerge('users', 10);   // return true</code></pre>
+            <pre><code>obj.arrMerge('users', 'Hello World');   // return true</code></pre>
             <pre><code>obj.arrMerge('unknown', {username: 'John Doe', points: 40});   // return false</code></pre>
 
             <div>
@@ -460,6 +462,33 @@
             </div>
 
             <!-- arrMerge() ends here -->
+
+            <hr>
+
+            <!-- arrLMerge() -->
+            <a name="arrLMerge"></a>
+            <h4><code>arrLMerge(key, value)</code></h4>
+
+            <p>This will merge <code>value</code> to an array referred by <code>key</code> in the cache.</p>
+
+            <p>Merge will occur from the left side.</p>
+
+            <p>On success it will return true. Otherwise, false.</p>
+
+            <pre><code>obj.arrLMerge('users', 'Happy');   // return true</code></pre>
+
+            <div>
+                <a class="btn btn-primary"
+                   role="button"
+                   data-toggle="collapse"
+                   href="#collapse-arrLMerge"
+                   aria-expanded="false"
+                   aria-controls="collapse-arrLMerge">Output</a>
+            </div>
+            <div class="collapse" id="collapse-arrLMerge">
+            </div>
+
+            <!-- arrLMerge() ends here -->
 
 
 

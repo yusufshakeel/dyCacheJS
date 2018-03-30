@@ -182,19 +182,37 @@ var dyCache = /** @class */ (function () {
         return this._cache[key].slice(0);
     };
     /**
-     * This will merge arr array in given array denoted by given key.
+     * This will merge value to the right side of the array
+     * denoted by given key in the cache.
      *
      * Return true on success, false otherwise.
      *
      * @param {string} key
-     * @param arr
-     * @returns {void | null}
+     * @param value
+     * @returns {boolean}
      */
-    dyCache.prototype.arrMerge = function (key, arr) {
+    dyCache.prototype.arrMerge = function (key, value) {
         if (!this.exists(key)) {
             return false;
         }
-        this._cache[key] = this._cache[key].concat(arr);
+        this._cache[key] = this._cache[key].concat([value]);
+        return true;
+    };
+    /**
+     * This will merge value to the left side of the array
+     * denoted by given key in the cache.
+     *
+     * Return true on success, false otherwise.
+     *
+     * @param {string} key
+     * @param value
+     * @returns {boolean}
+     */
+    dyCache.prototype.arrLMerge = function (key, value) {
+        if (!this.exists(key)) {
+            return false;
+        }
+        this._cache[key] = [value].concat(this._cache[key]);
         return true;
     };
     /**
