@@ -108,14 +108,37 @@ output("Total number of elements in the <code>users</code> array use <code>obj.l
 outputJSON(obj.length('users'), 'collapse-arrLPush');
 
 // arrGet();
-output("Fetch all the elements of the array referred by <code>users</code> key in the cache", 'collapse-arrGet');
+output("Fetch all the elements of the array referred by <code>users</code> key in the cache.", 'collapse-arrGet');
 outputJSON(obj.arrGet('users'), 'collapse-arrGet');
-output("Fetch element of an array referred by <code>unknown</code> key that does not exists in the cache", 'collapse-arrGet');
+output("Fetch element of an array referred by <code>unknown</code> key that does not exists in the cache.", 'collapse-arrGet');
 outputJSON(obj.arrGet('unknown'), 'collapse-arrGet');
-output("Fetch element at index 1 in the array referred by <code>users</code> key in the cache", 'collapse-arrGet');
+output("Fetch element at index 1 in the array referred by <code>users</code> key in the cache.", 'collapse-arrGet');
 outputJSON(obj.arrGet('users', 1), 'collapse-arrGet');
-output("Fetch elements from index 1 to 3 in the array referred by <code>users</code> key in the cache", 'collapse-arrGet');
+output("Fetch elements from index 1 to 3 in the array referred by <code>users</code> key in the cache.", 'collapse-arrGet');
 outputJSON(obj.arrGet('users', 1, 3), 'collapse-arrGet');
+
+// arrPop();
+output("Pop element from the right side of the array referred by <code>users</code> key in the cache.", 'collapse-arrPop');
+outputJSON(obj.arrPop('users'), 'collapse-arrPop');
+output("Fetch all the elements of the array referred by <code>users</code> key in the cache after pop.", 'collapse-arrPop');
+outputJSON(obj.arrGet('users'), 'collapse-arrPop');
+
+// arrLPop();
+output("Pop element from the left side of the array referred by <code>users</code> key in the cache.", 'collapse-arrLPop');
+outputJSON(obj.arrLPop('users'), 'collapse-arrLPop');
+output("Fetch all the elements of the array referred by <code>users</code> key in the cache after left pop.", 'collapse-arrLPop');
+outputJSON(obj.arrGet('users'), 'collapse-arrLPop');
+
+// arrMerge();
+output("This will merge an array with existing array referred by <code>users</code> key in the cache at the right side.", 'collapse-arrMerge');
+output("Merge: obj.arrMerge('users', [{username: 'qwerty', points: 50}])", 'collapse-arrMerge');
+outputJSON(obj.arrMerge('users', [{username: 'qwerty', points: 50}]), 'collapse-arrMerge');
+output("Merge: obj.arrMerge('users', {username: 'John Doe', points: 40})", 'collapse-arrMerge');
+outputJSON(obj.arrMerge('users', {username: 'John Doe', points: 40}), 'collapse-arrMerge');
+output("Merge: obj.arrMerge('unknown', {username: 'John Doe', points: 40})", 'collapse-arrMerge');
+outputJSON(obj.arrMerge('unknown', {username: 'John Doe', points: 40}), 'collapse-arrMerge');
+output("Fetch all the elements of the array referred by <code>users</code> key in the cache after merge.", 'collapse-arrMerge');
+outputJSON(obj.arrGet('users'), 'collapse-arrMerge');
 
 
 

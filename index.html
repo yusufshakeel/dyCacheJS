@@ -378,6 +378,89 @@
 
             <!-- arrGet() ends here -->
 
+            <hr>
+
+            <!-- arrPop() -->
+            <a name="arrPop"></a>
+            <h4><code>arrPop(key)</code></h4>
+
+            <p>This will pop an element from the right side of an array referred by given
+            <code>key</code> in the cache.</p>
+
+            <p>If the <code>key</code> does not exists in the cache then <code>null</code> is returned.</p>
+            <p>To avoid ambiguity check if the key exists and total number of elements in the array.</p>
+
+            <pre><code>obj.arrPop('users');</code></pre>
+
+            <div>
+                <a class="btn btn-primary"
+                   role="button"
+                   data-toggle="collapse"
+                   href="#collapse-arrPop"
+                   aria-expanded="false"
+                   aria-controls="collapse-arrPop">Output</a>
+            </div>
+            <div class="collapse" id="collapse-arrPop">
+            </div>
+
+            <!-- arrPop() ends here -->
+
+            <hr>
+
+            <!-- arrLPop() -->
+            <a name="arrLPop"></a>
+            <h4><code>arrLPop(key)</code></h4>
+
+            <p>This will pop an element from the left side of an array referred by given
+                <code>key</code> in the cache.</p>
+
+            <p>If the <code>key</code> does not exists in the cache then <code>null</code> is returned.</p>
+            <p>To avoid ambiguity check if the key exists and total number of elements in the array.</p>
+
+            <pre><code>obj.arrLPop('users');</code></pre>
+
+            <div>
+                <a class="btn btn-primary"
+                   role="button"
+                   data-toggle="collapse"
+                   href="#collapse-arrLPop"
+                   aria-expanded="false"
+                   aria-controls="collapse-arrLPop">Output</a>
+            </div>
+            <div class="collapse" id="collapse-arrLPop">
+            </div>
+
+            <!-- arrLPop() ends here -->
+
+            <hr>
+
+            <!-- arrMerge() -->
+            <a name="arrMerge"></a>
+            <h4><code>arrMerge(key, value)</code></h4>
+
+            <p>This will merge <code>value</code> to an array referred by <code>key</code> in the cache.</p>
+
+            <p>Merge will occur from the right side.</p>
+
+            <p>On success it will return true. Otherwise, false.</p>
+
+            <pre><code>obj.arrMerge('users', [{username: 'qwerty', points: 50}]);   // return true</code></pre>
+            <pre><code>obj.arrMerge('users', {username: 'John Doe', points: 40});   // return true</code></pre>
+            <pre><code>obj.arrMerge('unknown', {username: 'John Doe', points: 40});   // return false</code></pre>
+
+            <div>
+                <a class="btn btn-primary"
+                   role="button"
+                   data-toggle="collapse"
+                   href="#collapse-arrMerge"
+                   aria-expanded="false"
+                   aria-controls="collapse-arrMerge">Output</a>
+            </div>
+            <div class="collapse" id="collapse-arrMerge">
+            </div>
+
+            <!-- arrMerge() ends here -->
+
 
 
 

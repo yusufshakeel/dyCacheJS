@@ -204,11 +204,18 @@ class dyCache {
     /**
      * This will merge arr array in given array denoted by given key.
      *
+     * Return true on success, false otherwise.
+     *
      * @param {string} key
      * @param arr
+     * @returns {void | null}
      */
-    public arrMerge(key: string, arr: any): void {
+    public arrMerge(key: string, arr: any): boolean {
+        if (!this.exists(key)) {
+            return false;
+        }
         this._cache[key] = this._cache[key].concat(arr);
+        return true;
     }
 
     /**
@@ -219,7 +226,7 @@ class dyCache {
      * @param {string} oKey
      * @param oValue
      */
-    public oMSet(key:string, oKey: string, oValue: any): void {
+    public oMSet(key: string, oKey: string, oValue: any): void {
 
         // if key does not exists in the cache
         if (!this.exists(key)) {

@@ -184,11 +184,18 @@ var dyCache = /** @class */ (function () {
     /**
      * This will merge arr array in given array denoted by given key.
      *
+     * Return true on success, false otherwise.
+     *
      * @param {string} key
      * @param arr
+     * @returns {void | null}
      */
     dyCache.prototype.arrMerge = function (key, arr) {
+        if (!this.exists(key)) {
+            return false;
+        }
         this._cache[key] = this._cache[key].concat(arr);
+        return true;
     };
     /**
      * This will create an object by the reference by key.
