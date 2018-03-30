@@ -38,7 +38,7 @@ function outputJSON(data) {
 //-------------- now do some actions -----------------//
 
 // create object of dyCacheJS class
-var myCacheObj = new dyCacheJS();
+var myCacheObj = new dyCache();
 output('myCacheObj created!: var myCacheObj = new dyCacheJS()');
 console.log(myCacheObj);
 
@@ -99,7 +99,7 @@ console.log(myCacheObj);
 
 
 // create another object of dyCacheJS class
-var myCacheObj2 = new dyCacheJS();
+var myCacheObj2 = new dyCache();
 output('myCacheObj2 created!: var myCacheObj2 = new dyCacheJS()');
 console.log(myCacheObj2);
 

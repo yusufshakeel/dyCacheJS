@@ -1,3 +1,4 @@
+"use strict";
 /*!
  * dyCacheJS
  *
@@ -11,118 +12,104 @@
  *
  * Date: 2016-12-27 Tuesday
  */
-
 /*! dyCacheJS | (c) 2018 Yusuf Shakeel | https://github.com/yusufshakeel/dyCacheJS */
-
-class dyCacheJS {
-
-    private _cache: any = {};
-
-    dyCacheJS() {
+var dyCache = /** @class */ (function () {
+    function dyCache() {
+        this._cache = {};
     }
-
+    dyCache.prototype.dyCache = function () {
+    };
     /**
      * This will return the total number of keys in the cache.
      *
      * @param {string} key  (optional)
      * @returns {number}
      */
-    public length(key?: string): number {
+    dyCache.prototype.length = function (key) {
         if (typeof key !== 'undefined') {
             return Object.keys(this._cache[key]).length;
         }
-        return Object.keys(this._cache).length
-    }
-
+        return Object.keys(this._cache).length;
+    };
     /**
      * This will return all the keys in the cache.
      *
      * @returns {any}
      */
-    public keys(): any {
+    dyCache.prototype.keys = function () {
         return Object.keys(this._cache);
-    }
-
+    };
     /**
      * This method will delete a key from the cache.
      *
      * @param {string} key
      */
-    public del(key: string): void {
+    dyCache.prototype.del = function (key) {
         delete this._cache[key];
-    }
-
+    };
     /**
      * This will purge the cache.
      */
-    public purge(): void {
+    dyCache.prototype.purge = function () {
         this._cache = {};
-    }
-
+    };
     /**
      * This method will check if the key exists in the cache.
      *
      * @param {string} key
      * @returns {boolean}
      */
-    public exists(key: string): boolean {
-        return typeof this._cache[key] !== "undefined"
-    }
-
+    dyCache.prototype.exists = function (key) {
+        return typeof this._cache[key] !== "undefined";
+    };
     /**
      * This method allows to set a key and value.
      *
      * @param {string} key
      * @param {number | string} value
      */
-    public set(key: string, value: number | string): void {
+    dyCache.prototype.set = function (key, value) {
         this._cache[key] = value;
-    }
-
+    };
     /**
      * This function will return the value of the entered key.
      *
      * @param {string} key
      * @returns {number | string}
      */
-    public get(key: string): number | string {
+    dyCache.prototype.get = function (key) {
         return this._cache[key];
-    }
-
+    };
     /**
      * This method will set a key having JSON object value.
      *
      * @param {string} key
      * @param value
      */
-    public oset(key: string, value: any): void {
+    dyCache.prototype.oset = function (key, value) {
         this._cache[key] = value;
-    }
-
+    };
     /**
      * This function will return the JSON object value for given key.
      *
      * @param {string} key
      */
-    public oget(key: string): any {
+    dyCache.prototype.oget = function (key) {
         return this._cache[key];
-    }
-
+    };
     /**
      * This will push new value in an array.
      *
      * @param {string} key
      * @param value
      */
-    public arrPush(key: string, value: any): void {
-
+    dyCache.prototype.arrPush = function (key, value) {
         // create array for the key if not exists
         if (!this.exists(key)) {
             this._cache[key] = [];
         }
         this._cache[key].push(value);
-    }
-
+    };
     /**
      * This will return elements of the array referred by given key.
      *
@@ -131,26 +118,25 @@ class dyCacheJS {
      * @param {number} end      (optional)
      * @returns {any}
      */
-    public arrGet(key: string, index?: number, end?: number): any {
-
+    dyCache.prototype.arrGet = function (key, index, end) {
         if (typeof index !== "undefined") {
             if (typeof end !== "undefined") {
                 return this._cache[key].slice(index, end + 1);
-            } else {
+            }
+            else {
                 return this._cache[key][index];
             }
         }
         return this._cache[key].slice(0);
-    }
-
+    };
     /**
      * This will merge arr array in given array denoted by given key.
      *
      * @param {string} key
      * @param arr
      */
-    public arrMerge(key: string, arr: any): void {
+    dyCache.prototype.arrMerge = function (key, arr) {
         this._cache[key] = this._cache[key].concat(arr);
-    }
-
-}
+    };
+    return dyCache;
+}());
