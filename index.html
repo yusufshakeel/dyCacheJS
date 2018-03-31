@@ -613,7 +613,7 @@
             <a name="oMExists"></a>
             <h4><code>oMExists(key, oKey)</code></h4>
 
-            <p>This will check if the <code>oKey</code> exits in the object
+            <p>This will check if the <code>oKey</code> exists in the object
                 referred by <code>key</code> in the cache.</p>
 
             <pre><code>obj.oMExists('players', 'p2');   // this will return true</code></pre>
@@ -631,6 +631,34 @@
             </div>
 
             <!-- oMExists() ends here -->
+
+            <hr>
+
+            <!-- oMDel() -->
+            <a name="oMDel"></a>
+            <h4><code>oMDel(key, oKey)</code></h4>
+
+            <p>This will delete the key <code>oKey</code> from the object
+                referred by <code>key</code> in the cache.</p>
+
+            <p>Returns boolean value.</p>
+
+            <p>On success return true. Otherwise false.</p>
+
+            <pre><code>obj.oMDel('players', 'p2');   // this will return true</code></pre>
+
+            <div>
+                <a class="btn btn-primary"
+                   role="button"
+                   data-toggle="collapse"
+                   href="#collapse-oMDel"
+                   aria-expanded="false"
+                   aria-controls="collapse-oMDel">Output</a>
+            </div>
+            <div class="collapse" id="collapse-oMDel">
+            </div>
+
+            <!-- oMDel() ends here -->
 
         </div>
 

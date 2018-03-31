@@ -181,3 +181,9 @@ output("This will check if <code>p2</code> oKey exists in the object referred by
 outputJSON(obj.oMExists('players', 'p2'), 'collapse-oMExists');
 output("This will check if <code>unknown</code> oKey exists in the object referred by key <code>players</code> in the cache.", 'collapse-oMExists');
 outputJSON(obj.oMExists('players', 'unknown'), 'collapse-oMExists');
+
+// oMDel();
+output("This will delete <code>p2</code> oKey from the object referred by key <code>players</code> in the cache.", 'collapse-oMDel');
+outputJSON(obj.oMDel('players', 'p2'), 'collapse-oMDel');
+output("Fetch all values of <code>players</code> in the cache.", 'collapse-oMDel');
+outputJSON(obj.oMGetAll('players'), 'collapse-oMDel');
