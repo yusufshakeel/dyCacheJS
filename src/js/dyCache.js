@@ -307,6 +307,10 @@ var dyCache = /** @class */ (function () {
      * @returns {any}
      */
     dyCache.prototype.oGet = function (key, oKey) {
+        // if key does not exists
+        if (!this.exists(key)) {
+            return undefined;
+        }
         return this._cache[key][oKey];
     };
     /**
@@ -318,6 +322,22 @@ var dyCache = /** @class */ (function () {
      */
     dyCache.prototype.oGetAll = function (key) {
         return this._cache[key];
+    };
+    /**
+     * This function will return the oKeys present in the object referred by
+     * key in the cache.
+     *
+     * On success return an array. Otherwise false.
+     *
+     * @param {string} key
+     * @returns {any}
+     */
+    dyCache.prototype.oGetKeys = function (key) {
+        // if key does not exists
+        if (!this.exists(key)) {
+            return false;
+        }
+        return Object.keys(this._cache[key]);
     };
     /**
      * This will check if oKey exists in the object referred by key in the cache.

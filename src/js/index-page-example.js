@@ -207,6 +207,10 @@ outputJSON(obj.oGet('players', 'unknown'), 'collapse-oGet');
 output("This will fetch all the values saved in the key <code>players</code> of the cache.", 'collapse-oGetAll');
 outputJSON(obj.oGetAll('players'), 'collapse-oGetAll');
 
+// oGetKeys();
+output("This will fetch all the oKey saved in the key <code>players</code> of the cache.", 'collapse-oGetKeys');
+outputJSON(obj.oGetKeys('players'), 'collapse-oGetKeys');
+
 // oExists();
 output("This will check if <code>p2</code> oKey exists in the object referred by key <code>players</code> in the cache.", 'collapse-oExists');
 outputJSON(obj.oExists('players', 'p2'), 'collapse-oExists');
