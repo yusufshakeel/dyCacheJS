@@ -175,3 +175,9 @@ output("This will fetch all the values saved in the key <code>players</code> of 
 outputJSON(obj.oMGetAll('players'), 'collapse-oMGetAll');
 output("User <code>obj.length('players')</code> to get total number of oKey-oValue pairs in the key <code>players</code> of the cache.", 'collapse-oMGetAll');
 outputJSON(obj.length('players'), 'collapse-oMGetAll');
+
+// oMExists();
+output("This will check if <code>p2</code> oKey exists in the object referred by key <code>players</code> in the cache.", 'collapse-oMExists');
+outputJSON(obj.oMExists('players', 'p2'), 'collapse-oMExists');
+output("This will check if <code>unknown</code> oKey exists in the object referred by key <code>players</code> in the cache.", 'collapse-oMExists');
+outputJSON(obj.oMExists('players', 'unknown'), 'collapse-oMExists');

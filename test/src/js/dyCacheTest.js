@@ -261,6 +261,7 @@ describe('Testing dyCacheJS', function () {
         obj.oMSet('players', 'p1', {id: 'p1', username: 'yusufshakeel'});
         obj.oMSet('players', 'p2', {id: 'p2', username: 'dawoodshakeel'});
         assert.equal(obj.oMExists('players', 'p1'), true);
+        assert.equal(obj.oMExists('players', 'unknown'), false);
     });
 
     /**

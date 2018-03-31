@@ -607,6 +607,31 @@
 
             <!-- oMGetAll() ends here -->
 
+            <hr>
+
+            <!-- oMExists() -->
+            <a name="oMExists"></a>
+            <h4><code>oMExists(key, oKey)</code></h4>
+
+            <p>This will check if the <code>oKey</code> exits in the object
+                referred by <code>key</code> in the cache.</p>
+
+            <pre><code>obj.oMExists('players', 'p2');   // this will return true</code></pre>
+            <pre><code>obj.oMExists('players', 'unknown');   // this will return false</code></pre>
+
+            <div>
+                <a class="btn btn-primary"
+                   role="button"
+                   data-toggle="collapse"
+                   href="#collapse-oMExists"
+                   aria-expanded="false"
+                   aria-controls="collapse-oMExists">Output</a>
+            </div>
+            <div class="collapse" id="collapse-oMExists">
+            </div>
+
+            <!-- oMExists() ends here -->
+
         </div>
 
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
