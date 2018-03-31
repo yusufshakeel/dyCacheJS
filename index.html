@@ -85,9 +85,19 @@
             </p>
 
 
-            <h3 class="text-center">Methods</h3>
+            <h3 class="text-center">Content</h3>
+
+            <ul>
+                <li><a href="#key-having-number-and-string-value">Key having Number and String value</a></li>
+                <li><a href="#cache-methods">Cache Methods</a></li>
+                <li><a href="#key-having-object-value">Key having object value</a></li>
+                <li><a href=""></a></li>
+            </ul>
 
             <hr>
+
+            <a name="key-having-number-and-string-value"></a>
+            <h4 class="text-center"><a href="#key-having-number-and-string-value">Key having Number and String value</a></h4>
 
             <!-- set() -->
 
@@ -144,6 +154,9 @@
             <!-- get() ends here -->
 
             <hr>
+
+            <a name="cache-methods"></a>
+            <h4 class="text-center"><a href="#cache-methods">Cache Methods</a></h4>
 
             <!-- length() -->
 
@@ -249,17 +262,47 @@
 
             <hr>
 
+            <!-- purge() -->
+
+            <a name="purge"></a>
+            <h4><code>purge()</code></h4>
+
+            <p>This will remove all the keys from the cache.</p>
+
+            <pre><code>obj.purge();</code></pre>
+
+            <div>
+                <a class="btn btn-primary"
+                   role="button"
+                   data-toggle="collapse"
+                   href="#collapse-purge"
+                   aria-expanded="false"
+                   aria-controls="collapse-purge">Output</a>
+            </div>
+            <div class="collapse" id="collapse-purge">
+            </div>
+
+            <!-- purge() ends here -->
+
+            <hr>
+
+            <a name="key-having-object-value"></a>
+            <h4 class="text-center"><a href="#key-having-object-value">Key having object value</a></h4>
+
             <!-- oSet() -->
 
             <a name="oSet"></a>
             <h4><code>oSet(key, value)</code></h4>
 
-            <p>This will create a key in the cache that holds an object value.</p>
+            <p>This will create a key in the cache that holds an object, array, number and string value.</p>
 
             <p>If the <code>key</code> exists in the cache then it is overwritten.</p>
 
-            <pre><code>obj.oSet('user', {username: 'yusufshakeel', points: 10});</code></pre>
-            <pre><code>obj.oSet('awesome', { a: 10, b: 20, c: 'super'});</code></pre>
+            <pre><code>obj.oSet('user', {username: 'yusufshakeel', points: 10});    // saving object value</code></pre>
+            <pre><code>obj.oSet('awesome', { a: 10, b: 20, c: 'super'});    // saving object value</code></pre>
+            <pre><code>obj.oSet('numArr', [1, 2, 3, 4, 5]);    // saving array value</code></pre>
+            <pre><code>obj.oSet('num', 1);    // saving number value</code></pre>
+            <pre><code>obj.oSet('str', 'Hello World');    // saving string value</code></pre>
 
             <div>
                 <a class="btn btn-primary"
@@ -555,30 +598,6 @@
             </div>
 
             <!-- arrLMerge() ends here -->
-
-            <hr>
-
-            <!-- purge() -->
-
-            <a name="purge"></a>
-            <h4><code>purge()</code></h4>
-
-            <p>This will remove all the keys from the cache.</p>
-
-            <pre><code>obj.purge();</code></pre>
-
-            <div>
-                <a class="btn btn-primary"
-                   role="button"
-                   data-toggle="collapse"
-                   href="#collapse-purge"
-                   aria-expanded="false"
-                   aria-controls="collapse-purge">Output</a>
-            </div>
-            <div class="collapse" id="collapse-purge">
-            </div>
-
-            <!-- purge() ends here -->
 
             <hr>
 

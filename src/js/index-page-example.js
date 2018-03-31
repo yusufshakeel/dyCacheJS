@@ -76,17 +76,33 @@ outputJSON(obj.exists('num'), 'collapse-exists');
 output("<code>str</code> key exists in the cache?", 'collapse-exists');
 outputJSON(obj.exists('str'), 'collapse-exists');
 
+// purge()
+obj.purge();
+output("After purge", 'collapse-purge');
+outputJSON(obj, 'collapse-purge');
+
 // oSet();
 output("Create an <code>user</code> key in the cache to store object value.", 'collapse-oSet');
 obj.oSet('user', {username: 'yusufshakeel', points: 10});
 output("Create an <code>awesome</code> key in the cache to store object value.", 'collapse-oSet');
 obj.oSet('awesome', { a: 10, b: 20, c: 'super'});
+output("Create a <code>numArr</code> key in the cache to store array value.", 'collapse-oSet');
+obj.oSet('numArr', [1, 2, 3, 4, 5]);
+output("Create a <code>num</code> key in the cache to store number value.", 'collapse-oSet');
+obj.oSet('num', 1);
+output("Create a <code>str</code> key in the cache to store string value.", 'collapse-oSet');
+obj.oSet('str', 'Hello World');
 output("Content of the cache.", 'collapse-oSet');
 outputJSON(obj, 'collapse-oSet');
 
 // oGet();
 output("Fetch the object value stored in <code>user</code> key in the cache.", 'collapse-oGet');
 outputJSON(obj.oGet('user'), 'collapse-oGet');
+
+// purge()
+obj.purge();
+output("Content of the cache after purge.", 'collapse-arrPush');
+outputJSON(obj, 'collapse-arrPush');
 
 // arrPush();
 output("Create an <code>users</code> key in the cache which is an array and insert some data.", 'collapse-arrPush');
@@ -162,8 +178,8 @@ outputJSON(obj.arrGet('users'), 'collapse-arrLMerge');
 
 // purge()
 obj.purge();
-output("After purge", 'collapse-purge');
-outputJSON(obj, 'collapse-purge');
+output("Content of the cache after purge.", 'collapse-oMSet');
+outputJSON(obj, 'collapse-oMSet');
 
 // oMSet();
 output("This will add <code>p1</code> oKey having value <code>{ id: 'p1', username: 'yusufshakeel' }</code> in the key <code>players</code> of the cache.", 'collapse-oMSet');
