@@ -345,6 +345,11 @@ class dyCache {
      * @returns {any}
      */
     public oGet(key: string, oKey: string): any {
+
+        // if key does not exists
+        if (!this.exists(key)) {
+            return undefined;
+        }
         return this._cache[key][oKey];
     }
 
@@ -357,6 +362,24 @@ class dyCache {
      */
     public oGetAll(key: string): any {
         return this._cache[key];
+    }
+
+    /**
+     * This function will return the oKeys present in the object referred by
+     * key in the cache.
+     *
+     * On success return an array. Otherwise false.
+     *
+     * @param {string} key
+     * @returns {any}
+     */
+    public oGetKeys(key: string): any {
+
+        // if key does not exists
+        if (!this.exists(key)) {
+            return false;
+        }
+        return Object.keys(this._cache[key]);
     }
 
     /**

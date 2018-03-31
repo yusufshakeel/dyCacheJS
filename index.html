@@ -140,6 +140,8 @@
 
             <p>This will fetch the value of a given key in the cache.</p>
 
+            <p>If <code>key</code> does not exists then it will return <code>undefined</code>.</p>
+
             <pre><code>obj.get('num');</code></pre>
 
             <pre><code>obj.get('str');</code></pre>
@@ -656,6 +658,7 @@
             <p>This will fetch the value saved in the key <code>oKey</code>
                 inside the object referred by <code>key</code> in the cache.</p>
 
+            <p>If <code>key</code> does not exists then it will return <code>undefined</code>.</p>
             <p>If <code>oKey</code> does not exists then it will return <code>undefined</code>.</p>
 
             <pre><code>obj.oGet('players', 'p1');</code></pre>
@@ -683,6 +686,8 @@
             <p>This will fetch all values saved in the
                 given <code>key</code> of the cache.</p>
 
+            <p>If <code>key</code> does not exists then return <code>undefined</code>.</p>
+
             <pre><code>obj.oGetAll('players');</code></pre>
 
             <div>
@@ -697,6 +702,32 @@
             </div>
 
             <!-- oGetAll() ends here -->
+
+            <hr>
+
+            <!-- oGetKeys() -->
+            <a name="oGetKeys"></a>
+            <h4><code>oGetKeys(key)</code></h4>
+
+            <p>This will return all the <code>oKey</code> in the object
+                referred by <code>key</code> in the cache.</p>
+
+            <p>On success return an array containing all the oKey. Otherwise, false.</p>
+
+            <pre><code>obj.oGetKeys('players');</code></pre>
+
+            <div>
+                <a class="btn btn-primary"
+                   role="button"
+                   data-toggle="collapse"
+                   href="#collapse-oGetKeys"
+                   aria-expanded="false"
+                   aria-controls="collapse-oGetKeys">Output</a>
+            </div>
+            <div class="collapse" id="collapse-oGetKeys">
+            </div>
+
+            <!-- oGetKeys() ends here -->
 
             <hr>
 
