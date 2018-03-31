@@ -128,6 +128,15 @@ describe('Testing dyCacheJS', function () {
     });
 
     /**
+     * assert arrMPush - push multiple values
+     */
+    it('should assert obj.arrMPush(key, value) i.e. push multiple values in the array', function () {
+        let value = [1, 'helloworld', [1, 2, 3], {id: 1, points: 10}];
+        obj.arrMPush('data', value);
+        assert.deepEqual(obj.arrGet('data'), value);
+    });
+
+    /**
      * assert that length of the cache is 0 after purge
      */
     it('should assert obj.purge() i.e. length of the cache is 0 after purge', function () {
@@ -276,6 +285,12 @@ describe('Testing dyCacheJS', function () {
             obj.arrPush('numArr', i);
         }
         assert.deepEqual(obj.arrDeleteElem('numArr', 1), [1]);
+
+        // index does not exists
+        assert.equal(obj.arrDeleteElem('numArr', 10), false);
+
+        // key does not exists
+        assert.equal(obj.arrDeleteElem('unknown', 1), false);
     });
 
     /**
@@ -283,11 +298,35 @@ describe('Testing dyCacheJS', function () {
      * delete will start from the start index.
      * total element to be deleted is denoted by delectCount
      */
-    it('should assert arrDeleteElems(key, start, deleteCount) i.e. delete element from the array at index start and delete total deleteCount elements', function () {
+    it('should assert arrDeleteElems(key, start, deleteCount) i.e. delete N elements from the array starting from index start till N elements.', function () {
         for (let i = 0; i <= 5; i++) {
             obj.arrPush('numArr', i);
         }
         assert.deepEqual(obj.arrDeleteElems('numArr', 1, 3), [1, 2, 3]);
+    });
+
+    /**
+     * this will delete element from the array referred by key in the cache.
+     * delete will start from the start index.
+     * total element to be deleted is denoted by delectCount
+     */
+    it('should assert arrDeleteElems(key, start, deleteCount) i.e. delete N elements from the array starting from index 0 till N elements.', function () {
+        for (let i = 0; i <= 5; i++) {
+            obj.arrPush('numArr', i);
+        }
+        assert.deepEqual(obj.arrDeleteElems('numArr', 0, 3), [0, 1, 2]);
+    });
+
+    /**
+     * this will delete element from the array referred by key in the cache.
+     * delete will start from the start index.
+     * total element to be deleted is denoted by delectCount
+     */
+    it('should assert arrDeleteElems(key, start) i.e. delete all elements from the array starting from index start', function () {
+        for (let i = 0; i <= 5; i++) {
+            obj.arrPush('numArr', i);
+        }
+        assert.deepEqual(obj.arrDeleteElems('numArr', 1), [1, 2, 3, 4, 5]);
     });
 
     /**

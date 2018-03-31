@@ -305,10 +305,12 @@
                 which is an array and will push the <code>value</code>
                 from the right side of the array.</p>
 
-            <pre><code>obj.arrPush('users', {username: 'yusufshakeel', points: 10});</code></pre>
-            <pre><code>obj.arrPush('users', {username: 'dawoodshakeel', points: 20});</code></pre>
-            <pre><code>obj.arrPush('users', {username: 'janedoe', points: 30});</code></pre>
-            <pre><code>obj.arrPush('users', {username: 'johndoe', points: 40});</code></pre>
+            <p><code>value</code> can be a number, string, object or array.</p>
+
+            <pre><code>obj.arrPush('users', {username: 'yusufshakeel', points: 10});    // push object</code></pre>
+            <pre><code>obj.arrPush('users', [1, 2, 3]); // push array</code></pre>
+            <pre><code>obj.arrPush('users', 9999);  // push number</code></pre>
+            <pre><code>obj.arrPush('users', 'Hello World'); // push string</code></pre>
 
             <div>
                 <a class="btn btn-primary"
@@ -325,6 +327,34 @@
 
             <hr>
 
+            <!-- arrMPush() -->
+            <a name="arrMPush"></a>
+            <h4><code>arrMPush(key, value)</code></h4>
+
+            <p>This will push multiple values in an array referred by the
+                <code>key</code> in the cache.</p>
+
+            <p>If <code>key</code> does not exists then it will be created.</p>
+
+            <p><code>value</code> is an array of elements. Where, an element can be a number, string, object or array.</p>
+
+            <pre><code>obj.arrMPush('users', [100, 'superman', ['a1', 'b2', 200], { id: 10, points: 20}]);</code></pre>
+
+            <div>
+                <a class="btn btn-primary"
+                   role="button"
+                   data-toggle="collapse"
+                   href="#collapse-arrMPush"
+                   aria-expanded="false"
+                   aria-controls="collapse-arrMPush">Output</a>
+            </div>
+            <div class="collapse" id="collapse-arrMPush">
+            </div>
+
+            <!-- arrMPush() ends here -->
+
+            <hr>
+
             <!-- arrLPush() -->
             <a name="arrLPush"></a>
             <h4><code>arrLPush(key, value)</code></h4>
@@ -332,6 +362,8 @@
             <p>This will create a <code>key</code> (if not exists) in the cache
                 which is an array and will push the <code>value</code>
                 from the left side of the array.</p>
+
+            <p><code>value</code> can be a number, string, object or array.</p>
 
             <pre><code>obj.arrLPush('users', {username: 'qwerty', points: 50});</code></pre>
 
@@ -558,7 +590,7 @@
             <p>This will delete element at given <code>index</code> of the array referred by the
                 <code>key</code> in the cache.</p>
 
-            <p>On success it will return the deleted elements in an array. Otherwise, false.</p>
+            <p>On success it will return the deleted element in an array. Otherwise, false.</p>
 
             <pre><code>obj.arrDeleteElem('users', 0);   // delete element at index 0</code></pre>
 

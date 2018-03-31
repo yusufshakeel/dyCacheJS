@@ -102,11 +102,17 @@ outputJSON(obj, 'collapse-purge');
 // arrPush();
 output("Create an <code>users</code> key in the cache which is an array and insert some data.", 'collapse-arrPush');
 obj.arrPush('users', {username: 'yusufshakeel', points: 10});
-obj.arrPush('users', {username: 'dawoodshakeel', points: 20});
-obj.arrPush('users', {username: 'janedoe', points: 30});
-obj.arrPush('users', {username: 'johndoe', points: 40});
+obj.arrPush('users', [1, 2, 3]);
+obj.arrPush('users', 9999);
+obj.arrPush('users', 'Hello World');
 output("Content of the cache.", 'collapse-arrPush');
 outputJSON(obj, 'collapse-arrPush');
+
+// arrMPush();
+output("Push multiple values in an array referred by <code>users</code> key in the cache", 'collapse-arrMPush');
+obj.arrMPush('users', [100, 'superman', ['a1', 'b2', 200], { id: 10, points: 20}]);
+output("Content of the cache.", 'collapse-arrMPush');
+outputJSON(obj, 'collapse-arrMPush');
 
 // arrLPush();
 output("Create an <code>users</code> key (if not exists) in the cache which is an array and insert given data from the left.", 'collapse-arrLPush');
