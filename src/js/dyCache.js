@@ -70,7 +70,7 @@ var dyCache = /** @class */ (function () {
         this._cache[key] = value;
     };
     /**
-     * This function will return the value of the entered key.
+     * This method will return the value of the entered key.
      *
      * @param {string} key
      * @returns {any}
@@ -106,7 +106,7 @@ var dyCache = /** @class */ (function () {
         this._cache[key] = this._cache[key].concat(value);
     };
     /**
-     * This function will push value at the left side of the array
+     * This method will push value at the left side of the array
      * referred by the given key.
      *
      * @param {string} key
@@ -120,6 +120,23 @@ var dyCache = /** @class */ (function () {
         }
         else {
             this._cache[key].unshift(value);
+        }
+    };
+    /**
+     * This method will push multiple values in an array referred by key
+     * in the cache from the left side.
+     *
+     * @param {string} key
+     * @param value
+     */
+    dyCache.prototype.arrMLPush = function (key, value) {
+        // create array for the key if not exists
+        if (!this.exists(key)) {
+            this._cache[key] = [];
+            this._cache[key].push(value);
+        }
+        else {
+            this._cache[key] = value.concat(this._cache[key]);
         }
     };
     /**

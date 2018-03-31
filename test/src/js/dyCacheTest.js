@@ -183,6 +183,17 @@ describe('Testing dyCacheJS', function () {
     });
 
     /**
+     * assert multiple push from the left side
+     */
+    it('should assert obj.arrMLPush(key, value) i.e. push multiple elements in an array from the left', function () {
+        for (let i = 1; i <= 3; i++) {
+            obj.arrPush('numData', i);
+        }
+        obj.arrMLPush('numData', [100, 'hello world', { id: 10 }, [99, 98]]);
+        assert.deepEqual(obj.arrGet('numData'), [100, 'hello world', { id: 10 }, [99, 98], 1, 2, 3]);
+    });
+
+    /**
      * assert arrGet
      */
     it('should assert obj.arrGet() returns all the values', function () {
