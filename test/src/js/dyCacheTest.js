@@ -124,6 +124,28 @@ describe('Testing dyCacheJS', function () {
         assert.equal(obj.length(), 0);
     });
 
+    it('should assert obj.arrUpdateElem(key, index, value) i.e. update value of an element at given index in the array', function () {
+        obj.arrPush('users', {username: 'yusufshakeel', points: 10});
+        obj.arrPush('users', {username: 'dawoodshakeel', points: 20});
+        obj.arrPush('users', {username: 'qwerty', points: 30});
+
+        // invalid key
+        assert.equal(obj.arrUpdateElem('unknown', 3, 10), false);
+
+        // invalid index
+        assert.equal(obj.arrUpdateElem('user', 3, 10), false);
+
+        // missing value
+        assert.equal(obj.arrUpdateElem('user', 3), false);
+
+        // correct key, index, value
+        let newData = {username: 'janedoe', points: 40};
+        assert.equal(obj.arrUpdateElem('users', 2, newData), true);
+
+        // check new value
+        assert.deepEqual(obj.arrGet('users', 2), newData);
+    });
+
     /**
      * assert that after arrLPush the data matches
      */

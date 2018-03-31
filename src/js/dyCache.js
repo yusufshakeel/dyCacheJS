@@ -230,6 +230,33 @@ var dyCache = /** @class */ (function () {
         return -1;
     };
     /**
+     * This will update the value at given index in an array
+     * referred by key in the cache.
+     *
+     * On success return true. Otherwise false.
+     *
+     * @param {string} key
+     * @param {number} index
+     * @param value
+     * @returns {boolean}
+     */
+    dyCache.prototype.arrUpdateElem = function (key, index, value) {
+        // if key does not exists
+        if (typeof this._cache[key] === "undefined") {
+            return false;
+        }
+        // if invalid index
+        if (this.arrLength(key) < index || index < 0) {
+            return false;
+        }
+        // if value does not exists
+        if (typeof value === "undefined") {
+            return false;
+        }
+        this._cache[key][index] = value;
+        return true;
+    };
+    /**
      * This will create an object by the reference by key.
      * Then it will add a property okey and set it to oValue value.
      *

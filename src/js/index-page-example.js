@@ -107,6 +107,7 @@ outputJSON(obj, 'collapse-arrLPush');
 output("Fetch all the elements of the array referred by <code>users</code> key in the cache.", 'collapse-arrGet');
 outputJSON(obj.arrGet('users'), 'collapse-arrGet');
 output("Fetch element of an array referred by <code>unknown</code> key that does not exists in the cache.", 'collapse-arrGet');
+output("To avoid ambiguity use <code>obj.exists(key)</code> to first check if the key exists", 'collapse-arrGet');
 outputJSON(obj.arrGet('unknown'), 'collapse-arrGet');
 output("Fetch element at index 1 in the array referred by <code>users</code> key in the cache.", 'collapse-arrGet');
 outputJSON(obj.arrGet('users', 1), 'collapse-arrGet');
