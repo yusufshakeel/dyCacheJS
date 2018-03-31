@@ -5,7 +5,7 @@ Cache data using JavaScript in the browser.
 ### Status
 
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/yusufshakeel/dyCacheJS)
-[![npm version](https://img.shields.io/badge/npm-1.0.0-blue.svg)](https://www.npmjs.com/package/dycachejs)
+[![npm version](https://img.shields.io/badge/npm-1.1.0-blue.svg)](https://www.npmjs.com/package/dycachejs)
 [![Build Status](https://travis-ci.org/yusufshakeel/dyCacheJS.svg?branch=master)](https://travis-ci.org/yusufshakeel/dyCacheJS)
 
 
@@ -15,9 +15,9 @@ Cache data using JavaScript in the browser.
 * Install via npm: `npm install --save dycachejs`
 * Use from jsDelivr CDN: `https://cdn.jsdelivr.net/npm/dycachejs@version/dist/js/dyCache.min.js`
 
-Note! For jsDelive CDN, replace `@version` with the version you want to use like `@1.0.0`.
+Note! For jsDelive CDN, replace `@version` with the version you want to use like `@1.1.0`.
 
-Example `https://cdn.jsdelivr.net/npm/dycachejs@1.0.0/dist/js/dyCache.min.js`
+Example `https://cdn.jsdelivr.net/npm/dycachejs@1.1.0/dist/js/dyCache.min.js`
 
 
 ### Documentation
