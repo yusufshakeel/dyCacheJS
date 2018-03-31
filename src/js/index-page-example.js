@@ -137,12 +137,6 @@ outputJSON(obj.arrGet('users', 1), 'collapse-arrGet');
 output("Fetch elements from index 1 to 3 in the array referred by <code>users</code> key in the cache.", 'collapse-arrGet');
 outputJSON(obj.arrGet('users', 1, 3), 'collapse-arrGet');
 
-// arrUpdateElem();
-output("Update value of an element at index 0 in the array referred by key <code>users</code> in the cache.", 'collapse-arrUpdateElem');
-outputJSON(obj.arrUpdateElem('users', 0, { username: 'tintin', points: 50 }), 'collapse-arrUpdateElem');
-output("Fetch all the elements of the array referred by <code>users</code> key in the cache.", 'collapse-arrUpdateElem');
-outputJSON(obj.arrGet('users'), 'collapse-arrUpdateElem');
-
 // arrLength()
 output("Total number of elements in the array referred by the key <code>users</code> in the cache.", 'collapse-arrLength');
 outputJSON(obj.arrLength('users'), 'collapse-arrLength');
@@ -161,27 +155,11 @@ outputJSON(obj.arrLPop('users'), 'collapse-arrLPop');
 output("Fetch all the elements of the array referred by <code>users</code> key in the cache after left pop.", 'collapse-arrLPop');
 outputJSON(obj.arrGet('users'), 'collapse-arrLPop');
 
-// arrMerge();
-output("This will merge a value with existing array referred by <code>users</code> key in the cache at the right side.", 'collapse-arrMerge');
-output("Merge Array: obj.arrMerge('users', [{username: 'qwerty', points: 50}])", 'collapse-arrMerge');
-outputJSON(obj.arrMerge('users', [{username: 'qwerty', points: 50}]), 'collapse-arrMerge');
-output("Merge Object: obj.arrMerge('users', {username: 'John Doe', points: 40})", 'collapse-arrMerge');
-outputJSON(obj.arrMerge('users', {username: 'John Doe', points: 40}), 'collapse-arrMerge');
-output("Merge Number: obj.arrMerge('users', 10)", 'collapse-arrMerge');
-outputJSON(obj.arrMerge('users', 10), 'collapse-arrMerge');
-output("Merge String: obj.arrMerge('users', 'Hello World')", 'collapse-arrMerge');
-outputJSON(obj.arrMerge('users', 'Hello World'), 'collapse-arrMerge');
-output("Merge to unknown key: obj.arrMerge('unknown', {username: 'John Doe', points: 40})", 'collapse-arrMerge');
-outputJSON(obj.arrMerge('unknown', {username: 'John Doe', points: 40}), 'collapse-arrMerge');
-output("Fetch all the elements of the array referred by <code>users</code> key in the cache after merge.", 'collapse-arrMerge');
-outputJSON(obj.arrGet('users'), 'collapse-arrMerge');
-
-// arrLMerge();
-output("This will merge a value with existing array referred by <code>users</code> key in the cache at the left side.", 'collapse-arrLMerge');
-output("Merge String: obj.arrLMerge('users', 'Happy')", 'collapse-arrLMerge');
-outputJSON(obj.arrLMerge('users', 'Happy'), 'collapse-arrLMerge');
-output("Fetch all the elements of the array referred by <code>users</code> key in the cache after merge.", 'collapse-arrLMerge');
-outputJSON(obj.arrGet('users'), 'collapse-arrLMerge');
+// arrUpdateElem();
+output("Update value of an element at index 0 in the array referred by key <code>users</code> in the cache.", 'collapse-arrUpdateElem');
+outputJSON(obj.arrUpdateElem('users', 0, { username: 'tintin', points: 50 }), 'collapse-arrUpdateElem');
+output("Fetch all the elements of the array referred by <code>users</code> key in the cache.", 'collapse-arrUpdateElem');
+outputJSON(obj.arrGet('users'), 'collapse-arrUpdateElem');
 
 // arrDeleteElem();
 output("Delete element at index 0 from array referred by key <code>users</code> in the cache.", 'collapse-arrDeleteElem');

@@ -448,34 +448,6 @@
 
             <hr>
 
-            <!-- arrUpdateElem() -->
-            <a name="arrUpdateElem"></a>
-            <h4><code>arrUpdateElem(key, index, value)</code></h4>
-
-            <p>This will update the value of an element at given <code>index</code>
-                in the array referred by the <code>key</code> in the cache.</p>
-
-            <p>On success return true. Otherwise false.</p>
-
-            <p>Note! Array indexing starts from 0.</p>
-
-            <pre><code>obj.arrUpdateElem('users', 0, { username: 'tintin', points: 50 }); // this will return true</code></pre>
-
-            <div>
-                <a class="btn btn-primary"
-                   role="button"
-                   data-toggle="collapse"
-                   href="#collapse-arrUpdateElem"
-                   aria-expanded="false"
-                   aria-controls="collapse-arrUpdateElem">Output</a>
-            </div>
-            <div class="collapse" id="collapse-arrUpdateElem">
-            </div>
-
-            <!-- arrUpdateElem() ends here -->
-
-            <hr>
-
             <!-- arrLength() -->
             <a name="arrLength"></a>
             <h4><code>arrLength(key)</code></h4>
@@ -557,61 +529,31 @@
 
             <hr>
 
-            <!-- arrMerge() -->
-            <a name="arrMerge"></a>
-            <h4><code>arrMerge(key, value)</code></h4>
+            <!-- arrUpdateElem() -->
+            <a name="arrUpdateElem"></a>
+            <h4><code>arrUpdateElem(key, index, value)</code></h4>
 
-            <p>This will merge <code>value</code> to an array referred by <code>key</code> in the cache.</p>
+            <p>This will update the value of an element at given <code>index</code>
+                in the array referred by the <code>key</code> in the cache.</p>
 
-            <p>Merge will occur from the right side.</p>
+            <p>On success return true. Otherwise false.</p>
 
-            <p>On success it will return true. Otherwise, false.</p>
+            <p>Note! Array indexing starts from 0.</p>
 
-            <pre><code>obj.arrMerge('users', [{username: 'qwerty', points: 50}]);   // return true</code></pre>
-            <pre><code>obj.arrMerge('users', {username: 'John Doe', points: 40});   // return true</code></pre>
-            <pre><code>obj.arrMerge('users', 10);   // return true</code></pre>
-            <pre><code>obj.arrMerge('users', 'Hello World');   // return true</code></pre>
-            <pre><code>obj.arrMerge('unknown', {username: 'John Doe', points: 40});   // return false</code></pre>
+            <pre><code>obj.arrUpdateElem('users', 0, { username: 'tintin', points: 50 }); // this will return true</code></pre>
 
             <div>
                 <a class="btn btn-primary"
                    role="button"
                    data-toggle="collapse"
-                   href="#collapse-arrMerge"
+                   href="#collapse-arrUpdateElem"
                    aria-expanded="false"
-                   aria-controls="collapse-arrMerge">Output</a>
+                   aria-controls="collapse-arrUpdateElem">Output</a>
             </div>
-            <div class="collapse" id="collapse-arrMerge">
-            </div>
-
-            <!-- arrMerge() ends here -->
-
-            <hr>
-
-            <!-- arrLMerge() -->
-            <a name="arrLMerge"></a>
-            <h4><code>arrLMerge(key, value)</code></h4>
-
-            <p>This will merge <code>value</code> to an array referred by <code>key</code> in the cache.</p>
-
-            <p>Merge will occur from the left side.</p>
-
-            <p>On success it will return true. Otherwise, false.</p>
-
-            <pre><code>obj.arrLMerge('users', 'Happy');   // return true</code></pre>
-
-            <div>
-                <a class="btn btn-primary"
-                   role="button"
-                   data-toggle="collapse"
-                   href="#collapse-arrLMerge"
-                   aria-expanded="false"
-                   aria-controls="collapse-arrLMerge">Output</a>
-            </div>
-            <div class="collapse" id="collapse-arrLMerge">
+            <div class="collapse" id="collapse-arrUpdateElem">
             </div>
 
-            <!-- arrLMerge() ends here -->
+            <!-- arrUpdateElem() ends here -->
 
             <hr>
 

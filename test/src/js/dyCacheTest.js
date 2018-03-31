@@ -254,36 +254,13 @@ describe('Testing dyCacheJS', function () {
     });
 
     /**
-     * assert arrMerge(key, value)
-     */
-    it('should assert obj.arrMerge(key, value) matches the new array', function () {
-        obj.arrPush('numArr', 1);
-        obj.arrPush('numArr', {a: 1});
-        obj.arrPush('numArr', {b: 2});
-        obj.arrMerge('numArr', [10, 20, 30]);
-        assert.deepEqual(obj.arrGet('numArr'), [1, {a: 1}, {b: 2}, [10, 20, 30]]);
-    });
-
-    /**
-     * assert arrLMerge(key, value)
-     */
-    it('should assert obj.arrLMerge(key, value) matches the new array', function () {
-        obj.arrPush('numArr', 1);
-        obj.arrPush('numArr', {a: 1});
-        obj.arrPush('numArr', {b: 2});
-        obj.arrLMerge('numArr', [10, 20, 30]);
-        assert.deepEqual(obj.arrGet('numArr'), [[10, 20, 30], 1, {a: 1}, {b: 2}]);
-    });
-
-    /**
      * assert length of an array
      */
     it('should assert obj.arrLength(key) i.e. total number of elements in the array', function () {
         obj.arrPush('numArr', 1);
         obj.arrPush('numArr', {a: 1});
         obj.arrPush('numArr', {b: 2});
-        obj.arrLMerge('numArr', [10, 20, 30]);
-        assert.equal(obj.arrLength('numArr'), 4);
+        assert.equal(obj.arrLength('numArr'), 3);
     });
 
     /**
