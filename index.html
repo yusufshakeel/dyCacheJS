@@ -391,6 +391,34 @@
 
             <hr>
 
+            <!-- arrUpdateElem() -->
+            <a name="arrUpdateElem"></a>
+            <h4><code>arrUpdateElem(key, index, value)</code></h4>
+
+            <p>This will update the value of an element at given <code>index</code>
+                in the array referred by the <code>key</code> in the cache.</p>
+
+            <p>On success return true. Otherwise false.</p>
+
+            <p>Note! Array indexing starts from 0.</p>
+
+            <pre><code>obj.arrUpdateElem('users', 0, { username: 'tintin', points: 50 }); // this will return true</code></pre>
+
+            <div>
+                <a class="btn btn-primary"
+                   role="button"
+                   data-toggle="collapse"
+                   href="#collapse-arrUpdateElem"
+                   aria-expanded="false"
+                   aria-controls="collapse-arrUpdateElem">Output</a>
+            </div>
+            <div class="collapse" id="collapse-arrUpdateElem">
+            </div>
+
+            <!-- arrUpdateElem() ends here -->
+
+            <hr>
+
             <!-- arrLength() -->
             <a name="arrLength"></a>
             <h4><code>arrLength(key)</code></h4>

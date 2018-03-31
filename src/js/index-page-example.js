@@ -114,6 +114,12 @@ outputJSON(obj.arrGet('users', 1), 'collapse-arrGet');
 output("Fetch elements from index 1 to 3 in the array referred by <code>users</code> key in the cache.", 'collapse-arrGet');
 outputJSON(obj.arrGet('users', 1, 3), 'collapse-arrGet');
 
+// arrUpdateElem();
+output("Update value of an element at index 0 in the array referred by key <code>users</code> in the cache.", 'collapse-arrUpdateElem');
+outputJSON(obj.arrUpdateElem('users', 0, { username: 'tintin', points: 50 }), 'collapse-arrUpdateElem');
+output("Fetch all the elements of the array referred by <code>users</code> key in the cache.", 'collapse-arrUpdateElem');
+outputJSON(obj.arrGet('users'), 'collapse-arrUpdateElem');
+
 // arrLength()
 output("Total number of elements in the array referred by the key <code>users</code> in the cache.", 'collapse-arrLength');
 outputJSON(obj.arrLength('users'), 'collapse-arrLength');
