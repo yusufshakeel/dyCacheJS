@@ -221,7 +221,7 @@ describe('Testing dyCacheJS', function () {
     /**
      * assert oMSet(key, oKey, oValue)
      */
-    it('should assert obj.oMSet(key, oKey, oValue) matches the value obj.oMGetAll(key)', function () {
+    it('should assert obj.oMSet(key, oKey, oValue) and obj.oMGetAll(key) i.e. insert oKey-oValue in object referred by key in the cache and match all the entry', function () {
         obj.oMSet('players', 'p1', {id: 'p1', username: 'yusufshakeel'});
         obj.oMSet('players', 'p2', {id: 'p2', username: 'dawoodshakeel'});
 
@@ -252,6 +252,30 @@ describe('Testing dyCacheJS', function () {
         };
 
         assert.deepEqual(obj.oMGet('players', 'p1'), match);
+    });
+
+    /**
+     * assert oMExists(key, oKey)
+     */
+    it('should assert obj.oMExists(key, oKey) i.e. check if oKey exists in the object referred by key in the cache', function () {
+        obj.oMSet('players', 'p1', {id: 'p1', username: 'yusufshakeel'});
+        obj.oMSet('players', 'p2', {id: 'p2', username: 'dawoodshakeel'});
+        assert.equal(obj.oMExists('players', 'p1'), true);
+    });
+
+    /**
+     * assert oMDel(key, oKey)
+     */
+    it('should assert obj.oMDel(key, oKey) i.e. delete a oKey from the object referred by key in the cache', function () {
+        obj.oMSet('players', 'p1', {id: 'p1', username: 'yusufshakeel'});
+        obj.oMSet('players', 'p2', {id: 'p2', username: 'dawoodshakeel'});
+
+        // assert that the p2 oKey exists in the
+        assert.deepEqual(obj.oMGet('players', 'p2'), {id: 'p2', username: 'dawoodshakeel'});
+
+        // now delete oKey 'p2'
+        assert.equal(obj.oMDel('players', 'p2'), true);
+
     });
 
 });

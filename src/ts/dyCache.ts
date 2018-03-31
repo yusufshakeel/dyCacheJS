@@ -66,7 +66,7 @@ class dyCache {
      * @returns {boolean}
      */
     public exists(key: string): boolean {
-        return typeof this._cache[key] !== "undefined"
+        return typeof this._cache[key] !== "undefined";
     }
 
     /**
@@ -276,6 +276,34 @@ class dyCache {
      */
     public oMGetAll(key: string): any {
         return this._cache[key];
+    }
+
+    /**
+     * This will check if oKey exists in the object referred by key in the cache.
+     *
+     * On success return true, otherwise false.
+     *
+     * @param {string} key
+     * @param {string} oKey
+     * @returns {boolean}
+     */
+    public oMExists(key: string, oKey: string): boolean {
+        return typeof this._cache[key] !== "undefined" && typeof this._cache[key][oKey] !== "undefined";
+    }
+
+    /**
+     * This will delete a oKey from the object denoted by key in the cache.
+     *
+     * @param {string} key
+     * @param {string} oKey
+     * @returns {boolean}
+     */
+    public oMDel(key: string, oKey: string): boolean {
+        if (!this.oMExists(key, oKey)) {
+            return false;
+        }
+        delete this._cache[key][oKey];
+        return true;
     }
 
 }
