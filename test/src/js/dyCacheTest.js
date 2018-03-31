@@ -271,7 +271,7 @@ describe('Testing dyCacheJS', function () {
      * delete will start from the start index.
      * total element to be deleted is denoted by delectCount
      */
-    it('should assert arrDeleteElem(key, start) i.e. delete element from the array at index start', function () {
+    it('should assert arrDeleteElem(key, index) i.e. delete element from the array at index start', function () {
         for (let i = 0; i <= 5; i++) {
             obj.arrPush('numArr', i);
         }
@@ -283,11 +283,11 @@ describe('Testing dyCacheJS', function () {
      * delete will start from the start index.
      * total element to be deleted is denoted by delectCount
      */
-    it('should assert arrDeleteElem(key, start, deleteCount) i.e. delete element from the array at index start and delete total deleteCount elements', function () {
+    it('should assert arrDeleteElems(key, start, deleteCount) i.e. delete element from the array at index start and delete total deleteCount elements', function () {
         for (let i = 0; i <= 5; i++) {
             obj.arrPush('numArr', i);
         }
-        assert.deepEqual(obj.arrDeleteElem('numArr', 1, 3), [1, 2, 3]);
+        assert.deepEqual(obj.arrDeleteElems('numArr', 1, 3), [1, 2, 3]);
     });
 
     /**

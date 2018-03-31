@@ -245,11 +245,31 @@ var dyCache = /** @class */ (function () {
      * On success will return an array of deleted elements. Otherwise false.
      *
      * @param {string} key
+     * @param {number} index This is the index of the element to be deleted.
+     * @returns {any}
+     */
+    dyCache.prototype.arrDeleteElem = function (key, index) {
+        // if key does not exists
+        if (typeof this._cache[key] === "undefined") {
+            return false;
+        }
+        // if invalid index
+        if (this.arrLength(key) < index || index < 0) {
+            return false;
+        }
+        return this._cache[key].splice(index, 1);
+    };
+    /**
+     * This method will delete elements from the array referred by key in the cache.
+     *
+     * On success will return an array of deleted elements. Otherwise false.
+     *
+     * @param {string} key
      * @param {number} start This is the index from where deleting is started.
      * @param {number} deleteCount  (optional) If set will delete deleteCount number of elements.
      * @returns {any}
      */
-    dyCache.prototype.arrDeleteElem = function (key, start, deleteCount) {
+    dyCache.prototype.arrDeleteElems = function (key, start, deleteCount) {
         // if key does not exists
         if (typeof this._cache[key] === "undefined") {
             return false;
@@ -258,11 +278,13 @@ var dyCache = /** @class */ (function () {
         if (this.arrLength(key) < start || start < 0) {
             return false;
         }
-        // if deleteCount does not exists
+        // if deleteCount not defined - delete till end
         if (typeof deleteCount === "undefined") {
-            deleteCount = 1;
+            return this._cache[key].splice(start);
         }
-        return this._cache[key].splice(start, deleteCount);
+        else {
+            return this._cache[key].splice(start, deleteCount);
+        }
     };
     /**
      * This will create an object by the reference by key.

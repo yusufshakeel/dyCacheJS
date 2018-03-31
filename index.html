@@ -553,19 +553,14 @@
 
             <!-- arrDeleteElem() -->
             <a name="arrDeleteElem"></a>
-            <h4><code>arrDeleteElem(key, start, [deleteCount])</code></h4>
+            <h4><code>arrDeleteElem(key, index)</code></h4>
 
-            <p>This will delete element(s) from the array referred by the
+            <p>This will delete element at given <code>index</code> of the array referred by the
                 <code>key</code> in the cache.</p>
-
-            <p><code>start</code> This is the index from where the delete operation starts.</p>
-
-            <p><code>deleteCount</code> This is optional. If present will delete number of elements denoted by deleteCount.</p>
 
             <p>On success it will return the deleted elements in an array. Otherwise, false.</p>
 
             <pre><code>obj.arrDeleteElem('users', 0);   // delete element at index 0</code></pre>
-            <pre><code>obj.arrDeleteElem('users', 2, 3);   // delete 3 elements from index 2</code></pre>
 
             <div>
                 <a class="btn btn-primary"
@@ -579,6 +574,35 @@
             </div>
 
             <!-- arrDeleteElem() ends here -->
+
+            <hr>
+
+            <!-- arrDeleteElems() -->
+            <a name="arrDeleteElems"></a>
+            <h4><code>arrDeleteElems(key, start, [deleteCount])</code></h4>
+
+            <p>This will delete <code>deleteCount</code> number of elements from the
+                index <code>start</code> of the array referred by the
+                <code>key</code> in the cache.</p>
+
+            <p><code>deleteCount</code> is optional. If not present then delete till the end.</p>
+
+            <p>On success it will return the deleted elements in an array. Otherwise, false.</p>
+
+            <pre><code>obj.arrDeleteElem('users', 2, 3);   // delete 3 elements from index 2</code></pre>
+
+            <div>
+                <a class="btn btn-primary"
+                   role="button"
+                   data-toggle="collapse"
+                   href="#collapse-arrDeleteElems"
+                   aria-expanded="false"
+                   aria-controls="collapse-arrDeleteElems">Output</a>
+            </div>
+            <div class="collapse" id="collapse-arrDeleteElems">
+            </div>
+
+            <!-- arrDeleteElems() ends here -->
 
             <hr>
 

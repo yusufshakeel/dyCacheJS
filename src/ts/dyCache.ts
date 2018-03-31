@@ -271,11 +271,35 @@ class dyCache {
      * On success will return an array of deleted elements. Otherwise false.
      *
      * @param {string} key
+     * @param {number} index This is the index of the element to be deleted.
+     * @returns {any}
+     */
+    public arrDeleteElem(key: string, index: number): any {
+
+        // if key does not exists
+        if (typeof this._cache[key] === "undefined") {
+            return false;
+        }
+
+        // if invalid index
+        if (this.arrLength(key) < index || index < 0) {
+            return false;
+        }
+
+        return this._cache[key].splice(index, 1);
+    }
+
+    /**
+     * This method will delete elements from the array referred by key in the cache.
+     *
+     * On success will return an array of deleted elements. Otherwise false.
+     *
+     * @param {string} key
      * @param {number} start This is the index from where deleting is started.
      * @param {number} deleteCount  (optional) If set will delete deleteCount number of elements.
      * @returns {any}
      */
-    public arrDeleteElem(key: string, start: number, deleteCount?: number): any {
+    public arrDeleteElems(key: string, start: number, deleteCount?: number): any {
 
         // if key does not exists
         if (typeof this._cache[key] === "undefined") {
@@ -287,12 +311,13 @@ class dyCache {
             return false;
         }
 
-        // if deleteCount does not exists
+        // if deleteCount not defined - delete till end
         if (typeof deleteCount === "undefined") {
-            deleteCount = 1;
+            return this._cache[key].splice(start);
+        } else {
+            return this._cache[key].splice(start, deleteCount);
         }
 
-        return this._cache[key].splice(start, deleteCount);
     }
 
     /**
