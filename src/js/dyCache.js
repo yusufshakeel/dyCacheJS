@@ -64,7 +64,7 @@ var dyCache = /** @class */ (function () {
      * This method allows to set a key and value.
      *
      * @param {string} key
-     * @param {number | string} value
+     * @param {any} value
      */
     dyCache.prototype.set = function (key, value) {
         this._cache[key] = value;
@@ -73,26 +73,9 @@ var dyCache = /** @class */ (function () {
      * This function will return the value of the entered key.
      *
      * @param {string} key
-     * @returns {number | string}
+     * @returns {any}
      */
     dyCache.prototype.get = function (key) {
-        return this._cache[key];
-    };
-    /**
-     * This method will set a key having object value.
-     *
-     * @param {string} key
-     * @param value
-     */
-    dyCache.prototype.oSet = function (key, value) {
-        this._cache[key] = value;
-    };
-    /**
-     * This function will return the object value for given key.
-     *
-     * @param {string} key
-     */
-    dyCache.prototype.oGet = function (key) {
         return this._cache[key];
     };
     /**

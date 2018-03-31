@@ -88,16 +88,16 @@
             <h3 class="text-center">Content</h3>
 
             <ul>
-                <li><a href="#key-having-number-and-string-value">Key having Number and String value</a></li>
+                <li><a href="#set-and-get-methods">Set and Get Methods</a></li>
                 <li><a href="#cache-methods">Cache Methods</a></li>
-                <li><a href="#key-having-object-value">Key having object value</a></li>
-                <li><a href=""></a></li>
+                <li><a href="#array-methods">Array Methods</a></li>
+                <li><a href="#object-methods">Object Methods</a></li>
             </ul>
 
             <hr>
 
-            <a name="key-having-number-and-string-value"></a>
-            <h4 class="text-center"><a href="#key-having-number-and-string-value">Key having Number and String value</a></h4>
+            <a name="set-and-get-methods"></a>
+            <h4 class="text-center"><a href="#set-and-get-methods">Set and Get Methods</a></h4>
 
             <!-- set() -->
 
@@ -106,13 +106,14 @@
 
             <p>This will create a key in the cache and will set a value.</p>
 
-            <p>The <code>value</code> can be a number or a string.</p>
+            <p>The <code>value</code> can be a number, string, array or object.</p>
 
             <p>If the <code>key</code> exists in the cache then it is overwritten.</p>
 
-            <pre><code>obj.set('num', 10);</code></pre>
-
-            <pre><code>obj.set('str', 'Yusuf Shakeel');</code></pre>
+            <pre><code>obj.set('num', 10);  // setting numeric value</code></pre>
+            <pre><code>obj.set('str', 'Yusuf Shakeel'); //setting string value</code></pre>
+            <pre><code>obj.set('user', { username: 'yusufshakeel', points: 10 });   // setting object value</code></pre>
+            <pre><code>obj.set('arr', [1, 2, 3]);   // setting array value</code></pre>
 
             <div>
                 <a class="btn btn-primary"
@@ -139,6 +140,10 @@
             <pre><code>obj.get('num');</code></pre>
 
             <pre><code>obj.get('str');</code></pre>
+
+            <pre><code>obj.get('user');</code></pre>
+
+            <pre><code>obj.get('arr');</code></pre>
 
             <div>
                 <a class="btn btn-primary"
@@ -286,62 +291,8 @@
 
             <hr>
 
-            <a name="key-having-object-value"></a>
-            <h4 class="text-center"><a href="#key-having-object-value">Key having object value</a></h4>
-
-            <!-- oSet() -->
-
-            <a name="oSet"></a>
-            <h4><code>oSet(key, value)</code></h4>
-
-            <p>This will create a key in the cache that holds an object, array, number and string value.</p>
-
-            <p>If the <code>key</code> exists in the cache then it is overwritten.</p>
-
-            <pre><code>obj.oSet('user', {username: 'yusufshakeel', points: 10});    // saving object value</code></pre>
-            <pre><code>obj.oSet('awesome', { a: 10, b: 20, c: 'super'});    // saving object value</code></pre>
-            <pre><code>obj.oSet('numArr', [1, 2, 3, 4, 5]);    // saving array value</code></pre>
-            <pre><code>obj.oSet('num', 1);    // saving number value</code></pre>
-            <pre><code>obj.oSet('str', 'Hello World');    // saving string value</code></pre>
-
-            <div>
-                <a class="btn btn-primary"
-                   role="button"
-                   data-toggle="collapse"
-                   href="#collapse-oSet"
-                   aria-expanded="false"
-                   aria-controls="collapse-oSet">Output</a>
-            </div>
-            <div class="collapse" id="collapse-oSet">
-            </div>
-
-            <!-- oSet() ends here -->
-
-            <hr>
-
-            <!-- oGet() -->
-
-            <a name="oGet"></a>
-            <h4><code>oGet(key)</code></h4>
-
-            <p>This will fetch the object value saved in the given key in the cache.</p>
-
-            <pre><code>obj.oGet('user');</code></pre>
-
-            <div>
-                <a class="btn btn-primary"
-                   role="button"
-                   data-toggle="collapse"
-                   href="#collapse-oGet"
-                   aria-expanded="false"
-                   aria-controls="collapse-oGet">Output</a>
-            </div>
-            <div class="collapse" id="collapse-oGet">
-            </div>
-
-            <!-- oGet() ends here -->
-
-            <hr>
+            <a name="array-methods"></a>
+            <h4 class="text-center"><a href="#array-methods">Array Methods</a></h4>
 
             <!-- arrPush() -->
             <a name="arrPush"></a>
@@ -350,8 +301,6 @@
             <p>This will create a <code>key</code> (if not exists) in the cache
                 which is an array and will push the <code>value</code>
                 from the right side of the array.</p>
-
-            <p>If the <code>key</code> exists in the cache then it is overwritten.</p>
 
             <pre><code>obj.arrPush('users', {username: 'yusufshakeel', points: 10});</code></pre>
             <pre><code>obj.arrPush('users', {username: 'dawoodshakeel', points: 20});</code></pre>
@@ -380,8 +329,6 @@
             <p>This will create a <code>key</code> (if not exists) in the cache
                 which is an array and will push the <code>value</code>
                 from the left side of the array.</p>
-
-            <p>If the <code>key</code> exists in the cache then it is overwritten.</p>
 
             <pre><code>obj.arrLPush('users', {username: 'qwerty', points: 50});</code></pre>
 
@@ -600,6 +547,9 @@
             <!-- arrLMerge() ends here -->
 
             <hr>
+
+            <a name="object-methods"></a>
+            <h4 class="text-center"><a href="#object-methods">Object Methods</a></h4>
 
             <!-- oMSet() -->
             <a name="oMSet"></a>

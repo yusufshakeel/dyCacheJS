@@ -48,6 +48,16 @@ output("Adding a <code>str</code> key having string value <code>'Yusuf Shakeel'<
 obj.set('str', 'Yusuf Shakeel');
 outputJSON(obj, 'collapse-set');
 
+// set('user', { username: 'yusufshakeel', points: 10 });
+output("Adding a <code>user</code> key having string value <code>{ username: 'yusufshakeel', points: 10 }</code>.", 'collapse-set');
+obj.set('user', { username: 'yusufshakeel', points: 10 });
+outputJSON(obj, 'collapse-set');
+
+// set('arr', [1, 2, 3]);
+output("Adding a <code>arr</code> key having string value <code>[1, 2, 3]</code>.", 'collapse-set');
+obj.set('arr', [1, 2, 3]);
+outputJSON(obj, 'collapse-set');
+
 // get('num');
 output("Get the value of key <code>num</code>", 'collapse-get');
 outputJSON(obj.get('num'), 'collapse-get');
@@ -55,6 +65,14 @@ outputJSON(obj.get('num'), 'collapse-get');
 // get('str');
 output("Get the value of key <code>str</code>", 'collapse-get');
 outputJSON(obj.get('str'), 'collapse-get');
+
+// get('user');
+output("Get the value of key <code>user</code>", 'collapse-get');
+outputJSON(obj.get('user'), 'collapse-get');
+
+// get('arr');
+output("Get the value of key <code>arr</code>", 'collapse-get');
+outputJSON(obj.get('arr'), 'collapse-get');
 
 // length();
 output("Total number of keys in the cache.", 'collapse-length');
@@ -80,29 +98,6 @@ outputJSON(obj.exists('str'), 'collapse-exists');
 obj.purge();
 output("After purge", 'collapse-purge');
 outputJSON(obj, 'collapse-purge');
-
-// oSet();
-output("Create an <code>user</code> key in the cache to store object value.", 'collapse-oSet');
-obj.oSet('user', {username: 'yusufshakeel', points: 10});
-output("Create an <code>awesome</code> key in the cache to store object value.", 'collapse-oSet');
-obj.oSet('awesome', { a: 10, b: 20, c: 'super'});
-output("Create a <code>numArr</code> key in the cache to store array value.", 'collapse-oSet');
-obj.oSet('numArr', [1, 2, 3, 4, 5]);
-output("Create a <code>num</code> key in the cache to store number value.", 'collapse-oSet');
-obj.oSet('num', 1);
-output("Create a <code>str</code> key in the cache to store string value.", 'collapse-oSet');
-obj.oSet('str', 'Hello World');
-output("Content of the cache.", 'collapse-oSet');
-outputJSON(obj, 'collapse-oSet');
-
-// oGet();
-output("Fetch the object value stored in <code>user</code> key in the cache.", 'collapse-oGet');
-outputJSON(obj.oGet('user'), 'collapse-oGet');
-
-// purge()
-obj.purge();
-output("Content of the cache after purge.", 'collapse-arrPush');
-outputJSON(obj, 'collapse-arrPush');
 
 // arrPush();
 output("Create an <code>users</code> key in the cache which is an array and insert some data.", 'collapse-arrPush');

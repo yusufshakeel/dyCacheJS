@@ -72,9 +72,9 @@ class dyCache {
      * This method allows to set a key and value.
      *
      * @param {string} key
-     * @param {number | string} value
+     * @param {any} value
      */
-    public set(key: string, value: number | string): void {
+    public set(key: string, value: any): void {
         this._cache[key] = value;
     }
 
@@ -82,28 +82,9 @@ class dyCache {
      * This function will return the value of the entered key.
      *
      * @param {string} key
-     * @returns {number | string}
+     * @returns {any}
      */
-    public get(key: string): number | string {
-        return this._cache[key];
-    }
-
-    /**
-     * This method will set a key having object value.
-     *
-     * @param {string} key
-     * @param value
-     */
-    public oSet(key: string, value: any): void {
-        this._cache[key] = value;
-    }
-
-    /**
-     * This function will return the object value for given key.
-     *
-     * @param {string} key
-     */
-    public oGet(key: string): any {
+    public get(key: string): any {
         return this._cache[key];
     }
 

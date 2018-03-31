@@ -38,9 +38,33 @@ describe('Testing dyCacheJS', function () {
     /**
      * set key "num" is set to 10 and then asser that it is equal to 10.
      */
-    it('should assert obj.set("num", 10) and obj.get("num") i.e. key "num" exists and its value is 10', function () {
+    it('should assert obj.set(key, value) and obj.get(key) i.e. key exists and its value is a number.', function () {
         obj.set('num', 10);
         assert.equal(obj.get('num'), 10);
+    });
+
+    /**
+     * set key "str" is set to "Yusuf Shakeel" and then asser that it is equal to "Yusuf Shakeel".
+     */
+    it('should assert obj.set(key, value) and obj.get(key) i.e. key exists and its value is a string', function () {
+        obj.set('str', "Yusuf Shakeel");
+        assert.equal(obj.get('str'), "Yusuf Shakeel");
+    });
+
+    /**
+     * set key is set to an object
+     */
+    it('should assert obj.set(key,value) and obj.get(key) i.e. key exists and its value is an object', function () {
+        obj.set('user', { username: 'yusufshakeel', points: 10 });
+        assert.deepEqual(obj.get('user'), { username: 'yusufshakeel', points: 10});
+    });
+
+    /**
+     * set key is set to an array
+     */
+    it('should assert obj.set(key,value) and obj.get(key) i.e. key exists and its value is an array', function () {
+        obj.set('arr', [1, 2, 3]);
+        assert.deepEqual(obj.get('arr'), [1, 2, 3]);
     });
 
     /**
@@ -83,15 +107,6 @@ describe('Testing dyCacheJS', function () {
         obj.set('prj', 'p1');
         assert.equal(obj.exists('num'), true);
         assert.equal(obj.exists('unknown'), false);
-    });
-
-    /**
-     * assert that a key having object value is present in the cache
-     */
-    it('should assert obj.oSet() and obj.oGet() i.e. the key has an object value', function () {
-        obj.oSet('user', {username: 'yusufshakeel', points: 10});
-        assert.equal(obj.exists('user'), true);
-        assert.deepEqual(obj.oGet('user'), {username: 'yusufshakeel', points: 10});
     });
 
     /**
