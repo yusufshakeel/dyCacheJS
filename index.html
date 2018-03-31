@@ -148,18 +148,11 @@
             <!-- length() -->
 
             <a name="length"></a>
-            <h4><code>length([key])</code></h4>
+            <h4><code>length()</code></h4>
 
             <p>This will give the total number of keys in the cache.</p>
 
             <p>Returns a number.</p>
-
-            <p><code>key</code> is optional.
-                <br>If present will return total number of key-value pairs
-                present in the given key.
-                <br>
-                <a href="#arrPush">Check <code>arrPush</code></a>.
-            </p>
 
             <pre><code>obj.length();</code></pre>
 
@@ -398,6 +391,33 @@
 
             <hr>
 
+            <!-- arrLength() -->
+            <a name="arrLength"></a>
+            <h4><code>arrLength(key)</code></h4>
+
+            <p>This will return the total number of elements in the array
+                referred by <code>key</code> in the cache.</p>
+
+            <p>If the <code>key</code> does not exists in the cache then <code>-1</code> is returned.</p>
+
+            <pre><code>obj.arrLength('users');</code></pre>
+            <pre><code>obj.arrLength('unknown');    // this will return -1 as key does not exists in the cache</code></pre>
+
+            <div>
+                <a class="btn btn-primary"
+                   role="button"
+                   data-toggle="collapse"
+                   href="#collapse-arrLength"
+                   aria-expanded="false"
+                   aria-controls="collapse-arrLength">Output</a>
+            </div>
+            <div class="collapse" id="collapse-arrLength">
+            </div>
+
+            <!-- arrLength() ends here -->
+
+            <hr>
+
             <!-- arrPop() -->
             <a name="arrPop"></a>
             <h4><code>arrPop(key)</code></h4>
@@ -631,6 +651,31 @@
             </div>
 
             <!-- oMExists() ends here -->
+
+            <hr>
+
+            <!-- oMLength() -->
+            <a name="oMLength"></a>
+            <h4><code>oMLength(key)</code></h4>
+
+            <p>This will return the total number of <code>oKey</code> in the
+                object referred by the <code>key</code> in the cache.</p>
+
+            <pre><code>obj.oMLength('players');</code></pre>
+            <pre><code>obj.oMLength('unknown');   // this will return -1</code></pre>
+
+            <div>
+                <a class="btn btn-primary"
+                   role="button"
+                   data-toggle="collapse"
+                   href="#collapse-oMLength"
+                   aria-expanded="false"
+                   aria-controls="collapse-oMLength">Output</a>
+            </div>
+            <div class="collapse" id="collapse-oMLength">
+            </div>
+
+            <!-- oMLength() ends here -->
 
             <hr>
 

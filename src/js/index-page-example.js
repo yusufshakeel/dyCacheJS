@@ -96,16 +96,12 @@ obj.arrPush('users', {username: 'janedoe', points: 30});
 obj.arrPush('users', {username: 'johndoe', points: 40});
 output("Content of the cache.", 'collapse-arrPush');
 outputJSON(obj, 'collapse-arrPush');
-output("To know the total number of elements in the <code>users</code> array use <code>obj.length('users')</code>", 'collapse-arrPush');
-outputJSON(obj.length('users'), 'collapse-arrPush');
 
 // arrLPush();
 output("Create an <code>users</code> key (if not exists) in the cache which is an array and insert given data from the left.", 'collapse-arrLPush');
 obj.arrLPush('users', {username: 'qwerty', points: 50});
 output("Content of the cache.", 'collapse-arrLPush');
 outputJSON(obj, 'collapse-arrLPush');
-output("Total number of elements in the <code>users</code> array use <code>obj.length('users')</code>", 'collapse-arrLPush');
-outputJSON(obj.length('users'), 'collapse-arrLPush');
 
 // arrGet();
 output("Fetch all the elements of the array referred by <code>users</code> key in the cache.", 'collapse-arrGet');
@@ -116,6 +112,12 @@ output("Fetch element at index 1 in the array referred by <code>users</code> key
 outputJSON(obj.arrGet('users', 1), 'collapse-arrGet');
 output("Fetch elements from index 1 to 3 in the array referred by <code>users</code> key in the cache.", 'collapse-arrGet');
 outputJSON(obj.arrGet('users', 1, 3), 'collapse-arrGet');
+
+// arrLength()
+output("Total number of elements in the array referred by the key <code>users</code> in the cache.", 'collapse-arrLength');
+outputJSON(obj.arrLength('users'), 'collapse-arrLength');
+output("Total number of elements in the array referred by the key <code>unknown</code> in the cache.", 'collapse-arrLength');
+outputJSON(obj.arrLength('unknown'), 'collapse-arrLength');
 
 // arrPop();
 output("Pop element from the right side of the array referred by <code>users</code> key in the cache.", 'collapse-arrPop');
@@ -173,14 +175,18 @@ outputJSON(obj.oMGet('players', 'p1'), 'collapse-oMGet');
 // oMGetAll();
 output("This will fetch all the values saved in the key <code>players</code> of the cache.", 'collapse-oMGetAll');
 outputJSON(obj.oMGetAll('players'), 'collapse-oMGetAll');
-output("User <code>obj.length('players')</code> to get total number of oKey-oValue pairs in the key <code>players</code> of the cache.", 'collapse-oMGetAll');
-outputJSON(obj.length('players'), 'collapse-oMGetAll');
 
 // oMExists();
 output("This will check if <code>p2</code> oKey exists in the object referred by key <code>players</code> in the cache.", 'collapse-oMExists');
 outputJSON(obj.oMExists('players', 'p2'), 'collapse-oMExists');
 output("This will check if <code>unknown</code> oKey exists in the object referred by key <code>players</code> in the cache.", 'collapse-oMExists');
 outputJSON(obj.oMExists('players', 'unknown'), 'collapse-oMExists');
+
+// oMLength();
+output("Total number of oKey in the object referred by key <code>players</code> in the cache.", 'collapse-oMLength');
+outputJSON(obj.oMLength('players'), 'collapse-oMLength');
+output("Total number of oKey in the object referred by key <code>unknown</code> in the cache.", 'collapse-oMLength');
+outputJSON(obj.oMLength('unknown'), 'collapse-oMLength');
 
 // oMDel();
 output("This will delete <code>p2</code> oKey from the object referred by key <code>players</code> in the cache.", 'collapse-oMDel');

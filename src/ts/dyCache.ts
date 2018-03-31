@@ -24,13 +24,12 @@ class dyCache {
     /**
      * This will return the total number of keys in the cache.
      *
-     * @param {string} key  (optional)
+     * If key is present then fetch all elements/key-value pair for that key.
+     * Use in scenarios where key represents an array or object.
+     *
      * @returns {number}
      */
-    public length(key?: string): number {
-        if (typeof key !== 'undefined') {
-            return Object.keys(this._cache[key]).length;
-        }
+    public length(): number {
         return Object.keys(this._cache).length
     }
 
@@ -238,6 +237,22 @@ class dyCache {
     }
 
     /**
+     * This will return the total number of elements in the array referred
+     * by key in the cache.
+     *
+     * If key does not exists then return -1.
+     *
+     * @param {string} key
+     * @returns {number}
+     */
+    public arrLength(key: string): number {
+        if (typeof key !== 'undefined' && typeof this._cache[key] !== "undefined") {
+            return Object.keys(this._cache[key]).length;
+        }
+        return -1;
+    }
+
+    /**
      * This will create an object by the reference by key.
      * Then it will add a property okey and set it to oValue value.
      *
@@ -304,6 +319,22 @@ class dyCache {
         }
         delete this._cache[key][oKey];
         return true;
+    }
+
+    /**
+     * This will return the total number of oKey-oValue pairs in the object referred
+     * by key in the cache.
+     *
+     * If key does not exists then return -1.
+     *
+     * @param {string} key
+     * @returns {number}
+     */
+    public oMLength(key: string): number {
+        if (typeof key !== 'undefined' && typeof this._cache[key] !== "undefined") {
+            return Object.keys(this._cache[key]).length;
+        }
+        return -1;
     }
 
 }

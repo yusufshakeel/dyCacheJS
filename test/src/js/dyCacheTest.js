@@ -219,6 +219,17 @@ describe('Testing dyCacheJS', function () {
     });
 
     /**
+     * assert length of an array
+     */
+    it('should assert obj.arrLength(key) i.e. total number of elements in the array', function () {
+        obj.arrPush('numArr', 1);
+        obj.arrPush('numArr', {a: 1});
+        obj.arrPush('numArr', {b: 2});
+        obj.arrLMerge('numArr', [10, 20, 30]);
+        assert.equal(obj.arrLength('numArr'), 4);
+    });
+
+    /**
      * assert oMSet(key, oKey, oValue)
      */
     it('should assert obj.oMSet(key, oKey, oValue) and obj.oMGetAll(key) i.e. insert oKey-oValue in object referred by key in the cache and match all the entry', function () {
@@ -277,6 +288,15 @@ describe('Testing dyCacheJS', function () {
         // now delete oKey 'p2'
         assert.equal(obj.oMDel('players', 'p2'), true);
 
+    });
+
+    /**
+     * assert total number of oKey-oValue pair in the object referred by key
+     */
+    it('should assert obj.oMLength(key) i.e. total number of oKey-oValue pairs in the object referred by key in the cache', function () {
+        obj.oMSet('players', 'p1', {id: 'p1', username: 'yusufshakeel'});
+        obj.oMSet('players', 'p2', {id: 'p2', username: 'dawoodshakeel'});
+        assert.equal(obj.oMLength('players'), 2);
     });
 
 });
