@@ -653,7 +653,9 @@
 
             <p>On success it will return the deleted elements in an array. Otherwise, false.</p>
 
-            <pre><code>obj.arrDeleteElem('users', 2, 3);   // delete 3 elements from index 2</code></pre>
+            <pre><code>obj.arrDeleteElems('users', 2, 3);   // delete 3 elements from index 2</code></pre>
+            <pre><code>obj.arrDeleteElems('users', 6);   // delete all elements from index 6 till end</code></pre>
+            <pre><code>obj.arrDeleteElems('users', 0, 3);   // delete 3 elements from the start index</code></pre>
 
             <div>
                 <a class="btn btn-primary"
