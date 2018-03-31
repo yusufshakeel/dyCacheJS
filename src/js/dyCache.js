@@ -284,14 +284,14 @@ var dyCache = /** @class */ (function () {
         }
     };
     /**
-     * This will create an object by the reference by key.
-     * Then it will add a property okey and set it to oValue value.
+     * This will create an object by the reference key in the cache.
+     * Then it will add a property oKey and assign the value oValue.
      *
      * @param {string} key
      * @param {string} oKey
      * @param oValue
      */
-    dyCache.prototype.oMSet = function (key, oKey, oValue) {
+    dyCache.prototype.oSet = function (key, oKey, oValue) {
         // if key does not exists in the cache
         if (!this.exists(key)) {
             this._cache[key] = {};
@@ -299,24 +299,24 @@ var dyCache = /** @class */ (function () {
         this._cache[key][oKey] = oValue;
     };
     /**
-     * This will return the value of oKey property of the given key
-     * in the cache.
+     * This will return the value of oKey property for the given object
+     * referred by key in the cache.
      *
      * @param {string} key
      * @param {string} oKey
      * @returns {any}
      */
-    dyCache.prototype.oMGet = function (key, oKey) {
+    dyCache.prototype.oGet = function (key, oKey) {
         return this._cache[key][oKey];
     };
     /**
-     * This will return all the key value pairs in the
-     * object referred by the given key in the cache.
+     * This will return all the oKey-oValue value pairs in the
+     * object referred by key in the cache.
      *
      * @param {string} key
      * @returns {any}
      */
-    dyCache.prototype.oMGetAll = function (key) {
+    dyCache.prototype.oGetAll = function (key) {
         return this._cache[key];
     };
     /**
@@ -328,18 +328,18 @@ var dyCache = /** @class */ (function () {
      * @param {string} oKey
      * @returns {boolean}
      */
-    dyCache.prototype.oMExists = function (key, oKey) {
+    dyCache.prototype.oExists = function (key, oKey) {
         return typeof this._cache[key] !== "undefined" && typeof this._cache[key][oKey] !== "undefined";
     };
     /**
-     * This will delete a oKey from the object denoted by key in the cache.
+     * This will delete an oKey from the object denoted by key in the cache.
      *
      * @param {string} key
      * @param {string} oKey
      * @returns {boolean}
      */
-    dyCache.prototype.oMDel = function (key, oKey) {
-        if (!this.oMExists(key, oKey)) {
+    dyCache.prototype.oDel = function (key, oKey) {
+        if (!this.oExists(key, oKey)) {
             return false;
         }
         delete this._cache[key][oKey];
@@ -354,7 +354,7 @@ var dyCache = /** @class */ (function () {
      * @param {string} key
      * @returns {number}
      */
-    dyCache.prototype.oMLength = function (key) {
+    dyCache.prototype.oLength = function (key) {
         if (typeof key !== 'undefined' && typeof this._cache[key] !== "undefined") {
             return Object.keys(this._cache[key]).length;
         }

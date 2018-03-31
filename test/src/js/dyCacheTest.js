@@ -318,11 +318,11 @@ describe('Testing dyCacheJS', function () {
     });
 
     /**
-     * assert oMSet(key, oKey, oValue)
+     * assert oSet(key, oKey, oValue)
      */
-    it('should assert obj.oMSet(key, oKey, oValue) and obj.oMGetAll(key) i.e. insert oKey-oValue in object referred by key in the cache and match all the entry', function () {
-        obj.oMSet('players', 'p1', {id: 'p1', username: 'yusufshakeel'});
-        obj.oMSet('players', 'p2', {id: 'p2', username: 'dawoodshakeel'});
+    it('should assert obj.oSet(key, oKey, oValue) and obj.oGetAll(key) i.e. insert oKey-oValue in object referred by key in the cache and match all the entry', function () {
+        obj.oSet('players', 'p1', {id: 'p1', username: 'yusufshakeel'});
+        obj.oSet('players', 'p2', {id: 'p2', username: 'dawoodshakeel'});
 
         let match = {
             "p1": {
@@ -335,56 +335,56 @@ describe('Testing dyCacheJS', function () {
             }
         };
 
-        assert.deepEqual(obj.oMGetAll('players'), match);
+        assert.deepEqual(obj.oGetAll('players'), match);
     });
 
     /**
-     * assert oMGet(key, oKey)
+     * assert oGet(key, oKey)
      */
-    it('should assert obj.oMGet(key, oKey, oValue) matches the right value', function () {
-        obj.oMSet('players', 'p1', {id: 'p1', username: 'yusufshakeel'});
-        obj.oMSet('players', 'p2', {id: 'p2', username: 'dawoodshakeel'});
+    it('should assert obj.oGet(key, oKey, oValue) matches the right value', function () {
+        obj.oSet('players', 'p1', {id: 'p1', username: 'yusufshakeel'});
+        obj.oSet('players', 'p2', {id: 'p2', username: 'dawoodshakeel'});
 
         let match = {
             "id": "p1",
             "username": "yusufshakeel"
         };
 
-        assert.deepEqual(obj.oMGet('players', 'p1'), match);
+        assert.deepEqual(obj.oGet('players', 'p1'), match);
     });
 
     /**
-     * assert oMExists(key, oKey)
+     * assert oExists(key, oKey)
      */
-    it('should assert obj.oMExists(key, oKey) i.e. check if oKey exists in the object referred by key in the cache', function () {
-        obj.oMSet('players', 'p1', {id: 'p1', username: 'yusufshakeel'});
-        obj.oMSet('players', 'p2', {id: 'p2', username: 'dawoodshakeel'});
-        assert.equal(obj.oMExists('players', 'p1'), true);
-        assert.equal(obj.oMExists('players', 'unknown'), false);
+    it('should assert obj.oExists(key, oKey) i.e. check if oKey exists in the object referred by key in the cache', function () {
+        obj.oSet('players', 'p1', {id: 'p1', username: 'yusufshakeel'});
+        obj.oSet('players', 'p2', {id: 'p2', username: 'dawoodshakeel'});
+        assert.equal(obj.oExists('players', 'p1'), true);
+        assert.equal(obj.oExists('players', 'unknown'), false);
     });
 
     /**
-     * assert oMDel(key, oKey)
+     * assert oDel(key, oKey)
      */
-    it('should assert obj.oMDel(key, oKey) i.e. delete a oKey from the object referred by key in the cache', function () {
-        obj.oMSet('players', 'p1', {id: 'p1', username: 'yusufshakeel'});
-        obj.oMSet('players', 'p2', {id: 'p2', username: 'dawoodshakeel'});
+    it('should assert obj.oDel(key, oKey) i.e. delete a oKey from the object referred by key in the cache', function () {
+        obj.oSet('players', 'p1', {id: 'p1', username: 'yusufshakeel'});
+        obj.oSet('players', 'p2', {id: 'p2', username: 'dawoodshakeel'});
 
         // assert that the p2 oKey exists in the
-        assert.deepEqual(obj.oMGet('players', 'p2'), {id: 'p2', username: 'dawoodshakeel'});
+        assert.deepEqual(obj.oGet('players', 'p2'), {id: 'p2', username: 'dawoodshakeel'});
 
         // now delete oKey 'p2'
-        assert.equal(obj.oMDel('players', 'p2'), true);
+        assert.equal(obj.oDel('players', 'p2'), true);
 
     });
 
     /**
      * assert total number of oKey-oValue pair in the object referred by key
      */
-    it('should assert obj.oMLength(key) i.e. total number of oKey-oValue pairs in the object referred by key in the cache', function () {
-        obj.oMSet('players', 'p1', {id: 'p1', username: 'yusufshakeel'});
-        obj.oMSet('players', 'p2', {id: 'p2', username: 'dawoodshakeel'});
-        assert.equal(obj.oMLength('players'), 2);
+    it('should assert obj.oLength(key) i.e. total number of oKey-oValue pairs in the object referred by key in the cache', function () {
+        obj.oSet('players', 'p1', {id: 'p1', username: 'yusufshakeel'});
+        obj.oSet('players', 'p2', {id: 'p2', username: 'dawoodshakeel'});
+        assert.equal(obj.oLength('players'), 2);
     });
 
 });

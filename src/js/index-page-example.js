@@ -183,41 +183,44 @@ outputJSON(obj.arrGet('users'), 'collapse-arrDeleteElems');
 
 // purge()
 obj.purge();
-output("Content of the cache after purge.", 'collapse-oMSet');
-outputJSON(obj, 'collapse-oMSet');
+output("Content of the cache after purge.", 'collapse-oSet');
+outputJSON(obj, 'collapse-oSet');
 
-// oMSet();
-output("This will add <code>p1</code> oKey having value <code>{ id: 'p1', username: 'yusufshakeel' }</code> in the key <code>players</code> of the cache.", 'collapse-oMSet');
-obj.oMSet('players', 'p1', { id: 'p1', username: 'yusufshakeel' });
-output("Content of the cache.", 'collapse-oMSet');
-outputJSON(obj, 'collapse-oMSet');
-output("This will add <code>p2</code> oKey having value <code>{ id: 'p2', username: 'dawoodshakeel' }</code> in the key <code>players</code> of the cache.", 'collapse-oMSet');
-obj.oMSet('players', 'p2', { id: 'p2', username: 'dawoodshakeel' });
-output("Content of the cache.", 'collapse-oMSet');
-outputJSON(obj, 'collapse-oMSet');
+// oSet();
+output("This will add <code>p1</code> oKey having value <code>{ id: 'p1', username: 'yusufshakeel' }</code> in the key <code>players</code> of the cache.", 'collapse-oSet');
+obj.oSet('players', 'p1', { id: 'p1', username: 'yusufshakeel' });
+output("Content of the cache.", 'collapse-oSet');
+outputJSON(obj, 'collapse-oSet');
+output("This will add <code>p2</code> oKey having value <code>{ id: 'p2', username: 'dawoodshakeel' }</code> in the key <code>players</code> of the cache.", 'collapse-oSet');
+obj.oSet('players', 'p2', { id: 'p2', username: 'dawoodshakeel' });
+output("Content of the cache.", 'collapse-oSet');
+outputJSON(obj, 'collapse-oSet');
 
-// oMGet();
-output("This will fetch the value of oKey <code>p1</code> saved in the key <code>players</code> of the cache.", 'collapse-oMGet');
-outputJSON(obj.oMGet('players', 'p1'), 'collapse-oMGet');
+// oGet();
+output("This will fetch the value of oKey <code>p1</code> saved in the key <code>players</code> in the cache.", 'collapse-oGet');
+outputJSON(obj.oGet('players', 'p1'), 'collapse-oGet');
+output("This will fetch the value of a non-existing oKey <code>unknown</code>.", 'collapse-oGet');
+output("To avoid ambiguity use <code>obj.oExists(key, oKey)</code> to check if the <code>oKey</code> exists in the object referred by <code>key</code>.", 'collapse-oGet');
+outputJSON(obj.oGet('players', 'unknown'), 'collapse-oGet');
 
-// oMGetAll();
-output("This will fetch all the values saved in the key <code>players</code> of the cache.", 'collapse-oMGetAll');
-outputJSON(obj.oMGetAll('players'), 'collapse-oMGetAll');
+// oGetAll();
+output("This will fetch all the values saved in the key <code>players</code> of the cache.", 'collapse-oGetAll');
+outputJSON(obj.oGetAll('players'), 'collapse-oGetAll');
 
-// oMExists();
-output("This will check if <code>p2</code> oKey exists in the object referred by key <code>players</code> in the cache.", 'collapse-oMExists');
-outputJSON(obj.oMExists('players', 'p2'), 'collapse-oMExists');
-output("This will check if <code>unknown</code> oKey exists in the object referred by key <code>players</code> in the cache.", 'collapse-oMExists');
-outputJSON(obj.oMExists('players', 'unknown'), 'collapse-oMExists');
+// oExists();
+output("This will check if <code>p2</code> oKey exists in the object referred by key <code>players</code> in the cache.", 'collapse-oExists');
+outputJSON(obj.oExists('players', 'p2'), 'collapse-oExists');
+output("This will check if <code>unknown</code> oKey exists in the object referred by key <code>players</code> in the cache.", 'collapse-oExists');
+outputJSON(obj.oExists('players', 'unknown'), 'collapse-oExists');
 
-// oMLength();
-output("Total number of oKey in the object referred by key <code>players</code> in the cache.", 'collapse-oMLength');
-outputJSON(obj.oMLength('players'), 'collapse-oMLength');
-output("Total number of oKey in the object referred by key <code>unknown</code> in the cache.", 'collapse-oMLength');
-outputJSON(obj.oMLength('unknown'), 'collapse-oMLength');
+// oLength();
+output("Total number of oKey in the object referred by key <code>players</code> in the cache.", 'collapse-oLength');
+outputJSON(obj.oLength('players'), 'collapse-oLength');
+output("Total number of oKey in the object referred by key <code>unknown</code> in the cache.", 'collapse-oLength');
+outputJSON(obj.oLength('unknown'), 'collapse-oLength');
 
-// oMDel();
-output("This will delete <code>p2</code> oKey from the object referred by key <code>players</code> in the cache.", 'collapse-oMDel');
-outputJSON(obj.oMDel('players', 'p2'), 'collapse-oMDel');
-output("Fetch all values of <code>players</code> in the cache.", 'collapse-oMDel');
-outputJSON(obj.oMGetAll('players'), 'collapse-oMDel');
+// oDel();
+output("This will delete <code>p2</code> oKey from the object referred by key <code>players</code> in the cache.", 'collapse-oDel');
+outputJSON(obj.oDel('players', 'p2'), 'collapse-oDel');
+output("Fetch all values of <code>players</code> in the cache.", 'collapse-oDel');
+outputJSON(obj.oGetAll('players'), 'collapse-oDel');

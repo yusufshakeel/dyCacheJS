@@ -319,14 +319,14 @@ class dyCache {
     }
 
     /**
-     * This will create an object by the reference by key.
-     * Then it will add a property okey and set it to oValue value.
+     * This will create an object by the reference key in the cache.
+     * Then it will add a property oKey and assign the value oValue.
      *
      * @param {string} key
      * @param {string} oKey
      * @param oValue
      */
-    public oMSet(key: string, oKey: string, oValue: any): void {
+    public oSet(key: string, oKey: string, oValue: any): void {
 
         // if key does not exists in the cache
         if (!this.exists(key)) {
@@ -337,25 +337,25 @@ class dyCache {
     }
 
     /**
-     * This will return the value of oKey property of the given key
-     * in the cache.
+     * This will return the value of oKey property for the given object
+     * referred by key in the cache.
      *
      * @param {string} key
      * @param {string} oKey
      * @returns {any}
      */
-    public oMGet(key: string, oKey: string): any {
+    public oGet(key: string, oKey: string): any {
         return this._cache[key][oKey];
     }
 
     /**
-     * This will return all the key value pairs in the
-     * object referred by the given key in the cache.
+     * This will return all the oKey-oValue value pairs in the
+     * object referred by key in the cache.
      *
      * @param {string} key
      * @returns {any}
      */
-    public oMGetAll(key: string): any {
+    public oGetAll(key: string): any {
         return this._cache[key];
     }
 
@@ -368,19 +368,19 @@ class dyCache {
      * @param {string} oKey
      * @returns {boolean}
      */
-    public oMExists(key: string, oKey: string): boolean {
+    public oExists(key: string, oKey: string): boolean {
         return typeof this._cache[key] !== "undefined" && typeof this._cache[key][oKey] !== "undefined";
     }
 
     /**
-     * This will delete a oKey from the object denoted by key in the cache.
+     * This will delete an oKey from the object denoted by key in the cache.
      *
      * @param {string} key
      * @param {string} oKey
      * @returns {boolean}
      */
-    public oMDel(key: string, oKey: string): boolean {
-        if (!this.oMExists(key, oKey)) {
+    public oDel(key: string, oKey: string): boolean {
+        if (!this.oExists(key, oKey)) {
             return false;
         }
         delete this._cache[key][oKey];
@@ -396,7 +396,7 @@ class dyCache {
      * @param {string} key
      * @returns {number}
      */
-    public oMLength(key: string): number {
+    public oLength(key: string): number {
         if (typeof key !== 'undefined' && typeof this._cache[key] !== "undefined") {
             return Object.keys(this._cache[key]).length;
         }
