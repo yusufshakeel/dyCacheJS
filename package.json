@@ -4,8 +4,8 @@
   "description": "Cache data using JavaScript in the browser.",
   "main": "index.html",
   "scripts": {
-    "test": "",
-    "build": "tsc && grunt"
+    "test": "mocha --recursive || true",
+    "build": "tsc && grunt && sh main.sh"
   },
   "repository": {
     "type": "git",
