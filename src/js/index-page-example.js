@@ -171,6 +171,16 @@ outputJSON(obj.arrLMerge('users', 'Happy'), 'collapse-arrLMerge');
 output("Fetch all the elements of the array referred by <code>users</code> key in the cache after merge.", 'collapse-arrLMerge');
 outputJSON(obj.arrGet('users'), 'collapse-arrLMerge');
 
+// arrDeleteElem();
+output("Delete element at index 0 from array referred by key <code>users</code> in the cache.", 'collapse-arrDeleteElem');
+outputJSON(obj.arrDeleteElem('users', 0), 'collapse-arrDeleteElem');
+output("Fetch all the elements of the array referred by <code>users</code> key in the cache after merge.", 'collapse-arrDeleteElem');
+outputJSON(obj.arrGet('users'), 'collapse-arrDeleteElem');
+output("Delete 3 elements from index 3 from array referred by key <code>users</code> in the cache.", 'collapse-arrDeleteElem');
+outputJSON(obj.arrDeleteElem('users', 2, 3), 'collapse-arrDeleteElem');
+output("Fetch all the elements of the array referred by <code>users</code> key in the cache after merge.", 'collapse-arrDeleteElem');
+outputJSON(obj.arrGet('users'), 'collapse-arrDeleteElem');
+
 // purge()
 obj.purge();
 output("Content of the cache after purge.", 'collapse-oMSet');

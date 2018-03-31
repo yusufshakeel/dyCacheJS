@@ -266,6 +266,36 @@ class dyCache {
     }
 
     /**
+     * This method will delete element from the array referred by key in the cache.
+     *
+     * On success will return an array of deleted elements. Otherwise false.
+     *
+     * @param {string} key
+     * @param {number} start This is the index from where deleting is started.
+     * @param {number} deleteCount  (optional) If set will delete deleteCount number of elements.
+     * @returns {any}
+     */
+    public arrDeleteElem(key: string, start: number, deleteCount?: number): any {
+
+        // if key does not exists
+        if (typeof this._cache[key] === "undefined") {
+            return false;
+        }
+
+        // if invalid start
+        if (this.arrLength(key) < start || start < 0) {
+            return false;
+        }
+
+        // if deleteCount does not exists
+        if (typeof deleteCount === "undefined") {
+            deleteCount = 1;
+        }
+
+        return this._cache[key].splice(start, deleteCount);
+    }
+
+    /**
      * This will create an object by the reference by key.
      * Then it will add a property okey and set it to oValue value.
      *

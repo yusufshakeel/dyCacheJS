@@ -55,8 +55,8 @@ describe('Testing dyCacheJS', function () {
      * set key is set to an object
      */
     it('should assert obj.set(key,value) and obj.get(key) i.e. key exists and its value is an object', function () {
-        obj.set('user', { username: 'yusufshakeel', points: 10 });
-        assert.deepEqual(obj.get('user'), { username: 'yusufshakeel', points: 10});
+        obj.set('user', {username: 'yusufshakeel', points: 10});
+        assert.deepEqual(obj.get('user'), {username: 'yusufshakeel', points: 10});
     });
 
     /**
@@ -264,6 +264,30 @@ describe('Testing dyCacheJS', function () {
         obj.arrPush('numArr', {b: 2});
         obj.arrLMerge('numArr', [10, 20, 30]);
         assert.equal(obj.arrLength('numArr'), 4);
+    });
+
+    /**
+     * this will delete element from the array referred by key in the cache.
+     * delete will start from the start index.
+     * total element to be deleted is denoted by delectCount
+     */
+    it('should assert arrDeleteElem(key, start) i.e. delete element from the array at index start', function () {
+        for (let i = 0; i <= 5; i++) {
+            obj.arrPush('numArr', i);
+        }
+        assert.deepEqual(obj.arrDeleteElem('numArr', 1), [1]);
+    });
+
+    /**
+     * this will delete element from the array referred by key in the cache.
+     * delete will start from the start index.
+     * total element to be deleted is denoted by delectCount
+     */
+    it('should assert arrDeleteElem(key, start, deleteCount) i.e. delete element from the array at index start and delete total deleteCount elements', function () {
+        for (let i = 0; i <= 5; i++) {
+            obj.arrPush('numArr', i);
+        }
+        assert.deepEqual(obj.arrDeleteElem('numArr', 1, 3), [1, 2, 3]);
     });
 
     /**
