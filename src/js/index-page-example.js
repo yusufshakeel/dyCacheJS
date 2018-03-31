@@ -155,6 +155,12 @@ outputJSON(obj.arrLPop('users'), 'collapse-arrLPop');
 output("Fetch all the elements of the array referred by <code>users</code> key in the cache after left pop.", 'collapse-arrLPop');
 outputJSON(obj.arrGet('users'), 'collapse-arrLPop');
 
+// arrInsertAt();
+output("insert a value at given <code>index</code> in a array referred by key <code>users</code> in the cache.", 'collapse-arrInsertAt');
+outputJSON(obj.arrInsertAt('users', 3, {username: 'foo', points: 99}), 'collapse-arrInsertAt');
+output("Fetch all the elements of the array referred by <code>users</code> key in the cache.", 'collapse-arrInsertAt');
+outputJSON(obj.arrGet('users'), 'collapse-arrInsertAt');
+
 // arrUpdateElem();
 output("Update value of an element at index 0 in the array referred by key <code>users</code> in the cache.", 'collapse-arrUpdateElem');
 outputJSON(obj.arrUpdateElem('users', 0, { username: 'tintin', points: 50 }), 'collapse-arrUpdateElem');
