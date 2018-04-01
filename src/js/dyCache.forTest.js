@@ -565,6 +565,153 @@ var dyCache = /** @class */ (function () {
         this.del(key);
         return true;
     };
+    /**
+     * This will initialise a new queue in the cache and will refer it by key.
+     * @param {string} key
+     */
+    dyCache.prototype.queueInit = function (key) {
+        this._cache[key] = [];
+    };
+    /**
+     * This will check if queue referred by the key in the cache exists.
+     *
+     * On success return true. Otherwise false.
+     *
+     * @param {string} key
+     * @returns {boolean}
+     */
+    dyCache.prototype.queueExists = function (key) {
+        return typeof this._cache[key] !== "undefined";
+    };
+    /**
+     * This will return true if queue referred by key in the cache is empty.
+     * Otherwise false.
+     *
+     * @param {string} key
+     * @returns {boolean}
+     */
+    dyCache.prototype.queueIsEmpty = function (key) {
+        // if queue referred by key does not exists then return false
+        if (!this.queueExists(key)) {
+            return undefined;
+        }
+        return this.queueLength(key) === 0;
+    };
+    /**
+     * This will remove all the elements from the queue referred by key
+     * in the cache.
+     *
+     * On success return true. Otherwise, false.
+     *
+     * @param {string} key
+     * @returns {boolean}
+     */
+    dyCache.prototype.queuePurge = function (key) {
+        // if queue referred by key does not exists then return false
+        if (!this.queueExists(key)) {
+            return false;
+        }
+        this.queueInit(key);
+        return true;
+    };
+    /**
+     * This will delete the queue from the cache.
+     *
+     * On success return true. Otherwise false.
+     *
+     * @param {string} key
+     * @returns {boolean}
+     */
+    dyCache.prototype.queueDelete = function (key) {
+        // if queue referred by key does not exists then return false
+        if (!this.queueExists(key)) {
+            return false;
+        }
+        this.del(key);
+        return true;
+    };
+    /**
+     * This will return total number of elements in the queue referred by
+     * key in the cache.
+     *
+     * On success return a number representing total number of elements.
+     * Otherwise, -1.
+     *
+     * @param {string} key
+     * @returns {number}
+     */
+    dyCache.prototype.queueLength = function (key) {
+        // if queue referred by the key exists in the cache
+        if (typeof key !== 'undefined' && typeof this._cache[key] !== "undefined") {
+            return Object.keys(this._cache[key]).length;
+        }
+        return -1;
+    };
+    /**
+     * This will insert an element in the queue referred by
+     * key in the cache from the right side.
+     *
+     * @param {string} key
+     * @param value
+     */
+    dyCache.prototype.enqueue = function (key, value) {
+        // create queue for the key if not exists
+        if (!this.exists(key)) {
+            this.queueInit(key);
+        }
+        this._cache[key].push(value);
+    };
+    /**
+     * This will remove an element from the queue referred by key
+     * in the cache from the left side.
+     *
+     * If array does not exists then return null.
+     *
+     * @param {string} key
+     * @returns {any}
+     */
+    dyCache.prototype.dequeue = function (key) {
+        if (this.queueExists(key)) {
+            return this._cache[key].splice(0, 1)[0];
+        }
+        return null;
+    };
+    /**
+     * This will return the last element from the right side in the queue
+     * referred by key in the cache.
+     *
+     * On success return an element. Otherwise null.
+     *
+     * @param {string} key
+     * @returns {any}
+     */
+    dyCache.prototype.queueRPeek = function (key) {
+        // if queue referred by the key exists in the cache
+        if (typeof key !== 'undefined' && typeof this._cache[key] !== "undefined") {
+            // return just the element like: 10
+            // and not in an array like: [10]
+            return this._cache[key].slice(-1)[0];
+        }
+        return null;
+    };
+    /**
+     * This will return the first element from the left side in the queue
+     * referred by key in the cache.
+     *
+     * On success return an element. Otherwise null.
+     *
+     * @param {string} key
+     * @returns {any}
+     */
+    dyCache.prototype.queueLPeek = function (key) {
+        // if queue referred by the key exists in the cache
+        if (typeof key !== 'undefined' && typeof this._cache[key] !== "undefined") {
+            // return just the element like: 10
+            // and not in an array like: [10]
+            return this._cache[key].slice(0, 1)[0];
+        }
+        return null;
+    };
     return dyCache;
 }());
 

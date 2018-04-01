@@ -299,3 +299,68 @@ output("This will delete the stack referred by key <code>myStack</code> in the c
 outputJSON(obj.stackDelete('myStack'), 'collapse-stackDelete');
 output("Content of the cache.", 'collapse-stackDelete');
 outputJSON(obj, 'collapse-stackDelete');
+
+// purge()
+obj.purge();
+output("Content of the cache after purge.", 'collapse-queueInit');
+outputJSON(obj, 'collapse-queueInit');
+
+// queueInit();
+output("Initialise queue referred by key <code>myQueue</code> in the cache.", 'collapse-queueInit');
+obj.queueInit('myQueue');
+output("Content of the cache.", 'collapse-queueInit');
+outputJSON(obj, 'collapse-queueInit');
+
+// queueExists();
+output("Check if queue referred by key <code>myQueue</code> exists in the cache.", 'collapse-queueExists');
+outputJSON(obj.queueExists('myQueue'), 'collapse-queueExists');
+
+// enqueue();
+output("Enqueue number value from the right side in queue referred by key <code>myQueue</code> in the cache.", 'collapse-enqueue');
+obj.enqueue('myQueue', 10);
+output("Enqueue string value from the right side in queue referred by key <code>myQueue</code> in the cache.", 'collapse-enqueue');
+obj.enqueue('myQueue', 'Yusuf Shakeel');
+output("Enqueue array value from the right side in queue referred by key <code>myQueue</code> in the cache.", 'collapse-enqueue');
+obj.enqueue('myQueue', [1, 2]);
+output("Enqueue object value from the right side in queue referred by key <code>myQueue</code> in the cache.", 'collapse-enqueue');
+obj.enqueue('myQueue', { a:10 });
+output("Content of the cache.", 'collapse-enqueue');
+outputJSON(obj, 'collapse-enqueue');
+
+// dequeue();
+output("This will remove the first element from the left side from the queue referred by key <code>myQueue</code> in the cache.", 'collapse-dequeue');
+outputJSON(obj.dequeue('myQueue'), 'collapse-dequeue');
+output("Content of the cache.", 'collapse-dequeue');
+outputJSON(obj, 'collapse-dequeue');
+
+// queueLPeek();
+output("This will return the first element from the left side of the queue referred by key <code>myQueue</code> in the cache.", 'collapse-queueLPeek');
+outputJSON(obj.queueLPeek('myQueue'), 'collapse-queueLPeek');
+output("Content of the cache.", 'collapse-queueLPeek');
+outputJSON(obj, 'collapse-queueLPeek');
+
+// queueRPeek();
+output("This will return the last element from the right side of the queue referred by key <code>myQueue</code> in the cache.", 'collapse-queueRPeek');
+outputJSON(obj.queueRPeek('myQueue'), 'collapse-queueRPeek');
+output("Content of the cache.", 'collapse-queueRPeek');
+outputJSON(obj, 'collapse-queueRPeek');
+
+// queueLength();
+output("Total number of elements in the queue referred by key <code>myQueue</code> in the cache.", 'collapse-queueLength');
+outputJSON(obj.queueLength('myQueue'), 'collapse-queueLength');
+
+// queueIsEmpty();
+output("Check if the queue referred by key <code>myQueue</code> in the cache is empty.", 'collapse-queueIsEmpty');
+outputJSON(obj.queueIsEmpty('myQueue'), 'collapse-queueIsEmpty');
+
+// queuePurge();
+output("This will purge the queue referred by key <code>myQueue</code> in the cache.", 'collapse-queuePurge');
+outputJSON(obj.queuePurge('myQueue'), 'collapse-queuePurge');
+output("Content of the cache.", 'collapse-queuePurge');
+outputJSON(obj, 'collapse-queuePurge');
+
+// queueDelete();
+output("This will delete the queue referred by key <code>myQueue</code> in the cache.", 'collapse-queueDelete');
+outputJSON(obj.queueDelete('myQueue'), 'collapse-queueDelete');
+output("Content of the cache.", 'collapse-queueDelete');
+outputJSON(obj, 'collapse-queueDelete');
