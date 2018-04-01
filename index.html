@@ -96,6 +96,7 @@
                 <li><a href="#array-methods">Array Methods</a></li>
                 <li><a href="#object-methods">Object Methods</a></li>
                 <li><a href="#stack-methods">Stack Methods</a></li>
+                <li><a href="#queue-methods">Queue Methods</a></li>
             </ul>
 
             <hr>
@@ -1106,6 +1107,272 @@
             </div>
 
             <!-- stackDelete() ends here -->
+
+            <hr>
+
+            <a name="queue-methods"></a>
+            <h4 class="text-center"><a href="#queue-methods">Queue Methods</a></h4>
+
+            <!-- queueInit() -->
+            <a name="queueInit"></a>
+            <h4><code>queueInit(key)</code></h4>
+
+            <p>This will initialise a queue referred by <code>key</code>
+                in the cache.</p>
+
+            <pre><code>obj.queueInit('myQueue');</code></pre>
+
+            <div>
+                <a class="btn btn-primary"
+                   role="button"
+                   data-toggle="collapse"
+                   href="#collapse-queueInit"
+                   aria-expanded="false"
+                   aria-controls="collapse-queueInit">Output</a>
+            </div>
+            <div class="collapse" id="collapse-queueInit">
+            </div>
+
+            <!-- queueInit() ends here -->
+
+            <hr>
+
+            <!-- queueExists() -->
+            <a name="queueExists"></a>
+            <h4><code>queueExists(key)</code></h4>
+
+            <p>This will check if the queue referred by <code>key</code>
+                exists in the cache.</p>
+
+            <p>Return <code>true</code> if queue exists. Otherwise, <code>false</code>.</p>
+
+            <pre><code>obj.queueExists('myQueue');</code></pre>
+
+            <div>
+                <a class="btn btn-primary"
+                   role="button"
+                   data-toggle="collapse"
+                   href="#collapse-queueExists"
+                   aria-expanded="false"
+                   aria-controls="collapse-queueExists">Output</a>
+            </div>
+            <div class="collapse" id="collapse-queueExists">
+            </div>
+
+            <!-- queueExists() ends here -->
+
+            <hr>
+
+            <!-- enqueue() -->
+            <a name="enqueue"></a>
+            <h4><code>enqueue(key, value)</code></h4>
+
+            <p>This will insert a <code>value</code> from the right side
+                in the queue referred by <code>key</code> in the cache.</p>
+
+            <p><code>value</code> can be a number, string, array or object.</p>
+
+            <pre><code>obj.enqueue('myQueue', 10);    // enqueue number</code></pre>
+            <pre><code>obj.enqueue('myQueue', 'Yusuf Shakeel');   // enqueue string</code></pre>
+            <pre><code>obj.enqueue('myQueue', [1, 2]);    // enqueue array</code></pre>
+            <pre><code>obj.enqueue('myQueue', { a: 10 });    // enqueue object</code></pre>
+
+            <div>
+                <a class="btn btn-primary"
+                   role="button"
+                   data-toggle="collapse"
+                   href="#collapse-enqueue"
+                   aria-expanded="false"
+                   aria-controls="collapse-enqueue">Output</a>
+            </div>
+            <div class="collapse" id="collapse-enqueue">
+            </div>
+
+            <!-- enqueue() ends here -->
+
+            <hr>
+
+            <!-- dequeue() -->
+            <a name="dequeue"></a>
+            <h4><code>dequeue(key)</code></h4>
+
+            <p>This will remove the first element from the left side
+                of the queue referred by <code>key</code> in the cache.</p>
+
+            <p>Will return <code>null</code> if queue does not exists.</p>
+
+            <pre><code>obj.dequeue('myQueue');</code></pre>
+
+            <div>
+                <a class="btn btn-primary"
+                   role="button"
+                   data-toggle="collapse"
+                   href="#collapse-dequeue"
+                   aria-expanded="false"
+                   aria-controls="collapse-dequeue">Output</a>
+            </div>
+            <div class="collapse" id="collapse-dequeue">
+            </div>
+
+            <!-- dequeue() ends here -->
+
+            <hr>
+
+            <!-- queueLPeek() -->
+            <a name="queueLPeek"></a>
+            <h4><code>queueLPeek(key)</code></h4>
+
+            <p>This will return the first element from the left side of the
+                queue referred by <code>key</code> in the cache.</p>
+
+            <p>Will return <code>null</code> if queue does not exists.</p>
+
+            <pre><code>obj.queueLPeek('myQueue');</code></pre>
+
+            <div>
+                <a class="btn btn-primary"
+                   role="button"
+                   data-toggle="collapse"
+                   href="#collapse-queueLPeek"
+                   aria-expanded="false"
+                   aria-controls="collapse-queueLPeek">Output</a>
+            </div>
+            <div class="collapse" id="collapse-queueLPeek">
+            </div>
+
+            <!-- queueLPeek() ends here -->
+
+            <hr>
+
+            <!-- queueRPeek() -->
+            <a name="queueRPeek"></a>
+            <h4><code>queueRPeek(key)</code></h4>
+
+            <p>This will return the last element from the right side of the
+                queue referred by <code>key</code> in the cache.</p>
+
+            <p>Will return <code>null</code> if queue does not exists.</p>
+
+            <pre><code>obj.queueRPeek('myQueue');</code></pre>
+
+            <div>
+                <a class="btn btn-primary"
+                   role="button"
+                   data-toggle="collapse"
+                   href="#collapse-queueRPeek"
+                   aria-expanded="false"
+                   aria-controls="collapse-queueRPeek">Output</a>
+            </div>
+            <div class="collapse" id="collapse-queueRPeek">
+            </div>
+
+            <!-- queueRPeek() ends here -->
+
+            <hr>
+
+            <!-- queueLength() -->
+            <a name="queueLength"></a>
+            <h4><code>queueLength(key)</code></h4>
+
+            <p>This will return total number of elements in the queue referred by
+                <code>key</code> in the cache.</p>
+
+            <p>On success return number of elements in the queue. Otherwise -1.</p>
+
+            <pre><code>obj.queueLength('myQueue');</code></pre>
+
+            <div>
+                <a class="btn btn-primary"
+                   role="button"
+                   data-toggle="collapse"
+                   href="#collapse-queueLength"
+                   aria-expanded="false"
+                   aria-controls="collapse-queueLength">Output</a>
+            </div>
+            <div class="collapse" id="collapse-queueLength">
+            </div>
+
+            <!-- queueLength() ends here -->
+
+            <hr>
+
+            <!-- queueIsEmpty() -->
+            <a name="queueIsEmpty"></a>
+            <h4><code>queueIsEmpty(key)</code></h4>
+
+            <p>This will check is the queue referred by
+                <code>key</code> in the cache is empty.</p>
+
+            <p>If empty will return <code>true</code>. Otherwise, <code>false</code>.</p>
+
+            <p>If <code>key</code> does not exists then return <code>undefined</code>.</p>
+
+            <pre><code>obj.queueIsEmpty('myQueue');</code></pre>
+
+            <div>
+                <a class="btn btn-primary"
+                   role="button"
+                   data-toggle="collapse"
+                   href="#collapse-queueIsEmpty"
+                   aria-expanded="false"
+                   aria-controls="collapse-queueIsEmpty">Output</a>
+            </div>
+            <div class="collapse" id="collapse-queueIsEmpty">
+            </div>
+
+            <!-- queueIsEmpty() ends here -->
+
+            <hr>
+
+            <!-- queuePurge() -->
+            <a name="queuePurge"></a>
+            <h4><code>queuePurge(key)</code></h4>
+
+            <p>This will empty the queue referred by
+                <code>key</code> in the cache.</p>
+
+            <p>Will return <code>true</code> on success. Otherwise, <code>false</code>.</p>
+
+            <pre><code>obj.queuePurge('myQueue');</code></pre>
+
+            <div>
+                <a class="btn btn-primary"
+                   role="button"
+                   data-toggle="collapse"
+                   href="#collapse-queuePurge"
+                   aria-expanded="false"
+                   aria-controls="collapse-queuePurge">Output</a>
+            </div>
+            <div class="collapse" id="collapse-queuePurge">
+            </div>
+
+            <!-- queuePurge() ends here -->
+
+            <hr>
+
+            <!-- queueDelete() -->
+            <a name="queueDelete"></a>
+            <h4><code>queueDelete(key)</code></h4>
+
+            <p>This will delete the queue referred by
+                <code>key</code> from the cache.</p>
+
+            <p>Will return <code>true</code> on success. Otherwise, <code>false</code>.</p>
+
+            <pre><code>obj.queueDelete('myQueue');</code></pre>
+
+            <div>
+                <a class="btn btn-primary"
+                   role="button"
+                   data-toggle="collapse"
+                   href="#collapse-queueDelete"
+                   aria-expanded="false"
+                   aria-controls="collapse-queueDelete">Output</a>
+            </div>
+            <div class="collapse" id="collapse-queueDelete">
+            </div>
+
+            <!-- queueDelete() ends here -->
 
             <hr>
 

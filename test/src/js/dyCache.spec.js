@@ -850,4 +850,152 @@ describe('Testing dyCacheJS', function () {
 
     });
 
+    describe('Testing Queue Methods', () => {
+
+        describe('Testing queueInit()', () => {
+
+            it('should initialise an empty queue referred by key in the cache', function () {
+                obj.queueInit('queue');
+                assert.equal(obj.queueLength('queue'), 0);
+            });
+
+        });
+
+        describe('Testing enqueue() and dequeue()', () => {
+
+            it('should enqueue a number value in the queue referred by key in the cache', function () {
+                obj.enqueue('queue', 10);
+                assert.equal(obj.dequeue('queue'), 10);
+            });
+
+            it('should enqueue a string value in the queue referred by key in the cache', function () {
+                obj.enqueue('queue', 'hello');
+                assert.equal(obj.dequeue('queue'), 'hello');
+            });
+
+            it('should enqueue an array value in the queue referred by key in the cache', function () {
+                obj.enqueue('queue', [1, 2]);
+                assert.deepEqual(obj.dequeue('queue'), [1, 2]);
+            });
+
+            it('should enqueue an object value in the queue referred by key in the cache', function () {
+                obj.enqueue('queue', {a: 10});
+                assert.deepEqual(obj.dequeue('queue'), {a: 10});
+            });
+
+            it('should return null on dequeue for non-existing key', function () {
+                assert.isNull(obj.dequeue('unknown'));
+            });
+
+        });
+
+        describe('Testing queueExists()', () => {
+
+            it('should return true for existing queue referred by key in the cache', function () {
+                obj.queueInit('queue');
+                assert.isTrue(obj.queueExists('queue'));
+            });
+
+            it('should return false for non-existing queue', function () {
+                assert.isFalse(obj.queueExists('unknown'));
+            });
+
+        });
+
+        describe('Testing queueLength()', () => {
+
+            it('should return total number of elements in the queue referred by key in the cache', function () {
+                for (let i = 1; i <= 10; i++) {
+                    obj.enqueue('queue', i);
+                }
+                assert.equal(obj.queueLength('queue'), 10);
+            });
+
+            it('should return -1 for non-existing queue', function () {
+                assert.equal(obj.queueLength('unknown'), -1);
+            });
+
+        });
+
+        describe('Testing queueIsEmpty()', () => {
+
+            it('should return true for empty queue referred by key in the cache', function () {
+                obj.queueInit('queue');
+                assert.isTrue(obj.queueIsEmpty('queue'));
+            });
+
+            it('should return false for non-empty queue referred by key in the cache', function () {
+                obj.queueInit('queue');
+                obj.enqueue('queue', 10);
+                assert.isFalse(obj.queueIsEmpty('queue'));
+            });
+
+            it('should return "undefined" for non-existing queue', function () {
+                assert.isUndefined(obj.queueIsEmpty('unknown'));
+            });
+
+        });
+
+        describe('Testing queuePurge()', () => {
+
+            it('should return true after purging queue referred by key in the cache', function () {
+                obj.queueInit('queue');
+                obj.enqueue('queue', 10);
+                assert.isTrue(obj.queuePurge('queue'));
+            });
+
+            it('should return false for non-existing queue', function () {
+                assert.isFalse(obj.queuePurge('unknown'));
+            });
+
+        });
+
+        describe('Testing queueDelete()', () => {
+
+            it('should return true after deleting queue referred by key in the cache', function () {
+                obj.queueInit('queue');
+                obj.enqueue('queue', 10);
+                assert.isTrue(obj.queueDelete('queue'));
+            });
+
+            it('should return false for non-existing queue', function () {
+                assert.isFalse(obj.queueDelete('unknown'));
+            });
+
+        });
+
+        describe('Testing queueLPeek()', () => {
+
+            it('should return the first element from the left side of the queue referred by key in the cache', function () {
+                obj.queueInit('queue');
+                obj.enqueue('queue', 10);
+                obj.enqueue('queue', 20);
+                obj.enqueue('queue', 30);
+                assert.deepEqual(obj.queueLPeek('queue'), 10);
+            });
+
+            it('should return null for non-existing queue', function () {
+                assert.isNull(obj.queueLPeek('unknown'));
+            });
+
+        });
+
+        describe('Testing queueRPeek()', () => {
+
+            it('should return the last element from the right side of the queue referred by key in the cache', function () {
+                obj.queueInit('queue');
+                obj.enqueue('queue', 10);
+                obj.enqueue('queue', 20);
+                obj.enqueue('queue', 30);
+                assert.deepEqual(obj.queueRPeek('queue'), 30);
+            });
+
+            it('should return null for non-existing queue', function () {
+                assert.isNull(obj.queueRPeek('unknown'));
+            });
+
+        });
+
+    });
+
 });
