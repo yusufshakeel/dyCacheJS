@@ -377,6 +377,60 @@ describe('Testing dyCacheJS', function () {
 
         });
 
+        describe('Testing arrMInsertAt()', () => {
+
+            it('should insert multiple number values at a given index', function () {
+                for (let i = 1; i <= 3; i++) {
+                    obj.arrPush('arr', i);
+                }
+                assert.equal(obj.arrMInsertAt('arr', 1, [10, 20]), true);
+                assert.deepEqual(obj.arrGet('arr'), [1, 10, 20, 2, 3]);
+            });
+
+            it('should insert multiple string values at a given index', function () {
+                for (let i = 1; i <= 3; i++) {
+                    obj.arrPush('arr', i);
+                }
+                assert.equal(obj.arrMInsertAt('arr', 1, ['a', 'b']), true);
+                assert.deepEqual(obj.arrGet('arr'), [1, 'a', 'b', 2, 3]);
+            });
+
+            it('should insert multiple array values at a given index', function () {
+                for (let i = 1; i <= 3; i++) {
+                    obj.arrPush('arr', i);
+                }
+                assert.equal(obj.arrMInsertAt('arr', 1, [['a', 10], ['b', 20]]), true);
+                assert.deepEqual(obj.arrGet('arr'), [1, ['a', 10], ['b', 20], 2, 3]);
+            });
+
+            it('should insert multiple object values at a given index', function () {
+                for (let i = 1; i <= 3; i++) {
+                    obj.arrPush('arr', i);
+                }
+                assert.equal(obj.arrMInsertAt('arr', 1, [{a: 1}, {b: 2}]), true);
+                assert.deepEqual(obj.arrGet('arr'), [1, {a: 1}, {b: 2}, 2, 3]);
+            });
+
+            it('should return false for non-existing key', function () {
+                assert.equal(obj.arrMInsertAt('arr', 1, [1, 2]), false);
+            });
+
+            it('should return false for inserting at invalid index', function () {
+                for (let i = 1; i <= 10; i++) {
+                    obj.arrPush('arr', i);
+                }
+                assert.equal(obj.arrMInsertAt('arr', 99, [1, 2]), false);
+            });
+
+            it('should return false when value is missing', function () {
+                for (let i = 1; i <= 10; i++) {
+                    obj.arrPush('arr', i);
+                }
+                assert.equal(obj.arrMInsertAt('arr', 99), false);
+            });
+
+        });
+
         describe('Testing arrUpdateElem()', () => {
 
             it('should update an element at a given index in the array', function () {

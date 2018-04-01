@@ -237,6 +237,35 @@ var dyCache = /** @class */ (function () {
         return true;
     };
     /**
+     * This will insert multiple values at a given index in the array
+     * referred by key in the cache.
+     *
+     * On success return true, otherwise false.
+     *
+     * @param {string} key
+     * @param {number} index
+     * @param value
+     * @returns {boolean}
+     */
+    dyCache.prototype.arrMInsertAt = function (key, index, value) {
+        // if key does not exists in the cache
+        if (!this.exists(key)) {
+            return false;
+        }
+        // if index is invalid
+        if (this.arrLength(key) < index || index < 0) {
+            return false;
+        }
+        // if value does not exists
+        if (typeof value === "undefined") {
+            return false;
+        }
+        for (var i = 0; i < value.length; i++) {
+            this._cache[key].splice(index + i, 0, value[i]);
+        }
+        return true;
+    };
+    /**
      * This will update the value at given index in an array
      * referred by key in the cache.
      *
