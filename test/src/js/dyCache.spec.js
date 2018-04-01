@@ -730,6 +730,21 @@ describe('Testing dyCacheJS', function () {
 
         });
 
+        describe('Testing stackPeek()', () => {
+
+            it('should return top element in the stack referred by key in the cache', function () {
+                obj.stackPush('stack', 10);
+                obj.stackPush('stack', 20);
+                obj.stackPush('stack', 30);
+                assert.equal(obj.stackPeek('stack'), 30);
+            });
+
+            it('should return "null" for non-existing key', function () {
+                assert.isNull(obj.stackPeek('unknown'));
+            });
+
+        });
+
         describe('Testing stackPop()', () => {
 
             it('should pop a number value in the stack referred by key in the cache', function () {

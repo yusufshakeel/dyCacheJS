@@ -547,7 +547,7 @@ class dyCache {
     }
 
     /**
-     * This will return the last element in the stack referred by key
+     * This will return the top element in the stack referred by key
      * in the cache.
      *
      * On success return the value. Otherwise, null.
