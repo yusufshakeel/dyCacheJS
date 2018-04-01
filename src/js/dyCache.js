@@ -436,5 +436,134 @@ var dyCache = /** @class */ (function () {
         }
         return -1;
     };
+    /**
+     * This will initialise a new stack in the cache and will refer it by key.
+     * @param {string} key
+     */
+    dyCache.prototype.stackInit = function (key) {
+        this._cache[key] = [];
+    };
+    /**
+     * This will create a stack in the cache and will refer it by key.
+     *
+     * @param {string} key
+     * @param value
+     */
+    dyCache.prototype.stackPush = function (key, value) {
+        // create array for the key if not exists
+        if (!this.exists(key)) {
+            this._cache[key] = [];
+        }
+        this._cache[key].push(value);
+    };
+    /**
+     * This will pop the last element from the right side of the stack
+     * referred by key in the cache.
+     *
+     * On success return the element. Otherwise undefined.
+     *
+     * @param {string} key
+     * @returns {any}
+     */
+    dyCache.prototype.stackPop = function (key) {
+        // if stack referred by the key exists in the cache
+        if (typeof key !== 'undefined' && typeof this._cache[key] !== "undefined") {
+            return this._cache[key].pop();
+        }
+        return undefined;
+    };
+    /**
+     * This will check if stack referred by the key in the cache exists.
+     *
+     * On success return true. Otherwise false.
+     *
+     * @param {string} key
+     * @returns {boolean}
+     */
+    dyCache.prototype.stackExists = function (key) {
+        return typeof this._cache[key] !== "undefined";
+    };
+    /**
+     * This will return the top element in the stack referred by key
+     * in the cache.
+     *
+     * On success return the value. Otherwise, null.
+     *
+     * @param {string} key
+     * @returns {any}
+     */
+    dyCache.prototype.stackPeek = function (key) {
+        // if stack referred by the key exists in the cache
+        if (typeof key !== 'undefined' && typeof this._cache[key] !== "undefined") {
+            // return just the element like: 10
+            // and not in an array like: [10]
+            return this._cache[key].slice(-1)[0];
+        }
+        return null;
+    };
+    /**
+     * This will return total number of elements in the stack referred by
+     * key in the cache.
+     *
+     * On success return a number representing total number of elements.
+     * Otherwise, -1.
+     *
+     * @param {string} key
+     * @returns {number}
+     */
+    dyCache.prototype.stackLength = function (key) {
+        // if stack referred by the key exists in the cache
+        if (typeof key !== 'undefined' && typeof this._cache[key] !== "undefined") {
+            return Object.keys(this._cache[key]).length;
+        }
+        return -1;
+    };
+    /**
+     * This will return true if stack referred by key in the cache is empty.
+     * Otherwise false.
+     *
+     * @param {string} key
+     * @returns {boolean}
+     */
+    dyCache.prototype.stackIsEmpty = function (key) {
+        // if stack referred by key does not exists then return false
+        if (!this.stackExists(key)) {
+            return undefined;
+        }
+        return this.stackLength(key) === 0;
+    };
+    /**
+     * This will remove all the elements from the stack referred by key
+     * in the cache.
+     *
+     * On success return true. Otherwise, false.
+     *
+     * @param {string} key
+     * @returns {boolean}
+     */
+    dyCache.prototype.stackPurge = function (key) {
+        // if stack referred by key does not exists then return false
+        if (!this.stackExists(key)) {
+            return false;
+        }
+        this.stackInit(key);
+        return true;
+    };
+    /**
+     * This will delete the stack from the cache.
+     *
+     * On success return true. Otherwise false.
+     *
+     * @param {string} key
+     * @returns {boolean}
+     */
+    dyCache.prototype.stackDelete = function (key) {
+        // if stack referred by key does not exists then return false
+        if (!this.stackExists(key)) {
+            return false;
+        }
+        this.del(key);
+        return true;
+    };
     return dyCache;
 }());

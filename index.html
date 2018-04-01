@@ -95,6 +95,7 @@
                 <li><a href="#cache-methods">Cache Methods</a></li>
                 <li><a href="#array-methods">Array Methods</a></li>
                 <li><a href="#object-methods">Object Methods</a></li>
+                <li><a href="#stack-methods">Stack Methods</a></li>
             </ul>
 
             <hr>
@@ -865,6 +866,249 @@
             </div>
 
             <!-- oDel() ends here -->
+
+            <hr>
+
+            <a name="stack-methods"></a>
+            <h4 class="text-center"><a href="#stack-methods">Stack Methods</a></h4>
+
+            <!-- stackInit() -->
+            <a name="stackInit"></a>
+            <h4><code>stackInit(key)</code></h4>
+
+            <p>This will initialise a stack referred by <code>key</code>
+                in the cache.</p>
+
+            <pre><code>obj.stackInit('myStack');</code></pre>
+
+            <div>
+                <a class="btn btn-primary"
+                   role="button"
+                   data-toggle="collapse"
+                   href="#collapse-stackInit"
+                   aria-expanded="false"
+                   aria-controls="collapse-stackInit">Output</a>
+            </div>
+            <div class="collapse" id="collapse-stackInit">
+            </div>
+
+            <!-- stackInit() ends here -->
+
+            <hr>
+
+            <!-- stackExists() -->
+            <a name="stackExists"></a>
+            <h4><code>stackExists(key)</code></h4>
+
+            <p>This will check if the stack referred by <code>key</code>
+               exists in the cache.</p>
+
+            <p>Return <code>true</code> if stack exists. Otherwise, <code>false</code>.</p>
+
+            <pre><code>obj.stackExists('myStack');</code></pre>
+
+            <div>
+                <a class="btn btn-primary"
+                   role="button"
+                   data-toggle="collapse"
+                   href="#collapse-stackExists"
+                   aria-expanded="false"
+                   aria-controls="collapse-stackExists">Output</a>
+            </div>
+            <div class="collapse" id="collapse-stackExists">
+            </div>
+
+            <!-- stackExists() ends here -->
+
+            <hr>
+
+            <!-- stackPush() -->
+            <a name="stackPush"></a>
+            <h4><code>stackPush(key, value)</code></h4>
+
+            <p>This will push a <code>value</code> in the stack referred by
+                <code>key</code> in the cache.</p>
+
+            <p><code>value</code> can be a number, string, array or object.</p>
+
+            <pre><code>obj.stackPush('myStack', 10);    // push number</code></pre>
+            <pre><code>obj.stackPush('myStack', 'Yusuf Shakeel');   // push string</code></pre>
+            <pre><code>obj.stackPush('myStack', [1, 2]);    // push array</code></pre>
+            <pre><code>obj.stackPush('myStack', { a: 10 });    // push object</code></pre>
+
+            <div>
+                <a class="btn btn-primary"
+                   role="button"
+                   data-toggle="collapse"
+                   href="#collapse-stackPush"
+                   aria-expanded="false"
+                   aria-controls="collapse-stackPush">Output</a>
+            </div>
+            <div class="collapse" id="collapse-stackPush">
+            </div>
+
+            <!-- stackPush() ends here -->
+
+            <hr>
+
+            <!-- stackPeek() -->
+            <a name="stackPeek"></a>
+            <h4><code>stackPeek(key)</code></h4>
+
+            <p>This will return the top element of the stack referred by
+                <code>key</code> in the cache.</p>
+
+            <p>Will return <code>null</code> if stack does not exists.</p>
+
+            <pre><code>obj.stackPeek('myStack');</code></pre>
+
+            <div>
+                <a class="btn btn-primary"
+                   role="button"
+                   data-toggle="collapse"
+                   href="#collapse-stackPeek"
+                   aria-expanded="false"
+                   aria-controls="collapse-stackPeek">Output</a>
+            </div>
+            <div class="collapse" id="collapse-stackPeek">
+            </div>
+
+            <!-- stackPeek() ends here -->
+
+            <hr>
+
+            <!-- stackPop() -->
+            <a name="stackPop"></a>
+            <h4><code>stackPop(key)</code></h4>
+
+            <p>This will pop the top element from the stack referred by
+                <code>key</code> in the cache.</p>
+
+            <p>Will return <code>undefined</code> if stack does not exists.</p>
+
+            <pre><code>obj.stackPop('myStack');</code></pre>
+
+            <div>
+                <a class="btn btn-primary"
+                   role="button"
+                   data-toggle="collapse"
+                   href="#collapse-stackPop"
+                   aria-expanded="false"
+                   aria-controls="collapse-stackPop">Output</a>
+            </div>
+            <div class="collapse" id="collapse-stackPop">
+            </div>
+
+            <!-- stackPop() ends here -->
+
+            <hr>
+
+            <!-- stackLength() -->
+            <a name="stackLength"></a>
+            <h4><code>stackLength(key)</code></h4>
+
+            <p>This will return total number of elements in the stack referred by
+                <code>key</code> in the cache.</p>
+
+            <p>On success return number of elements in the stack. Otherwise -1.</p>
+
+            <pre><code>obj.stackLength('myStack');</code></pre>
+
+            <div>
+                <a class="btn btn-primary"
+                   role="button"
+                   data-toggle="collapse"
+                   href="#collapse-stackLength"
+                   aria-expanded="false"
+                   aria-controls="collapse-stackLength">Output</a>
+            </div>
+            <div class="collapse" id="collapse-stackLength">
+            </div>
+
+            <!-- stackLength() ends here -->
+
+            <hr>
+
+            <!-- stackIsEmpty() -->
+            <a name="stackIsEmpty"></a>
+            <h4><code>stackIsEmpty(key)</code></h4>
+
+            <p>This will check is the stack referred by
+                <code>key</code> in the cache is empty.</p>
+
+            <p>If empty will return <code>true</code>. Otherwise, <code>false</code>.</p>
+
+            <p>If <code>key</code> does not exists then return <code>undefined</code>.</p>
+
+            <pre><code>obj.stackIsEmpty('myStack');</code></pre>
+
+            <div>
+                <a class="btn btn-primary"
+                   role="button"
+                   data-toggle="collapse"
+                   href="#collapse-stackIsEmpty"
+                   aria-expanded="false"
+                   aria-controls="collapse-stackIsEmpty">Output</a>
+            </div>
+            <div class="collapse" id="collapse-stackIsEmpty">
+            </div>
+
+            <!-- stackIsEmpty() ends here -->
+
+            <hr>
+
+            <!-- stackPurge() -->
+            <a name="stackPurge"></a>
+            <h4><code>stackPurge(key)</code></h4>
+
+            <p>This will empty the stack referred by
+                <code>key</code> in the cache.</p>
+
+            <p>Will return <code>true</code> on success. Otherwise, <code>false</code>.</p>
+
+            <pre><code>obj.stackPurge('myStack');</code></pre>
+
+            <div>
+                <a class="btn btn-primary"
+                   role="button"
+                   data-toggle="collapse"
+                   href="#collapse-stackPurge"
+                   aria-expanded="false"
+                   aria-controls="collapse-stackPurge">Output</a>
+            </div>
+            <div class="collapse" id="collapse-stackPurge">
+            </div>
+
+            <!-- stackPurge() ends here -->
+
+            <hr>
+
+            <!-- stackDelete() -->
+            <a name="stackDelete"></a>
+            <h4><code>stackDelete(key)</code></h4>
+
+            <p>This will delete the stack referred by
+                <code>key</code> from the cache.</p>
+
+            <p>Will return <code>true</code> on success. Otherwise, <code>false</code>.</p>
+
+            <pre><code>obj.stackDelete('myStack');</code></pre>
+
+            <div>
+                <a class="btn btn-primary"
+                   role="button"
+                   data-toggle="collapse"
+                   href="#collapse-stackDelete"
+                   aria-expanded="false"
+                   aria-controls="collapse-stackDelete">Output</a>
+            </div>
+            <div class="collapse" id="collapse-stackDelete">
+            </div>
+
+            <!-- stackDelete() ends here -->
+
+            <hr>
+
 
         </div>
 

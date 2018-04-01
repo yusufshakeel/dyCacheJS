@@ -240,3 +240,62 @@ output("This will delete <code>p2</code> oKey from the object referred by key <c
 outputJSON(obj.oDel('players', 'p2'), 'collapse-oDel');
 output("Fetch all values of <code>players</code> in the cache.", 'collapse-oDel');
 outputJSON(obj.oGetAll('players'), 'collapse-oDel');
+
+// purge()
+obj.purge();
+output("Content of the cache after purge.", 'collapse-stackInit');
+outputJSON(obj, 'collapse-stackInit');
+
+// stackInit();
+output("Initialise stack referred by key <code>myStack</code> in the cache.", 'collapse-stackInit');
+obj.stackInit('myStack');
+output("Content of the cache.", 'collapse-stackInit');
+outputJSON(obj, 'collapse-stackInit');
+
+// stackExists();
+output("Check if stack referred by key <code>myStack</code> exists in the cache.", 'collapse-stackExists');
+outputJSON(obj.stackExists('myStack'), 'collapse-stackExists');
+
+// stackPush();
+output("Push number value in stack referred by key <code>myStack</code> in the cache.", 'collapse-stackPush');
+obj.stackPush('myStack', 10);
+output("Push string value in stack referred by key <code>myStack</code> in the cache.", 'collapse-stackPush');
+obj.stackPush('myStack', 'Yusuf Shakeel');
+output("Push array value in stack referred by key <code>myStack</code> in the cache.", 'collapse-stackPush');
+obj.stackPush('myStack', [1, 2]);
+output("Push object value in stack referred by key <code>myStack</code> in the cache.", 'collapse-stackPush');
+obj.stackPush('myStack', { a:10 });
+output("Content of the cache.", 'collapse-stackPush');
+outputJSON(obj, 'collapse-stackPush');
+
+// stackPeek();
+output("This will return the top element of the stack referred by key <code>myStack</code> in the cache.", 'collapse-stackPeek');
+outputJSON(obj.stackPeek('myStack'), 'collapse-stackPeek');
+output("Content of the cache.", 'collapse-stackPeek');
+outputJSON(obj, 'collapse-stackPeek');
+
+// stackPop();
+output("This will pop the top element from the stack referred by key <code>myStack</code> in the cache.", 'collapse-stackPop');
+outputJSON(obj.stackPop('myStack'), 'collapse-stackPop');
+output("Content of the cache.", 'collapse-stackPop');
+outputJSON(obj, 'collapse-stackPop');
+
+// stackLength();
+output("Total number of elements in the stack referred by key <code>myStack</code> in the cache.", 'collapse-stackLength');
+outputJSON(obj.stackLength('myStack'), 'collapse-stackLength');
+
+// stackIsEmpty();
+output("Check if the stack referred by key <code>myStack</code> in the cache is empty.", 'collapse-stackIsEmpty');
+outputJSON(obj.stackIsEmpty('myStack'), 'collapse-stackIsEmpty');
+
+// stackPurge();
+output("This will purge the stack referred by key <code>myStack</code> in the cache.", 'collapse-stackPurge');
+outputJSON(obj.stackPurge('myStack'), 'collapse-stackPurge');
+output("Content of the cache.", 'collapse-stackPurge');
+outputJSON(obj, 'collapse-stackPurge');
+
+// stackDelete();
+output("This will delete the stack referred by key <code>myStack</code> in the cache.", 'collapse-stackDelete');
+outputJSON(obj.stackDelete('myStack'), 'collapse-stackDelete');
+output("Content of the cache.", 'collapse-stackDelete');
+outputJSON(obj, 'collapse-stackDelete');

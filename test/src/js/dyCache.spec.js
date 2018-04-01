@@ -108,7 +108,7 @@ describe('Testing dyCacheJS', function () {
             obj.set('str', 'yusufshakeel');
             obj.set('arr', [1, 2]);
             obj.set('obj', {m: 10});
-            assert.equal(obj.exists('obj'), true);
+            assert.isTrue(obj.exists('obj'));
         });
 
         it('should purge keys from the cache using purge()', function () {
@@ -329,7 +329,7 @@ describe('Testing dyCacheJS', function () {
                 for (let i = 1; i <= 10; i++) {
                     obj.arrPush('arr', i);
                 }
-                assert.equal(obj.arrInsertAt('arr', 3, 1000), true);
+                assert.isTrue(obj.arrInsertAt('arr', 3, 1000));
                 assert.equal(obj.arrGet('arr', 3), 1000);
             });
 
@@ -337,7 +337,7 @@ describe('Testing dyCacheJS', function () {
                 for (let i = 1; i <= 10; i++) {
                     obj.arrPush('arr', i);
                 }
-                assert.equal(obj.arrInsertAt('arr', 3, 'Yusuf Shakeel'), true);
+                assert.isTrue(obj.arrInsertAt('arr', 3, 'Yusuf Shakeel'));
                 assert.equal(obj.arrGet('arr', 3), 'Yusuf Shakeel');
             });
 
@@ -345,7 +345,7 @@ describe('Testing dyCacheJS', function () {
                 for (let i = 1; i <= 10; i++) {
                     obj.arrPush('arr', i);
                 }
-                assert.equal(obj.arrInsertAt('arr', 3, [100, 200]), true);
+                assert.isTrue(obj.arrInsertAt('arr', 3, [100, 200]));
                 assert.deepEqual(obj.arrGet('arr', 3), [100, 200]);
             });
 
@@ -353,26 +353,26 @@ describe('Testing dyCacheJS', function () {
                 for (let i = 1; i <= 10; i++) {
                     obj.arrPush('arr', i);
                 }
-                assert.equal(obj.arrInsertAt('arr', 3, {a: 10, b: 20}), true);
+                assert.isTrue(obj.arrInsertAt('arr', 3, {a: 10, b: 20}));
                 assert.deepEqual(obj.arrGet('arr', 3), {a: 10, b: 20});
             });
 
             it('should return false for non-existing key', function () {
-                assert.equal(obj.arrInsertAt('arr', 3, {a: 10, b: 20}), false);
+                assert.isFalse(obj.arrInsertAt('arr', 3, {a: 10, b: 20}));
             });
 
             it('should return false for inserting at invalid index', function () {
                 for (let i = 1; i <= 10; i++) {
                     obj.arrPush('arr', i);
                 }
-                assert.equal(obj.arrInsertAt('arr', 99, {a: 10, b: 20}), false);
+                assert.isFalse(obj.arrInsertAt('arr', 99, {a: 10, b: 20}));
             });
 
             it('should return false when value is missing', function () {
                 for (let i = 1; i <= 10; i++) {
                     obj.arrPush('arr', i);
                 }
-                assert.equal(obj.arrInsertAt('arr', 99), false);
+                assert.isFalse(obj.arrInsertAt('arr', 99));
             });
 
         });
@@ -383,7 +383,7 @@ describe('Testing dyCacheJS', function () {
                 for (let i = 1; i <= 3; i++) {
                     obj.arrPush('arr', i);
                 }
-                assert.equal(obj.arrMInsertAt('arr', 1, [10, 20]), true);
+                assert.isTrue(obj.arrMInsertAt('arr', 1, [10, 20]));
                 assert.deepEqual(obj.arrGet('arr'), [1, 10, 20, 2, 3]);
             });
 
@@ -391,7 +391,7 @@ describe('Testing dyCacheJS', function () {
                 for (let i = 1; i <= 3; i++) {
                     obj.arrPush('arr', i);
                 }
-                assert.equal(obj.arrMInsertAt('arr', 1, ['a', 'b']), true);
+                assert.isTrue(obj.arrMInsertAt('arr', 1, ['a', 'b']));
                 assert.deepEqual(obj.arrGet('arr'), [1, 'a', 'b', 2, 3]);
             });
 
@@ -399,7 +399,7 @@ describe('Testing dyCacheJS', function () {
                 for (let i = 1; i <= 3; i++) {
                     obj.arrPush('arr', i);
                 }
-                assert.equal(obj.arrMInsertAt('arr', 1, [['a', 10], ['b', 20]]), true);
+                assert.isTrue(obj.arrMInsertAt('arr', 1, [['a', 10], ['b', 20]]));
                 assert.deepEqual(obj.arrGet('arr'), [1, ['a', 10], ['b', 20], 2, 3]);
             });
 
@@ -407,26 +407,26 @@ describe('Testing dyCacheJS', function () {
                 for (let i = 1; i <= 3; i++) {
                     obj.arrPush('arr', i);
                 }
-                assert.equal(obj.arrMInsertAt('arr', 1, [{a: 1}, {b: 2}]), true);
+                assert.isTrue(obj.arrMInsertAt('arr', 1, [{a: 1}, {b: 2}]));
                 assert.deepEqual(obj.arrGet('arr'), [1, {a: 1}, {b: 2}, 2, 3]);
             });
 
             it('should return false for non-existing key', function () {
-                assert.equal(obj.arrMInsertAt('arr', 1, [1, 2]), false);
+                assert.isFalse(obj.arrMInsertAt('arr', 1, [1, 2]));
             });
 
             it('should return false for inserting at invalid index', function () {
                 for (let i = 1; i <= 10; i++) {
                     obj.arrPush('arr', i);
                 }
-                assert.equal(obj.arrMInsertAt('arr', 99, [1, 2]), false);
+                assert.isFalse(obj.arrMInsertAt('arr', 99, [1, 2]));
             });
 
             it('should return false when value is missing', function () {
                 for (let i = 1; i <= 10; i++) {
                     obj.arrPush('arr', i);
                 }
-                assert.equal(obj.arrMInsertAt('arr', 99), false);
+                assert.isFalse(obj.arrMInsertAt('arr', 99));
             });
 
         });
@@ -437,14 +437,14 @@ describe('Testing dyCacheJS', function () {
                 for (let i = 0; i < 10; i++) {
                     obj.arrPush('num', i);
                 }
-                assert.equal(obj.arrUpdateElem('num', 7, 77), true);
+                assert.isTrue(obj.arrUpdateElem('num', 7, 77));
             });
 
             it('should return false when trying to update invalid index value', function () {
                 for (let i = 0; i < 10; i++) {
                     obj.arrPush('num', i);
                 }
-                assert.equal(obj.arrUpdateElem('num', 99, 77), false);
+                assert.isFalse(obj.arrUpdateElem('num', 99, 77));
             });
 
         });
@@ -462,7 +462,7 @@ describe('Testing dyCacheJS', function () {
                 for (let i = 0; i < 10; i++) {
                     obj.arrPush('num', i);
                 }
-                assert.equal(obj.arrDeleteElem('num', 99), false);
+                assert.isFalse(obj.arrDeleteElem('num', 99));
             });
 
         });
@@ -480,7 +480,7 @@ describe('Testing dyCacheJS', function () {
                 for (let i = 0; i < 10; i++) {
                     obj.arrPush('num', i);
                 }
-                assert.equal(obj.arrDeleteElems('num', 99, 9), false);
+                assert.isFalse(obj.arrDeleteElems('num', 99, 9));
             });
 
         });
@@ -538,7 +538,7 @@ describe('Testing dyCacheJS', function () {
             });
 
             it('should return "undefined" for non-existing "key" in the cache', function () {
-                assert.isUndefined(obj.oGet('obj'));
+                assert.isUndefined(obj.oGet('unknown'));
             });
 
         });
@@ -585,7 +585,7 @@ describe('Testing dyCacheJS', function () {
             });
 
             it('should return false for non-existing "key" in the cache', function () {
-                assert.equal(obj.oGetKeys('unknown'), false);
+                assert.isFalse(obj.oGetKeys('unknown'));
             });
         });
 
@@ -604,15 +604,15 @@ describe('Testing dyCacheJS', function () {
                 };
                 obj.oSet('players', 'p1', players.p1);
                 obj.oSet('players', 'p2', players.p2);
-                assert.equal(obj.oExists('players', 'p1'), true);
+                assert.isTrue(obj.oExists('players', 'p1'));
             });
 
             it('should return false for non-existing "oKey" in the object referred by "key" in the cache', function () {
-                assert.equal(obj.oExists('players', 'unknown'), false);
+                assert.isFalse(obj.oExists('players', 'unknown'));
             });
 
             it('should return false for non-existing "key" in the cache', function () {
-                assert.equal(obj.oExists('unknown', 'unknown'), false);
+                assert.isFalse(obj.oExists('unknown', 'unknown'));
             });
 
         });
@@ -656,7 +656,7 @@ describe('Testing dyCacheJS', function () {
                 };
                 obj.oSet('players', 'p1', players.p1);
                 obj.oSet('players', 'p2', players.p2);
-                assert.equal(obj.oDel('players', 'p2'), true);
+                assert.isTrue(obj.oDel('players', 'p2'));
             });
 
             it('should return false when trying to delete non-existing "oKey" key from the object referred as "key" in the cache', function () {
@@ -672,7 +672,7 @@ describe('Testing dyCacheJS', function () {
                 };
                 obj.oSet('players', 'p1', players.p1);
                 obj.oSet('players', 'p2', players.p2);
-                assert.equal(obj.oDel('players', 'unknown'), false);
+                assert.isFalse(obj.oDel('players', 'unknown'));
             });
 
             it('should return false when trying to delete "oKey" key from a non-existing object in the cache', function () {
@@ -688,7 +688,162 @@ describe('Testing dyCacheJS', function () {
                 };
                 obj.oSet('players', 'p1', players.p1);
                 obj.oSet('players', 'p2', players.p2);
-                assert.equal(obj.oDel('unknown', 'not-known'), false);
+                assert.isFalse(obj.oDel('unknown', 'not-known'));
+            });
+
+        });
+
+    });
+
+    describe('Testing Stack Methods', () => {
+
+        describe('Testing stackInit()', () => {
+
+            it('should initialise an empty stack referred by key in the cache', function () {
+                obj.stackInit('stack');
+                assert.equal(obj.stackLength('stack'), 0);
+            });
+
+        });
+
+        describe('Testing stackPush() and stackPeek()', () => {
+
+            it('should push a number value in the stack referred by key in the cache', function () {
+                obj.stackPush('stack', 10);
+                assert.equal(obj.stackPeek('stack'), 10);
+            });
+
+            it('should push a string value in the stack referred by key in the cache', function () {
+                obj.stackPush('stack', 'hello');
+                assert.equal(obj.stackPeek('stack'), 'hello');
+            });
+
+            it('should push an array value in the stack referred by key in the cache', function () {
+                obj.stackPush('stack', [1, 2]);
+                assert.deepEqual(obj.stackPeek('stack'), [1, 2]);
+            });
+
+            it('should push an object value in the stack referred by key in the cache', function () {
+                obj.stackPush('stack', {a: 10});
+                assert.deepEqual(obj.stackPeek('stack'), {a: 10});
+            });
+
+        });
+
+        describe('Testing stackPeek()', () => {
+
+            it('should return top element in the stack referred by key in the cache', function () {
+                obj.stackPush('stack', 10);
+                obj.stackPush('stack', 20);
+                obj.stackPush('stack', 30);
+                assert.equal(obj.stackPeek('stack'), 30);
+            });
+
+            it('should return "null" for non-existing key', function () {
+                assert.isNull(obj.stackPeek('unknown'));
+            });
+
+        });
+
+        describe('Testing stackPop()', () => {
+
+            it('should pop a number value in the stack referred by key in the cache', function () {
+                obj.stackPush('stack', 10);
+                assert.equal(obj.stackPop('stack'), 10);
+            });
+
+            it('should pop a string value in the stack referred by key in the cache', function () {
+                obj.stackPush('stack', 'hello');
+                assert.equal(obj.stackPop('stack'), 'hello');
+            });
+
+            it('should pop an array value in the stack referred by key in the cache', function () {
+                obj.stackPush('stack', [1, 2]);
+                assert.deepEqual(obj.stackPop('stack'), [1, 2]);
+            });
+
+            it('should pop an object value in the stack referred by key in the cache', function () {
+                obj.stackPush('stack', {a: 10});
+                assert.deepEqual(obj.stackPop('stack'), {a: 10});
+            });
+
+            it('should return "undefined" for non-existing key', function () {
+                assert.isUndefined(obj.stackPop('unknown'));
+            });
+
+        });
+
+        describe('Testing stackExists()', () => {
+
+            it('should return true for existing stack referred by key in the cache', function () {
+                obj.stackPush('stack', 'hello');
+                assert.isTrue(obj.stackExists('stack'));
+            });
+
+            it('should return false for non-existing stack', function () {
+                assert.isFalse(obj.stackExists('unknown'));
+            });
+
+        });
+
+        describe('Testing stackLength()', () => {
+
+            it('should return total number of elements in the stack referred by key in the cache', function () {
+                for (let i = 1; i <= 10; i++) {
+                    obj.stackPush('stack', i);
+                }
+                assert.equal(obj.stackLength('stack'), 10);
+            });
+
+            it('should return -1 for non-existing stack', function () {
+                assert.equal(obj.stackLength('unknown'), -1);
+            });
+
+        });
+
+        describe('Testing stackIsEmpty()', () => {
+
+            it('should return true for empty stack referred by key in the cache', function () {
+                obj.stackInit('stack');
+                assert.isTrue(obj.stackIsEmpty('stack'));
+            });
+
+            it('should return false for non-empty stack referred by key in the cache', function () {
+                obj.stackInit('stack');
+                obj.stackPush('stack', 10);
+                assert.isFalse(obj.stackIsEmpty('stack'));
+            });
+
+            it('should return "undefined" for non-existing stack', function () {
+                assert.isUndefined(obj.stackIsEmpty('unknown'));
+            });
+
+        });
+
+        describe('Testing stackPurge()', () => {
+
+            it('should return true after purging stack referred by key in the cache', function () {
+                obj.stackInit('stack');
+                obj.stackPush('stack', 10);
+                assert.isTrue(obj.stackPurge('stack'));
+            });
+
+            it('should return false for non-existing stack', function () {
+                assert.isFalse(obj.stackPurge('unknown'));
+            });
+
+        });
+
+        describe('Testing stackDelete()', () => {
+
+            it('should return true after deleting stack referred by key in the cache', function () {
+                obj.stackInit('stack');
+                obj.stackPush('stack', 10);
+                assert.isTrue(obj.stackDelete('stack'));
+            });
+
+            it('should return false for non-existing stack', function () {
+                assert.isFalse(obj.stackDelete('unknown'));
             });
 
         });
