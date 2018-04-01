@@ -534,6 +534,65 @@
 
             <hr>
 
+            <!-- arrInsertAt() -->
+            <a name="arrInsertAt"></a>
+            <h4><code>arrInsertAt(key, index, value)</code></h4>
+
+            <p>This will insert a <code>value</code> at a given <code>index</code>
+                in an array referred by <code>key</code> in the cache.</p>
+
+            <p><code>value</code> can be a number, string, array or object.</p>
+
+            <p>On success return true. Otherwise false.</p>
+
+            <pre><code>obj.arrInsertAt('users', 3, {username: 'foo', points: 99});</code></pre>
+
+            <div>
+                <a class="btn btn-primary"
+                   role="button"
+                   data-toggle="collapse"
+                   href="#collapse-arrInsertAt"
+                   aria-expanded="false"
+                   aria-controls="collapse-arrInsertAt">Output</a>
+            </div>
+            <div class="collapse" id="collapse-arrInsertAt">
+            </div>
+
+            <!-- arrInsertAt() ends here -->
+
+            <hr>
+
+            <!-- arrMInsertAt() -->
+            <a name="arrMInsertAt"></a>
+            <h4><code>arrMInsertAt(key, index, value)</code></h4>
+
+            <p>This will insert multiple <code>value</code> at a given <code>index</code>
+                in an array referred by <code>key</code> in the cache.</p>
+
+            <p><code>index</code> is the index at which the new elements are inserted.</p>
+
+            <p><code>value</code> is an array of elements.
+                Each element can be a number, string, array or object.</p>
+
+            <p>On success return true. Otherwise false.</p>
+
+            <pre><code>obj.arrMInsertAt('users', 1, [ {id: 9999, name: 'yusufshakeel'}, 10, 'happy', [100] ]);</code></pre>
+
+            <div>
+                <a class="btn btn-primary"
+                   role="button"
+                   data-toggle="collapse"
+                   href="#collapse-arrMInsertAt"
+                   aria-expanded="false"
+                   aria-controls="collapse-arrMInsertAt">Output</a>
+            </div>
+            <div class="collapse" id="collapse-arrMInsertAt">
+            </div>
+
+            <!-- arrMInsertAt() ends here -->
+
+            <hr>
+
             <!-- arrUpdateElem() -->
             <a name="arrUpdateElem"></a>
             <h4><code>arrUpdateElem(key, index, value)</code></h4>
