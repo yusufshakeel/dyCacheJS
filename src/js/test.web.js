@@ -31,360 +31,1024 @@ describe('Testing dyCacheJS', function () {
     /**
      * Assert that obj is an instance of the dyCacheJS class.
      */
-    it('should assert obj is an instance of dyCacheJS class.', function () {
+    it('check obj is an instance of dyCacheJS class.', function () {
         assert.instanceOf(obj, dyCache, 'obj is instance of dyCacheJS class');
     });
 
     /**
-     * set key "num" is set to 10 and then asser that it is equal to 10.
+     * test set() and get() methods
      */
-    it('should assert obj.set(key, value) and obj.get(key) i.e. key exists and its value is a number.', function () {
-        obj.set('num', 10);
-        assert.equal(obj.get('num'), 10);
-    });
+    describe('Testing set() and get()', () => {
 
-    /**
-     * set key "str" is set to "Yusuf Shakeel" and then asser that it is equal to "Yusuf Shakeel".
-     */
-    it('should assert obj.set(key, value) and obj.get(key) i.e. key exists and its value is a string', function () {
-        obj.set('str', "Yusuf Shakeel");
-        assert.equal(obj.get('str'), "Yusuf Shakeel");
-    });
+        it('should set "num" key to numeric value', function () {
+            obj.set('num', 10);
+            assert.equal(obj.get('num'), 10);
+        });
 
-    /**
-     * set key is set to an object
-     */
-    it('should assert obj.set(key,value) and obj.get(key) i.e. key exists and its value is an object', function () {
-        obj.set('user', {username: 'yusufshakeel', points: 10});
-        assert.deepEqual(obj.get('user'), {username: 'yusufshakeel', points: 10});
-    });
+        it('should set "str" key to string value', function () {
+            obj.set('str', 'Yusuf Shakeel');
+            assert.equal(obj.get('str'), 'Yusuf Shakeel');
+        });
 
-    /**
-     * set key is set to an array
-     */
-    it('should assert obj.set(key,value) and obj.get(key) i.e. key exists and its value is an array', function () {
-        obj.set('arr', [1, 2, 3]);
-        assert.deepEqual(obj.get('arr'), [1, 2, 3]);
-    });
+        it('should set "arr" key to array value', function () {
+            obj.set('arr', [1, 'hello', [1, 2], {a: 1}]);
+            assert.deepEqual(obj.get('arr'), [1, 'hello', [1, 2], {a: 1}]);
+        });
 
-    /**
-     * assert the total number of keys in the cache
-     */
-    it('should assert obj.length() i.e. total number of keys in the cache is 3', function () {
-        obj.set('num', 1);
-        obj.set('str', 'Yusuf shakeel');
-        obj.set('prj', 'p1');
-        assert.equal(obj.length(), 3);
-    });
+        it('should set "obj" key to object value', function () {
+            let value = {
+                a: 10,
+                b: [1, 2, 3],
+                c: {m: 10},
+                d: 'string'
+            };
+            obj.set('obj', value);
+            assert.deepEqual(obj.get('obj'), value);
+        });
 
-    /**
-     * assert the keys in the cache
-     */
-    it('should assert obj.keys() i.e. match the keys of the cache', function () {
-        obj.set('num', 1);
-        obj.set('str', 'Yusuf shakeel');
-        obj.set('prj', 'p1');
-        assert.deepEqual(obj.keys(), ['num', 'str', 'prj']);
-    });
-
-    /**
-     * delete key and assert that it is removed
-     */
-    it('should assert obj.del("prj") that is a key is deleted from the cache', function () {
-        obj.set('num', 1);
-        obj.set('str', 'Yusuf shakeel');
-        obj.set('prj', 'p1');
-        obj.del('prj');
-        assert.deepEqual(obj.keys(), ['num', 'str']);
-    });
-
-    /**
-     * assert that a key exists in the cache
-     */
-    it('should assert obj.exists("num") i.e. a key exists in the cache', function () {
-        obj.set('num', 1);
-        obj.set('str', 'Yusuf shakeel');
-        obj.set('prj', 'p1');
-        assert.equal(obj.exists('num'), true);
-        assert.equal(obj.exists('unknown'), false);
-    });
-
-    /**
-     * assert that an array referred by a key in cache exists and
-     * has the expected values
-     */
-    it('should assert obj.arrPush() and obj.arrGet() i.e. an array referred by key exists and the value matches', function () {
-        obj.arrPush('users', {username: 'yusufshakeel', points: 10});
-        obj.arrPush('users', {username: 'dawoodshakeel', points: 20});
-
-        // assert that the key exists
-        assert.equal(obj.exists('users'), true);
-
-        // assert that the value matches
-        assert.deepEqual(obj.arrGet('users'), [{username: 'yusufshakeel', points: 10}, {
-            username: 'dawoodshakeel',
-            points: 20
-        }]);
-    });
-
-    /**
-     * assert arrMPush - push multiple values
-     */
-    it('should assert obj.arrMPush(key, value) i.e. push multiple values in the array', function () {
-        let value = [1, 'helloworld', [1, 2, 3], {id: 1, points: 10}];
-        obj.arrMPush('data', value);
-        assert.deepEqual(obj.arrGet('data'), value);
-    });
-
-    /**
-     * assert that length of the cache is 0 after purge
-     */
-    it('should assert obj.purge() i.e. length of the cache is 0 after purge', function () {
-        obj.set('num', 1);
-        obj.set('str', 'Yusuf shakeel');
-        obj.set('prj', 'p1');
-        assert.equal(obj.length(), 3);
-        obj.purge();
-        assert.equal(obj.length(), 0);
-    });
-
-    it('should assert obj.arrUpdateElem(key, index, value) i.e. update value of an element at given index in the array', function () {
-        obj.arrPush('users', {username: 'yusufshakeel', points: 10});
-        obj.arrPush('users', {username: 'dawoodshakeel', points: 20});
-        obj.arrPush('users', {username: 'qwerty', points: 30});
-
-        // invalid key
-        assert.equal(obj.arrUpdateElem('unknown', 3, 10), false);
-
-        // invalid index
-        assert.equal(obj.arrUpdateElem('user', 3, 10), false);
-
-        // missing value
-        assert.equal(obj.arrUpdateElem('user', 3), false);
-
-        // correct key, index, value
-        let newData = {username: 'janedoe', points: 40};
-        assert.equal(obj.arrUpdateElem('users', 2, newData), true);
-
-        // check new value
-        assert.deepEqual(obj.arrGet('users', 2), newData);
-    });
-
-    /**
-     * assert that after arrLPush the data matches
-     */
-    it('should assert obj.arrLPush() and obj.arrGet() i.e. the data in the key matches after arrLPush', function () {
-        let data = [];
-        for (let i = 1; i <= 10; i++) {
-            data.unshift(i);
-            obj.arrLPush('numData', i);
-        }
-        assert.deepEqual(obj.arrGet('numData'), data);
-    });
-
-    /**
-     * assert multiple push from the left side
-     */
-    it('should assert obj.arrMLPush(key, value) i.e. push multiple elements in an array from the left', function () {
-        for (let i = 1; i <= 3; i++) {
-            obj.arrPush('numData', i);
-        }
-        obj.arrMLPush('numData', [100, 'hello world', { id: 10 }, [99, 98]]);
-        assert.deepEqual(obj.arrGet('numData'), [100, 'hello world', { id: 10 }, [99, 98], 1, 2, 3]);
-    });
-
-    /**
-     * assert arrGet
-     */
-    it('should assert obj.arrGet() returns all the values', function () {
-        let data = [];
-        for (let i = 1; i <= 10; i++) {
-            data.push(i);
-            obj.arrPush('numData', i);
-        }
-        assert.deepEqual(obj.arrGet('numData'), data);
-    });
-
-    /**
-     * assert arrGet(key, index)
-     */
-    it('should assert obj.arrGet(key, index) returns the value at an index', function () {
-        let data = [];
-        for (let i = 0; i <= 10; i++) {
-            data.push(i);
-            obj.arrPush('numData', i);
-        }
-        assert.deepEqual(obj.arrGet('numData', 5), 5);
-    });
-
-    /**
-     * assert arrGet(key, index, end)
-     */
-    it('should assert obj.arrGet(key, index, end) returns the value from start index to end', function () {
-        let data = [];
-        for (let i = 0; i <= 10; i++) {
-            data.push(i);
-            obj.arrPush('numData', i);
-        }
-        assert.deepEqual(obj.arrGet('numData', 3, 5), [3, 4, 5]);
-    });
-
-    /**
-     * assert arrPop(key)
-     */
-    it('should assert obj.arrPop(key) returns the value from the end', function () {
-        let data = [];
-        for (let i = 1; i <= 10; i++) {
-            data.push(i);
-            obj.arrPush('numData', i);
-        }
-        assert.deepEqual(obj.arrPop('numData'), 10);
-    });
-
-    /**
-     * assert arrLPop(key)
-     */
-    it('should assert obj.arrLPop(key) returns the value from the start', function () {
-        let data = [];
-        for (let i = 1; i <= 10; i++) {
-            data.push(i);
-            obj.arrPush('numData', i);
-        }
-        assert.deepEqual(obj.arrLPop('numData'), 1);
-    });
-
-    /**
-     * assert length of an array
-     */
-    it('should assert obj.arrLength(key) i.e. total number of elements in the array', function () {
-        obj.arrPush('numArr', 1);
-        obj.arrPush('numArr', {a: 1});
-        obj.arrPush('numArr', {b: 2});
-        assert.equal(obj.arrLength('numArr'), 3);
-    });
-
-    /**
-     * this will delete element from the array referred by key in the cache.
-     * delete will start from the start index.
-     * total element to be deleted is denoted by delectCount
-     */
-    it('should assert arrDeleteElem(key, index) i.e. delete element from the array at index start', function () {
-        for (let i = 0; i <= 5; i++) {
-            obj.arrPush('numArr', i);
-        }
-        assert.deepEqual(obj.arrDeleteElem('numArr', 1), [1]);
-
-        // index does not exists
-        assert.equal(obj.arrDeleteElem('numArr', 10), false);
-
-        // key does not exists
-        assert.equal(obj.arrDeleteElem('unknown', 1), false);
-    });
-
-    /**
-     * this will delete element from the array referred by key in the cache.
-     * delete will start from the start index.
-     * total element to be deleted is denoted by delectCount
-     */
-    it('should assert arrDeleteElems(key, start, deleteCount) i.e. delete N elements from the array starting from index start till N elements.', function () {
-        for (let i = 0; i <= 5; i++) {
-            obj.arrPush('numArr', i);
-        }
-        assert.deepEqual(obj.arrDeleteElems('numArr', 1, 3), [1, 2, 3]);
-    });
-
-    /**
-     * this will delete element from the array referred by key in the cache.
-     * delete will start from the start index.
-     * total element to be deleted is denoted by delectCount
-     */
-    it('should assert arrDeleteElems(key, start, deleteCount) i.e. delete N elements from the array starting from index 0 till N elements.', function () {
-        for (let i = 0; i <= 5; i++) {
-            obj.arrPush('numArr', i);
-        }
-        assert.deepEqual(obj.arrDeleteElems('numArr', 0, 3), [0, 1, 2]);
-    });
-
-    /**
-     * this will delete element from the array referred by key in the cache.
-     * delete will start from the start index.
-     * total element to be deleted is denoted by delectCount
-     */
-    it('should assert arrDeleteElems(key, start) i.e. delete all elements from the array starting from index start', function () {
-        for (let i = 0; i <= 5; i++) {
-            obj.arrPush('numArr', i);
-        }
-        assert.deepEqual(obj.arrDeleteElems('numArr', 1), [1, 2, 3, 4, 5]);
-    });
-
-    /**
-     * assert oSet(key, oKey, oValue)
-     */
-    it('should assert obj.oSet(key, oKey, oValue) and obj.oGetAll(key) i.e. insert oKey-oValue in object referred by key in the cache and match all the entry', function () {
-        obj.oSet('players', 'p1', {id: 'p1', username: 'yusufshakeel'});
-        obj.oSet('players', 'p2', {id: 'p2', username: 'dawoodshakeel'});
-
-        let match = {
-            "p1": {
-                "id": "p1",
-                "username": "yusufshakeel"
-            },
-            "p2": {
-                "id": "p2",
-                "username": "dawoodshakeel"
-            }
-        };
-
-        assert.deepEqual(obj.oGetAll('players'), match);
-    });
-
-    /**
-     * assert oGet(key, oKey)
-     */
-    it('should assert obj.oGet(key, oKey, oValue) matches the right value', function () {
-        obj.oSet('players', 'p1', {id: 'p1', username: 'yusufshakeel'});
-        obj.oSet('players', 'p2', {id: 'p2', username: 'dawoodshakeel'});
-
-        let match = {
-            "id": "p1",
-            "username": "yusufshakeel"
-        };
-
-        assert.deepEqual(obj.oGet('players', 'p1'), match);
-    });
-
-    /**
-     * assert oExists(key, oKey)
-     */
-    it('should assert obj.oExists(key, oKey) i.e. check if oKey exists in the object referred by key in the cache', function () {
-        obj.oSet('players', 'p1', {id: 'p1', username: 'yusufshakeel'});
-        obj.oSet('players', 'p2', {id: 'p2', username: 'dawoodshakeel'});
-        assert.equal(obj.oExists('players', 'p1'), true);
-        assert.equal(obj.oExists('players', 'unknown'), false);
-    });
-
-    /**
-     * assert oDel(key, oKey)
-     */
-    it('should assert obj.oDel(key, oKey) i.e. delete a oKey from the object referred by key in the cache', function () {
-        obj.oSet('players', 'p1', {id: 'p1', username: 'yusufshakeel'});
-        obj.oSet('players', 'p2', {id: 'p2', username: 'dawoodshakeel'});
-
-        // assert that the p2 oKey exists in the
-        assert.deepEqual(obj.oGet('players', 'p2'), {id: 'p2', username: 'dawoodshakeel'});
-
-        // now delete oKey 'p2'
-        assert.equal(obj.oDel('players', 'p2'), true);
+        it('should return "undefined" for non-existing key', function () {
+            assert.isUndefined(obj.get('unknown'));
+        });
 
     });
 
     /**
-     * assert total number of oKey-oValue pair in the object referred by key
+     * test cache methods
      */
-    it('should assert obj.oLength(key) i.e. total number of oKey-oValue pairs in the object referred by key in the cache', function () {
-        obj.oSet('players', 'p1', {id: 'p1', username: 'yusufshakeel'});
-        obj.oSet('players', 'p2', {id: 'p2', username: 'dawoodshakeel'});
-        assert.equal(obj.oLength('players'), 2);
+    describe('Testing cache methods', () => {
+
+        it('should return total number of keys in the cache using length()', function () {
+            obj.set('num', 1);
+            obj.set('str', 'yusufshakeel');
+            obj.set('arr', [1, 2]);
+            obj.set('obj', {m: 10});
+            assert.equal(obj.length(), 4);
+        });
+
+        it('should list all the keys in the cache using keys()', function () {
+            obj.set('num', 1);
+            obj.set('str', 'yusufshakeel');
+            obj.set('arr', [1, 2]);
+            obj.set('obj', {m: 10});
+            assert.deepEqual(obj.keys(), ['num', 'str', 'arr', 'obj']);
+        });
+
+        it('should delete a key in the cache using del()', function () {
+            obj.set('num', 1);
+            obj.set('str', 'yusufshakeel');
+            obj.set('arr', [1, 2]);
+            obj.set('obj', {m: 10});
+            obj.del('obj');
+            assert.deepEqual(obj.keys(), ['num', 'str', 'arr']);
+        });
+
+        it('should check if a key exists in the cache using exists()', function () {
+            obj.set('num', 1);
+            obj.set('str', 'yusufshakeel');
+            obj.set('arr', [1, 2]);
+            obj.set('obj', {m: 10});
+            assert.isTrue(obj.exists('obj'));
+        });
+
+        it('should purge keys from the cache using purge()', function () {
+            obj.set('num', 1);
+            obj.set('str', 'yusufshakeel');
+            obj.set('arr', [1, 2]);
+            obj.set('obj', {m: 10});
+            obj.purge();
+            assert.deepEqual(obj.keys(), []);
+        });
+
+    });
+
+    /**
+     * test array methods
+     */
+    describe('Testing array methods', () => {
+
+        describe('Testing arrInit()', () => {
+
+            it('should initialise a new array', function () {
+                obj.arrInit('arr');
+                assert.equal(obj.arrLength('arr'), 0);
+                assert.deepEqual(obj.arrGet('arr'), []);
+            });
+
+            it('should initialise a new array and add an element', function () {
+                obj.arrInit('arr');
+                obj.arrPush('arr', 'Yusuf Shakeel');
+                assert.equal(obj.arrLength('arr'), 1);
+                assert.deepEqual(obj.arrGet('arr'), ['Yusuf Shakeel']);
+                assert.equal(obj.arrGet('arr', 0), 'Yusuf Shakeel');
+            });
+
+            it('should overwrite existing array on arrInit()', function () {
+                obj.arrPush('arr', 'Yusuf Shakeel');
+                assert.equal(obj.arrLength('arr'), 1);
+                assert.deepEqual(obj.arrGet('arr'), ['Yusuf Shakeel']);
+                assert.equal(obj.arrGet('arr', 0), 'Yusuf Shakeel');
+                obj.arrInit('arr');
+                assert.equal(obj.arrLength('arr'), 0);
+                assert.deepEqual(obj.arrGet('arr'), []);
+            });
+
+        });
+
+        describe('Testing arrPush()', () => {
+
+            it('should push number value in array from right', function () {
+                obj.arrPush('arr', 10);
+                obj.arrPush('arr', 20);
+                obj.arrPush('arr', 30);
+                assert.equal(obj.arrGet('arr', 2), 30);
+            });
+
+            it('should push string value in array from right', function () {
+                obj.arrPush('arr', 'hello');
+                obj.arrPush('arr', 'hi');
+                obj.arrPush('arr', 'hey');
+                assert.equal(obj.arrGet('arr', 2), 'hey');
+            });
+
+            it('should push array value in array from right', function () {
+                obj.arrPush('arr', [1, 2, 3]);
+                obj.arrPush('arr', [4, 5, 6]);
+                obj.arrPush('arr', [7, 8, 9]);
+                assert.deepEqual(obj.arrGet('arr', 2), [7, 8, 9]);
+            });
+
+            it('should push object value in array from right', function () {
+                obj.arrPush('arr', {a: 1});
+                obj.arrPush('arr', {b: 2});
+                obj.arrPush('arr', {c: 3});
+                assert.deepEqual(obj.arrGet('arr', 2), {c: 3});
+            });
+
+        });
+
+        describe('Testing arrMPush()', () => {
+
+            it('should push multiple number values in array from right', function () {
+                obj.arrMPush('arr', [10, 20]);
+                obj.arrMPush('arr', [30, 40]);
+                obj.arrMPush('arr', [50, 60]);
+                assert.equal(obj.arrGet('arr', 5), 60);
+            });
+
+            it('should push multiple string values in array from right', function () {
+                obj.arrMPush('arr', ['hello', 'hi']);
+                obj.arrMPush('arr', ['hey']);
+                assert.equal(obj.arrGet('arr', 2), 'hey');
+            });
+
+            it('should push multiple array values in array from right', function () {
+                obj.arrMPush('arr', [[1, 2, 3], [4, 5, 6]]);
+                obj.arrMPush('arr', [[7, 8, 9]]);
+                assert.deepEqual(obj.arrGet('arr', 2), [7, 8, 9]);
+            });
+
+            it('should push multiple object values in array from right', function () {
+                obj.arrMPush('arr', [{a: 1}, {b: 2}]);
+                obj.arrMPush('arr', [{c: 3}]);
+                assert.deepEqual(obj.arrGet('arr', 2), {c: 3});
+            });
+
+        });
+
+        describe('Testing arrLPush()', () => {
+
+            it('should push number value in array from left', function () {
+                obj.arrLPush('arr', 10);
+                obj.arrLPush('arr', 20);
+                obj.arrLPush('arr', 30);
+                assert.equal(obj.arrGet('arr', 0), 30);
+            });
+
+            it('should push string value in array from left', function () {
+                obj.arrLPush('arr', 'hello');
+                obj.arrLPush('arr', 'hi');
+                obj.arrLPush('arr', 'hey');
+                assert.equal(obj.arrGet('arr', 0), 'hey');
+            });
+
+            it('should push array value in array from left', function () {
+                obj.arrLPush('arr', [1, 2, 3]);
+                obj.arrLPush('arr', [4, 5, 6]);
+                obj.arrLPush('arr', [7, 8, 9]);
+                assert.deepEqual(obj.arrGet('arr', 0), [7, 8, 9]);
+            });
+
+            it('should push object value in array from left', function () {
+                obj.arrLPush('arr', {a: 1});
+                obj.arrLPush('arr', {b: 2});
+                obj.arrLPush('arr', {c: 3});
+                assert.deepEqual(obj.arrGet('arr', 0), {c: 3});
+            });
+
+        });
+
+        describe('Testing arrMLPush()', () => {
+
+            it('should push multiple number values in array from left', function () {
+                obj.arrMLPush('arr', [10, 20]);
+                obj.arrMLPush('arr', [30, 40]);
+                obj.arrMLPush('arr', [50, 60]);
+                assert.equal(obj.arrGet('arr', 0), 50);
+            });
+
+            it('should push multiple string values in array from left', function () {
+                obj.arrMLPush('arr', ['hello', 'hi']);
+                obj.arrMLPush('arr', ['hey']);
+                assert.equal(obj.arrGet('arr', 0), 'hey');
+            });
+
+            it('should push multiple array values in array from left', function () {
+                obj.arrMLPush('arr', [[1, 2, 3], [4, 5, 6]]);
+                obj.arrMLPush('arr', [[7, 8, 9]]);
+                assert.deepEqual(obj.arrGet('arr', 0), [7, 8, 9]);
+            });
+
+            it('should push multiple object values in array from left', function () {
+                obj.arrMLPush('arr', [{a: 1}, {b: 2}]);
+                obj.arrMLPush('arr', [{c: 3}]);
+                assert.deepEqual(obj.arrGet('arr', 0), {c: 3});
+            });
+
+        });
+
+        describe('Testing arrGet()', () => {
+
+            it('should list all the elements in the array using arrGet(key)', function () {
+                for (let i = 0; i < 3; i++) {
+                    obj.arrPush('num', i);
+                }
+                assert.deepEqual(obj.arrGet('num'), [0, 1, 2]);
+            });
+
+            it('should get the element at given index in the array using arrGet(key, index)', function () {
+                for (let i = 0; i < 3; i++) {
+                    obj.arrPush('num', i);
+                }
+                assert.deepEqual(obj.arrGet('num', 1), 1);
+            });
+
+            it('should get all the elements in the array from "index" to "end" using arrGet(key, index, end)', function () {
+                for (let i = 0; i < 10; i++) {
+                    obj.arrPush('num', i);
+                }
+                assert.deepEqual(obj.arrGet('num', 5, 7), [5, 6, 7]);
+            });
+
+            it('should return null for non-existing key', function () {
+                assert.isNull(obj.arrGet('unknown'));
+            });
+
+        });
+
+        describe('Testing arrLength()', () => {
+
+            it('should check the total number of elements in the array', function () {
+                for (let i = 0; i < 10; i++) {
+                    obj.arrPush('num', i);
+                }
+                assert.equal(obj.arrLength('num'), 10);
+            });
+
+            it('should return -1 for non-existing key', function () {
+                assert.equal(obj.arrLength('unknown'), -1);
+            });
+
+        });
+
+        describe('Testing arrPop()', () => {
+
+            it('should pop element from the right side of the array', function () {
+                for (let i = 0; i < 10; i++) {
+                    obj.arrPush('num', i);
+                }
+                assert.equal(obj.arrPop('num'), 9);
+            });
+
+            it('should return null for non-existing key', function () {
+                assert.isNull(obj.arrPop('unknown'));
+            });
+
+        });
+
+        describe('Testing arrLPop()', () => {
+
+            it('should pop element from the left side of the array', function () {
+                for (let i = 0; i < 10; i++) {
+                    obj.arrPush('num', i);
+                }
+                assert.equal(obj.arrLPop('num'), 0);
+            });
+
+            it('should return null for non-existing key', function () {
+                assert.isNull(obj.arrLPop('unknown'));
+            });
+
+        });
+
+        describe('Testing arrInsertAt()', () => {
+
+            it('should insert a number value at a given index', function () {
+                for (let i = 1; i <= 10; i++) {
+                    obj.arrPush('arr', i);
+                }
+                assert.isTrue(obj.arrInsertAt('arr', 3, 1000));
+                assert.equal(obj.arrGet('arr', 3), 1000);
+            });
+
+            it('should insert a string value at a given index', function () {
+                for (let i = 1; i <= 10; i++) {
+                    obj.arrPush('arr', i);
+                }
+                assert.isTrue(obj.arrInsertAt('arr', 3, 'Yusuf Shakeel'));
+                assert.equal(obj.arrGet('arr', 3), 'Yusuf Shakeel');
+            });
+
+            it('should insert an array value at a given index', function () {
+                for (let i = 1; i <= 10; i++) {
+                    obj.arrPush('arr', i);
+                }
+                assert.isTrue(obj.arrInsertAt('arr', 3, [100, 200]));
+                assert.deepEqual(obj.arrGet('arr', 3), [100, 200]);
+            });
+
+            it('should insert an object value at a given index', function () {
+                for (let i = 1; i <= 10; i++) {
+                    obj.arrPush('arr', i);
+                }
+                assert.isTrue(obj.arrInsertAt('arr', 3, {a: 10, b: 20}));
+                assert.deepEqual(obj.arrGet('arr', 3), {a: 10, b: 20});
+            });
+
+            it('should return false for non-existing key', function () {
+                assert.isFalse(obj.arrInsertAt('arr', 3, {a: 10, b: 20}));
+            });
+
+            it('should return false for inserting at invalid index', function () {
+                for (let i = 1; i <= 10; i++) {
+                    obj.arrPush('arr', i);
+                }
+                assert.isFalse(obj.arrInsertAt('arr', 99, {a: 10, b: 20}));
+            });
+
+            it('should return false when value is missing', function () {
+                for (let i = 1; i <= 10; i++) {
+                    obj.arrPush('arr', i);
+                }
+                assert.isFalse(obj.arrInsertAt('arr', 99));
+            });
+
+        });
+
+        describe('Testing arrMInsertAt()', () => {
+
+            it('should insert multiple number values at a given index', function () {
+                for (let i = 1; i <= 3; i++) {
+                    obj.arrPush('arr', i);
+                }
+                assert.isTrue(obj.arrMInsertAt('arr', 1, [10, 20]));
+                assert.deepEqual(obj.arrGet('arr'), [1, 10, 20, 2, 3]);
+            });
+
+            it('should insert multiple string values at a given index', function () {
+                for (let i = 1; i <= 3; i++) {
+                    obj.arrPush('arr', i);
+                }
+                assert.isTrue(obj.arrMInsertAt('arr', 1, ['a', 'b']));
+                assert.deepEqual(obj.arrGet('arr'), [1, 'a', 'b', 2, 3]);
+            });
+
+            it('should insert multiple array values at a given index', function () {
+                for (let i = 1; i <= 3; i++) {
+                    obj.arrPush('arr', i);
+                }
+                assert.isTrue(obj.arrMInsertAt('arr', 1, [['a', 10], ['b', 20]]));
+                assert.deepEqual(obj.arrGet('arr'), [1, ['a', 10], ['b', 20], 2, 3]);
+            });
+
+            it('should insert multiple object values at a given index', function () {
+                for (let i = 1; i <= 3; i++) {
+                    obj.arrPush('arr', i);
+                }
+                assert.isTrue(obj.arrMInsertAt('arr', 1, [{a: 1}, {b: 2}]));
+                assert.deepEqual(obj.arrGet('arr'), [1, {a: 1}, {b: 2}, 2, 3]);
+            });
+
+            it('should return false for non-existing key', function () {
+                assert.isFalse(obj.arrMInsertAt('arr', 1, [1, 2]));
+            });
+
+            it('should return false for inserting at invalid index', function () {
+                for (let i = 1; i <= 10; i++) {
+                    obj.arrPush('arr', i);
+                }
+                assert.isFalse(obj.arrMInsertAt('arr', 99, [1, 2]));
+            });
+
+            it('should return false when value is missing', function () {
+                for (let i = 1; i <= 10; i++) {
+                    obj.arrPush('arr', i);
+                }
+                assert.isFalse(obj.arrMInsertAt('arr', 99));
+            });
+
+        });
+
+        describe('Testing arrUpdateElem()', () => {
+
+            it('should update an element at a given index in the array', function () {
+                for (let i = 0; i < 10; i++) {
+                    obj.arrPush('num', i);
+                }
+                assert.isTrue(obj.arrUpdateElem('num', 7, 77));
+            });
+
+            it('should return false when trying to update invalid index value', function () {
+                for (let i = 0; i < 10; i++) {
+                    obj.arrPush('num', i);
+                }
+                assert.isFalse(obj.arrUpdateElem('num', 99, 77));
+            });
+
+        });
+
+        describe('Testing arrDeleteElem()', () => {
+
+            it('should delete an element at a given index from the array and return it', function () {
+                for (let i = 0; i < 10; i++) {
+                    obj.arrPush('num', i);
+                }
+                assert.deepEqual(obj.arrDeleteElem('num', 7), [7]);
+            });
+
+            it('should return false when trying to delete element from an invalid index', function () {
+                for (let i = 0; i < 10; i++) {
+                    obj.arrPush('num', i);
+                }
+                assert.isFalse(obj.arrDeleteElem('num', 99));
+            });
+
+        });
+
+        describe('Testing arrDeleteElems()', () => {
+
+            it('should delete 3 elements from given "index" from the array and return it', function () {
+                for (let i = 0; i < 10; i++) {
+                    obj.arrPush('num', i);
+                }
+                assert.deepEqual(obj.arrDeleteElems('num', 4, 3), [4, 5, 6]);
+            });
+
+            it('should return false when trying to delete elements from an invalid index', function () {
+                for (let i = 0; i < 10; i++) {
+                    obj.arrPush('num', i);
+                }
+                assert.isFalse(obj.arrDeleteElems('num', 99, 9));
+            });
+
+        });
+
+    });
+
+    /**
+     * Testing object methods
+     */
+    describe('Testing object methods', () => {
+
+        describe('Testing oInit()', () => {
+
+            it('should initialise a new object', function () {
+                obj.oInit('obj');
+                assert.equal(obj.oLength('obj'), 0);
+                assert.deepEqual(obj.oGetAll('obj'), {});
+            });
+
+            it('should initialise a new object and add a property', function () {
+                obj.oInit('obj');
+                obj.oSet('obj', 'user', { name: 'Yusuf Shakeel' });
+                assert.equal(obj.oLength('obj'), 1);
+                assert.deepEqual(obj.oGet('obj', 'user'), { name: 'Yusuf Shakeel' });
+            });
+
+            it('should overwrite existing object on oInit()', function () {
+                obj.oSet('obj', 'user', { name: 'Yusuf Shakeel' });
+                assert.equal(obj.oLength('obj'), 1);
+                assert.deepEqual(obj.oGet('obj', 'user'), { name: 'Yusuf Shakeel' });
+                obj.oInit('obj');
+                assert.equal(obj.oLength('obj'), 0);
+                assert.deepEqual(obj.oGetAll('obj'), {});
+            });
+
+        });
+
+        describe('Testing oSet() and oGet()', () => {
+
+            it('should set "num" key to numeric value in object referred by "obj" key in the cache', function () {
+                obj.oSet('obj', 'num', 10);
+                assert.equal(obj.oGet('obj', 'num'), 10);
+            });
+
+            it('should set "str" key to string value in object referred by "obj" key in the cache', function () {
+                obj.oSet('obj', 'str', 'Yusuf Shakeel');
+                assert.equal(obj.oGet('obj', 'str'), 'Yusuf Shakeel');
+            });
+
+            it('should set "arr" key to array value in object referred by "obj" key in the cache', function () {
+                let value = [
+                    1,
+                    'hello',
+                    [1, 2],
+                    {a: 1}
+                ];
+                obj.oSet('obj', 'arr', value);
+                assert.deepEqual(obj.oGet('obj', 'arr'), value);
+            });
+
+            it('should set "obj" key to object value in object referred by "obj" key in the cache', function () {
+                let value = {
+                    a: 10,
+                    b: [1, 2, 3],
+                    c: {m: 10},
+                    d: 'string'
+                };
+                obj.oSet('obj', 'obj', value);
+                assert.deepEqual(obj.oGet('obj', 'obj'), value);
+            });
+
+            it('should return "undefined" for non-existing oKey in the object referred by "key" in the cache', function () {
+                let value = {
+                    a: 10,
+                    b: [1, 2, 3],
+                    c: {m: 10},
+                    d: 'string'
+                };
+                obj.oSet('obj', 'obj', value);
+                assert.isUndefined(obj.oGet('obj', 'unknown'));
+            });
+
+            it('should return "undefined" for non-existing "key" in the cache', function () {
+                assert.isUndefined(obj.oGet('unknown'));
+            });
+
+        });
+
+        describe('Testing oGetAll()', () => {
+
+            it('should return all the key value pairs saved in the object referred by "key" in the cache', function () {
+                let players = {
+                    "p1": {
+                        "id": "p1",
+                        "username": "yusufshakeel"
+                    },
+                    "p2": {
+                        "id": "p2",
+                        "username": "dawoodshakeel"
+                    }
+                };
+                obj.oSet('players', 'p1', players.p1);
+                obj.oSet('players', 'p2', players.p2);
+                assert.deepEqual(obj.oGetAll('players'), players);
+            });
+
+            it('should return "undefined" for non-existing key', function () {
+                assert.isUndefined(obj.oGetAll('unknown'));
+            });
+        });
+
+        describe('Testing oGetKeys()', () => {
+
+            it('should list all the keys in the object referred by "key" in the cache', function () {
+                let players = {
+                    "p1": {
+                        "id": "p1",
+                        "username": "yusufshakeel"
+                    },
+                    "p2": {
+                        "id": "p2",
+                        "username": "dawoodshakeel"
+                    }
+                };
+                obj.oSet('players', 'p1', players.p1);
+                obj.oSet('players', 'p2', players.p2);
+                assert.deepEqual(obj.oGetKeys('players'), ['p1', 'p2']);
+            });
+
+            it('should return false for non-existing "key" in the cache', function () {
+                assert.isFalse(obj.oGetKeys('unknown'));
+            });
+        });
+
+        describe('Testing oExists()', () => {
+
+            it('should return true if "oKey" exists in the object referred by "key" in the cache', function () {
+                let players = {
+                    "p1": {
+                        "id": "p1",
+                        "username": "yusufshakeel"
+                    },
+                    "p2": {
+                        "id": "p2",
+                        "username": "dawoodshakeel"
+                    }
+                };
+                obj.oSet('players', 'p1', players.p1);
+                obj.oSet('players', 'p2', players.p2);
+                assert.isTrue(obj.oExists('players', 'p1'));
+            });
+
+            it('should return false for non-existing "oKey" in the object referred by "key" in the cache', function () {
+                assert.isFalse(obj.oExists('players', 'unknown'));
+            });
+
+            it('should return false for non-existing "key" in the cache', function () {
+                assert.isFalse(obj.oExists('unknown', 'unknown'));
+            });
+
+        });
+
+        describe('Testing oLength()', () => {
+
+            it('should return total number of oKeys in the object referred by "key" in the cache', function () {
+                let players = {
+                    "p1": {
+                        "id": "p1",
+                        "username": "yusufshakeel"
+                    },
+                    "p2": {
+                        "id": "p2",
+                        "username": "dawoodshakeel"
+                    }
+                };
+                obj.oSet('players', 'p1', players.p1);
+                obj.oSet('players', 'p2', players.p2);
+                assert.equal(obj.oLength('players'), 2);
+            });
+
+            it('should return -1 for non-existing "key" in the cache', function () {
+                assert.equal(obj.oLength('unknown'), -1);
+            });
+
+        });
+
+        describe('Testing oDel()', () => {
+
+            it('should return true on successfully deleting "oKey" from the object referred by "key" in the cache', function () {
+                let players = {
+                    "p1": {
+                        "id": "p1",
+                        "username": "yusufshakeel"
+                    },
+                    "p2": {
+                        "id": "p2",
+                        "username": "dawoodshakeel"
+                    }
+                };
+                obj.oSet('players', 'p1', players.p1);
+                obj.oSet('players', 'p2', players.p2);
+                assert.isTrue(obj.oDel('players', 'p2'));
+            });
+
+            it('should return false when trying to delete non-existing "oKey" key from the object referred as "key" in the cache', function () {
+                let players = {
+                    "p1": {
+                        "id": "p1",
+                        "username": "yusufshakeel"
+                    },
+                    "p2": {
+                        "id": "p2",
+                        "username": "dawoodshakeel"
+                    }
+                };
+                obj.oSet('players', 'p1', players.p1);
+                obj.oSet('players', 'p2', players.p2);
+                assert.isFalse(obj.oDel('players', 'unknown'));
+            });
+
+            it('should return false when trying to delete "oKey" key from a non-existing object in the cache', function () {
+                let players = {
+                    "p1": {
+                        "id": "p1",
+                        "username": "yusufshakeel"
+                    },
+                    "p2": {
+                        "id": "p2",
+                        "username": "dawoodshakeel"
+                    }
+                };
+                obj.oSet('players', 'p1', players.p1);
+                obj.oSet('players', 'p2', players.p2);
+                assert.isFalse(obj.oDel('unknown', 'not-known'));
+            });
+
+        });
+
+    });
+
+    describe('Testing Stack Methods', () => {
+
+        describe('Testing stackInit()', () => {
+
+            it('should initialise an empty stack referred by key in the cache', function () {
+                obj.stackInit('stack');
+                assert.equal(obj.stackLength('stack'), 0);
+            });
+
+        });
+
+        describe('Testing stackPush() and stackPeek()', () => {
+
+            it('should push a number value in the stack referred by key in the cache', function () {
+                obj.stackPush('stack', 10);
+                assert.equal(obj.stackPeek('stack'), 10);
+            });
+
+            it('should push a string value in the stack referred by key in the cache', function () {
+                obj.stackPush('stack', 'hello');
+                assert.equal(obj.stackPeek('stack'), 'hello');
+            });
+
+            it('should push an array value in the stack referred by key in the cache', function () {
+                obj.stackPush('stack', [1, 2]);
+                assert.deepEqual(obj.stackPeek('stack'), [1, 2]);
+            });
+
+            it('should push an object value in the stack referred by key in the cache', function () {
+                obj.stackPush('stack', {a: 10});
+                assert.deepEqual(obj.stackPeek('stack'), {a: 10});
+            });
+
+        });
+
+        describe('Testing stackPeek()', () => {
+
+            it('should return top element in the stack referred by key in the cache', function () {
+                obj.stackPush('stack', 10);
+                obj.stackPush('stack', 20);
+                obj.stackPush('stack', 30);
+                assert.equal(obj.stackPeek('stack'), 30);
+            });
+
+            it('should return "null" for non-existing key', function () {
+                assert.isNull(obj.stackPeek('unknown'));
+            });
+
+        });
+
+        describe('Testing stackPop()', () => {
+
+            it('should pop a number value in the stack referred by key in the cache', function () {
+                obj.stackPush('stack', 10);
+                assert.equal(obj.stackPop('stack'), 10);
+            });
+
+            it('should pop a string value in the stack referred by key in the cache', function () {
+                obj.stackPush('stack', 'hello');
+                assert.equal(obj.stackPop('stack'), 'hello');
+            });
+
+            it('should pop an array value in the stack referred by key in the cache', function () {
+                obj.stackPush('stack', [1, 2]);
+                assert.deepEqual(obj.stackPop('stack'), [1, 2]);
+            });
+
+            it('should pop an object value in the stack referred by key in the cache', function () {
+                obj.stackPush('stack', {a: 10});
+                assert.deepEqual(obj.stackPop('stack'), {a: 10});
+            });
+
+            it('should return "undefined" for non-existing key', function () {
+                assert.isUndefined(obj.stackPop('unknown'));
+            });
+
+        });
+
+        describe('Testing stackExists()', () => {
+
+            it('should return true for existing stack referred by key in the cache', function () {
+                obj.stackPush('stack', 'hello');
+                assert.isTrue(obj.stackExists('stack'));
+            });
+
+            it('should return false for non-existing stack', function () {
+                assert.isFalse(obj.stackExists('unknown'));
+            });
+
+        });
+
+        describe('Testing stackLength()', () => {
+
+            it('should return total number of elements in the stack referred by key in the cache', function () {
+                for (let i = 1; i <= 10; i++) {
+                    obj.stackPush('stack', i);
+                }
+                assert.equal(obj.stackLength('stack'), 10);
+            });
+
+            it('should return -1 for non-existing stack', function () {
+                assert.equal(obj.stackLength('unknown'), -1);
+            });
+
+        });
+
+        describe('Testing stackIsEmpty()', () => {
+
+            it('should return true for empty stack referred by key in the cache', function () {
+                obj.stackInit('stack');
+                assert.isTrue(obj.stackIsEmpty('stack'));
+            });
+
+            it('should return false for non-empty stack referred by key in the cache', function () {
+                obj.stackInit('stack');
+                obj.stackPush('stack', 10);
+                assert.isFalse(obj.stackIsEmpty('stack'));
+            });
+
+            it('should return "undefined" for non-existing stack', function () {
+                assert.isUndefined(obj.stackIsEmpty('unknown'));
+            });
+
+        });
+
+        describe('Testing stackPurge()', () => {
+
+            it('should return true after purging stack referred by key in the cache', function () {
+                obj.stackInit('stack');
+                obj.stackPush('stack', 10);
+                assert.isTrue(obj.stackPurge('stack'));
+            });
+
+            it('should return false for non-existing stack', function () {
+                assert.isFalse(obj.stackPurge('unknown'));
+            });
+
+        });
+
+        describe('Testing stackDelete()', () => {
+
+            it('should return true after deleting stack referred by key in the cache', function () {
+                obj.stackInit('stack');
+                obj.stackPush('stack', 10);
+                assert.isTrue(obj.stackDelete('stack'));
+            });
+
+            it('should return false for non-existing stack', function () {
+                assert.isFalse(obj.stackDelete('unknown'));
+            });
+
+        });
+
+    });
+
+    describe('Testing Queue Methods', () => {
+
+        describe('Testing queueInit()', () => {
+
+            it('should initialise an empty queue referred by key in the cache', function () {
+                obj.queueInit('queue');
+                assert.equal(obj.queueLength('queue'), 0);
+            });
+
+        });
+
+        describe('Testing enqueue() and dequeue()', () => {
+
+            it('should enqueue a number value in the queue referred by key in the cache', function () {
+                obj.enqueue('queue', 10);
+                assert.equal(obj.dequeue('queue'), 10);
+            });
+
+            it('should enqueue a string value in the queue referred by key in the cache', function () {
+                obj.enqueue('queue', 'hello');
+                assert.equal(obj.dequeue('queue'), 'hello');
+            });
+
+            it('should enqueue an array value in the queue referred by key in the cache', function () {
+                obj.enqueue('queue', [1, 2]);
+                assert.deepEqual(obj.dequeue('queue'), [1, 2]);
+            });
+
+            it('should enqueue an object value in the queue referred by key in the cache', function () {
+                obj.enqueue('queue', {a: 10});
+                assert.deepEqual(obj.dequeue('queue'), {a: 10});
+            });
+
+            it('should return null on dequeue for non-existing key', function () {
+                assert.isNull(obj.dequeue('unknown'));
+            });
+
+        });
+
+        describe('Testing queueExists()', () => {
+
+            it('should return true for existing queue referred by key in the cache', function () {
+                obj.queueInit('queue');
+                assert.isTrue(obj.queueExists('queue'));
+            });
+
+            it('should return false for non-existing queue', function () {
+                assert.isFalse(obj.queueExists('unknown'));
+            });
+
+        });
+
+        describe('Testing queueLength()', () => {
+
+            it('should return total number of elements in the queue referred by key in the cache', function () {
+                for (let i = 1; i <= 10; i++) {
+                    obj.enqueue('queue', i);
+                }
+                assert.equal(obj.queueLength('queue'), 10);
+            });
+
+            it('should return -1 for non-existing queue', function () {
+                assert.equal(obj.queueLength('unknown'), -1);
+            });
+
+        });
+
+        describe('Testing queueIsEmpty()', () => {
+
+            it('should return true for empty queue referred by key in the cache', function () {
+                obj.queueInit('queue');
+                assert.isTrue(obj.queueIsEmpty('queue'));
+            });
+
+            it('should return false for non-empty queue referred by key in the cache', function () {
+                obj.queueInit('queue');
+                obj.enqueue('queue', 10);
+                assert.isFalse(obj.queueIsEmpty('queue'));
+            });
+
+            it('should return "undefined" for non-existing queue', function () {
+                assert.isUndefined(obj.queueIsEmpty('unknown'));
+            });
+
+        });
+
+        describe('Testing queuePurge()', () => {
+
+            it('should return true after purging queue referred by key in the cache', function () {
+                obj.queueInit('queue');
+                obj.enqueue('queue', 10);
+                assert.isTrue(obj.queuePurge('queue'));
+            });
+
+            it('should return false for non-existing queue', function () {
+                assert.isFalse(obj.queuePurge('unknown'));
+            });
+
+        });
+
+        describe('Testing queueDelete()', () => {
+
+            it('should return true after deleting queue referred by key in the cache', function () {
+                obj.queueInit('queue');
+                obj.enqueue('queue', 10);
+                assert.isTrue(obj.queueDelete('queue'));
+            });
+
+            it('should return false for non-existing queue', function () {
+                assert.isFalse(obj.queueDelete('unknown'));
+            });
+
+        });
+
+        describe('Testing queueLPeek()', () => {
+
+            it('should return the first element from the left side of the queue referred by key in the cache', function () {
+                obj.queueInit('queue');
+                obj.enqueue('queue', 10);
+                obj.enqueue('queue', 20);
+                obj.enqueue('queue', 30);
+                assert.deepEqual(obj.queueLPeek('queue'), 10);
+            });
+
+            it('should return null for non-existing queue', function () {
+                assert.isNull(obj.queueLPeek('unknown'));
+            });
+
+        });
+
+        describe('Testing queueRPeek()', () => {
+
+            it('should return the last element from the right side of the queue referred by key in the cache', function () {
+                obj.queueInit('queue');
+                obj.enqueue('queue', 10);
+                obj.enqueue('queue', 20);
+                obj.enqueue('queue', 30);
+                assert.deepEqual(obj.queueRPeek('queue'), 30);
+            });
+
+            it('should return null for non-existing queue', function () {
+                assert.isNull(obj.queueRPeek('unknown'));
+            });
+
+        });
+
     });
 
 });

@@ -79,6 +79,13 @@ var dyCache = /** @class */ (function () {
         return this._cache[key];
     };
     /**
+     * This will initialise a new array in the cache and will refer it by key.
+     * @param {string} key
+     */
+    dyCache.prototype.arrInit = function (key) {
+        this._cache[key] = [];
+    };
+    /**
      * This will push new value in an array at the right side.
      *
      * @param {string} key
@@ -338,6 +345,13 @@ var dyCache = /** @class */ (function () {
         else {
             return this._cache[key].splice(start, deleteCount);
         }
+    };
+    /**
+     * This will initialise a new object in the cache and will refer it by key.
+     * @param {string} key
+     */
+    dyCache.prototype.oInit = function (key) {
+        this._cache[key] = {};
     };
     /**
      * This will create an object by the reference key in the cache.
