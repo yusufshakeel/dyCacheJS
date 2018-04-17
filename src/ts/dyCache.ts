@@ -89,6 +89,14 @@ class dyCache {
     }
 
     /**
+     * This will initialise a new array in the cache and will refer it by key.
+     * @param {string} key
+     */
+    public arrInit(key: string): void {
+        this._cache[key] = [];
+    }
+
+    /**
      * This will push new value in an array at the right side.
      *
      * @param {string} key
@@ -382,6 +390,14 @@ class dyCache {
             return this._cache[key].splice(start, deleteCount);
         }
 
+    }
+
+    /**
+     * This will initialise a new object in the cache and will refer it by key.
+     * @param {string} key
+     */
+    public oInit(key: string): void {
+        this._cache[key] = {};
     }
 
     /**

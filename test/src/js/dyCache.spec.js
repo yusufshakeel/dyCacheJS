@@ -15,7 +15,7 @@
 /*! dyCacheJS | (c) 2018 Yusuf Shakeel | https://github.com/yusufshakeel/dyCacheJS */
 
 const assert = require('chai').assert;
-const dyCacheSpec = require('../../../src/js/dyCache.forTest.min');
+const dyCache = require('../../../src/js/dyCache.forTest.min');
 
 describe('Testing dyCacheJS', function () {
 
@@ -26,14 +26,14 @@ describe('Testing dyCacheJS', function () {
      * dyCacheJS class.
      */
     beforeEach(function () {
-        obj = new dyCacheSpec();
+        obj = new dyCache();
     });
 
     /**
      * Assert that obj is an instance of the dyCacheJS class.
      */
     it('check obj is an instance of dyCacheJS class.', function () {
-        assert.instanceOf(obj, dyCacheSpec, 'obj is instance of dyCacheJS class');
+        assert.instanceOf(obj, dyCache, 'obj is instance of dyCacheJS class');
     });
 
     /**
@@ -126,6 +126,34 @@ describe('Testing dyCacheJS', function () {
      * test array methods
      */
     describe('Testing array methods', () => {
+
+        describe('Testing arrInit()', () => {
+
+            it('should initialise a new array', function () {
+                obj.arrInit('arr');
+                assert.equal(obj.arrLength('arr'), 0);
+                assert.deepEqual(obj.arrGet('arr'), []);
+            });
+
+            it('should initialise a new array and add an element', function () {
+                obj.arrInit('arr');
+                obj.arrPush('arr', 'Yusuf Shakeel');
+                assert.equal(obj.arrLength('arr'), 1);
+                assert.deepEqual(obj.arrGet('arr'), ['Yusuf Shakeel']);
+                assert.equal(obj.arrGet('arr', 0), 'Yusuf Shakeel');
+            });
+
+            it('should overwrite existing arr on arrInit()', function () {
+                obj.arrPush('arr', 'Yusuf Shakeel');
+                assert.equal(obj.arrLength('arr'), 1);
+                assert.deepEqual(obj.arrGet('arr'), ['Yusuf Shakeel']);
+                assert.equal(obj.arrGet('arr', 0), 'Yusuf Shakeel');
+                obj.arrInit('arr');
+                assert.equal(obj.arrLength('arr'), 0);
+                assert.deepEqual(obj.arrGet('arr'), []);
+            });
+
+        });
 
         describe('Testing arrPush()', () => {
 
@@ -491,6 +519,32 @@ describe('Testing dyCacheJS', function () {
      * Testing object methods
      */
     describe('Testing object methods', () => {
+
+        describe('Testing oInit()', () => {
+
+            it('should initialise a new object', function () {
+                obj.oInit('obj');
+                assert.equal(obj.oLength('obj'), 0);
+                assert.deepEqual(obj.oGetAll('obj'), {});
+            });
+
+            it('should initialise a new object and add a property', function () {
+                obj.oInit('obj');
+                obj.oSet('obj', 'user', { name: 'Yusuf Shakeel' });
+                assert.equal(obj.oLength('obj'), 1);
+                assert.deepEqual(obj.oGet('obj', 'user'), { name: 'Yusuf Shakeel' });
+            });
+
+            it('should overwrite existing object on oInit()', function () {
+                obj.oSet('obj', 'user', { name: 'Yusuf Shakeel' });
+                assert.equal(obj.oLength('obj'), 1);
+                assert.deepEqual(obj.oGet('obj', 'user'), { name: 'Yusuf Shakeel' });
+                obj.oInit('obj');
+                assert.equal(obj.oLength('obj'), 0);
+                assert.deepEqual(obj.oGetAll('obj'), {});
+            });
+
+        });
 
         describe('Testing oSet() and oGet()', () => {
 
