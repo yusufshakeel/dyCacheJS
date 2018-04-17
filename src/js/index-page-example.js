@@ -96,8 +96,14 @@ outputJSON(obj.exists('str'), 'collapse-exists');
 
 // purge()
 obj.purge();
-output("After purge", 'collapse-purge');
-outputJSON(obj, 'collapse-purge');
+output("After purge", 'collapse-arrInit');
+outputJSON(obj, 'collapse-arrInit');
+
+// arrInit();
+output("Initialise an <code>users</code> key in the cache which is an array.", 'collapse-arrInit');
+obj.arrInit('users');
+output("Content of the cache.", 'collapse-arrInit');
+outputJSON(obj, 'collapse-arrInit');
 
 // arrPush();
 output("Create an <code>users</code> key in the cache which is an array and insert some data from right side.", 'collapse-arrPush');
@@ -195,8 +201,14 @@ outputJSON(obj.arrGet('users'), 'collapse-arrDeleteElems');
 
 // purge()
 obj.purge();
-output("Content of the cache after purge.", 'collapse-oSet');
-outputJSON(obj, 'collapse-oSet');
+output("Content of the cache after purge.", 'collapse-oInit');
+outputJSON(obj, 'collapse-oInit');
+
+// oInit();
+output("This will create a new object referred by <code>players</code> in the cache.", 'collapse-oInit');
+obj.oInit('players');
+output("Content of the cache.", 'collapse-oInit');
+outputJSON(obj, 'collapse-oInit');
 
 // oSet();
 output("This will add <code>p1</code> oKey having value <code>{ id: 'p1', username: 'yusufshakeel' }</code> in the key <code>players</code> of the cache.", 'collapse-oSet');
