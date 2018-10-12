@@ -726,6 +726,94 @@ var dyCache = /** @class */ (function () {
         }
         return null;
     };
+    /**
+     * This will initialise a LRU (Least Recently Used) new object in the cache
+     * and will refer it by 'name' and will also set the 'size' of the LRU cache.
+     *
+     * If size is not set then a LRU cache of size 3 is created.
+     *
+     * @param {string} name
+     * @param {number} size
+     * @constructor
+     */
+    dyCache.prototype.LRUInit = function (name, size) {
+        if (size === void 0) { size = 3; }
+        this._cache[name] = {
+            _size: size,
+            _data: {},
+            _queue: []
+        };
+    };
+    /**
+     * This will insert key-value pair in the LRU data referred by 'name' in the
+     * cache.
+     *
+     * Return true on successful insert of key-value pair in the LRU, false otherwise.
+     *
+     * @param {string} name
+     * @param key
+     * @param value
+     * @returns {boolean}
+     * @constructor
+     */
+    dyCache.prototype.LRUSet = function (name, key, value) {
+        // if LRU doesn't exists
+        if (!this.exists(name)) {
+            return false;
+        }
+        // if queue has space
+        if (this._cache[name]._size > this._cache[name]._queue.length) {
+            // add new key-value pair in the data set
+            this._cache[name]._data[key] = value;
+            // and insert the key in the queue
+            this._cache[name]._queue.unshift(key);
+        }
+        else {
+            // remove the least recently used key from the back of the queue
+            var removedKey = this._cache[name]._queue.pop();
+            // remove the least recently used key-value pair from the data set
+            delete this._cache[name]._data[removedKey];
+            // now insert the new key-value in the data set
+            this._cache[name]._data[key] = value;
+            // and insert the new key in the queue
+            this._cache[name]._queue.unshift(key);
+        }
+        return true;
+    };
+    /**
+     * This will fetch the cached data in the LRU.
+     *
+     * If key exists in the LRU then it is returned in { key: value } form.
+     * Otherwise, {} is returned.
+     *
+     * false is returned if the LRU doesn't exists.
+     *
+     * @param {string} name
+     * @param key
+     * @returns {any}
+     * @constructor
+     */
+    dyCache.prototype.LRUGet = function (name, key) {
+        // if LRU doesn't exists
+        if (!this.exists(name)) {
+            return false;
+        }
+        // if key found
+        if (this._cache[name]._queue.indexOf(key) > -1) {
+            // remove the key from the queue from its current index
+            this._cache[name]._queue.splice(this._cache[name]._queue.indexOf(key), 1);
+            // now add the key at the front of the queue
+            this._cache[name]._queue.unshift(key);
+            // now prepare the value
+            var data = {};
+            data[key] = this._cache[name]._data[key];
+            // and return the key-value pair in { key: value } form
+            return data;
+        }
+        else {
+            return {};
+        }
+    };
     return dyCache;
 }());
 
