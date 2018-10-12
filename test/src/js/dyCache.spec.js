@@ -1206,14 +1206,14 @@ describe('Testing dyCacheJS', function () {
 
                 let expected = {
                     "myLRU": {
-                        "_size": 3,
+                        "_size": 10,
                         "_data": {},
                         "_queue": []
                     }
                 };
 
                 // init
-                obj.LRUInit('myLRU', 3);
+                obj.LRUInit('myLRU', 10);
 
                 // set data
                 obj.LRUSet('myLRU', 'k1', 10);
