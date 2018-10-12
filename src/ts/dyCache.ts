@@ -233,7 +233,7 @@ class dyCache {
      * @returns {number}
      */
     public arrLength(key: string): number {
-        if (typeof key !== 'undefined' && typeof this._cache[key] !== "undefined") {
+        if (typeof key !== 'undefined' && this.exists(key)) {
             return Object.keys(this._cache[key]).length;
         }
         return -1;
@@ -474,7 +474,7 @@ class dyCache {
      * @returns {boolean}
      */
     public oExists(key: string, oKey: string): boolean {
-        return typeof this._cache[key] !== "undefined" && typeof this._cache[key][oKey] !== "undefined";
+        return this.exists(key) && typeof this._cache[key][oKey] !== "undefined";
     }
 
     /**
@@ -502,7 +502,7 @@ class dyCache {
      * @returns {number}
      */
     public oLength(key: string): number {
-        if (typeof key !== 'undefined' && typeof this._cache[key] !== "undefined") {
+        if (typeof key !== 'undefined' && this.exists(key)) {
             return Object.keys(this._cache[key]).length;
         }
         return -1;
@@ -544,7 +544,7 @@ class dyCache {
     public stackPop(key: string): any {
 
         // if stack referred by the key exists in the cache
-        if (typeof key !== 'undefined' && typeof this._cache[key] !== "undefined") {
+        if (typeof key !== 'undefined' && this.exists(key)) {
             return this._cache[key].pop();
         }
         return undefined;
@@ -559,7 +559,7 @@ class dyCache {
      * @returns {boolean}
      */
     public stackExists(key: string): boolean {
-        return typeof this._cache[key] !== "undefined";
+        return this.exists(key);
     }
 
     /**
@@ -574,7 +574,7 @@ class dyCache {
     public stackPeek(key: string): any {
 
         // if stack referred by the key exists in the cache
-        if (typeof key !== 'undefined' && typeof this._cache[key] !== "undefined") {
+        if (typeof key !== 'undefined' && this.exists(key)) {
             // return just the element like: 10
             // and not in an array like: [10]
             return this._cache[key].slice(-1)[0];
@@ -596,7 +596,7 @@ class dyCache {
     public stackLength(key: string): number {
 
         // if stack referred by the key exists in the cache
-        if (typeof key !== 'undefined' && typeof this._cache[key] !== "undefined") {
+        if (typeof key !== 'undefined' && this.exists(key)) {
             return Object.keys(this._cache[key]).length;
         }
         return -1;
@@ -671,7 +671,7 @@ class dyCache {
      * @returns {boolean}
      */
     public queueExists(key: string): boolean {
-        return typeof this._cache[key] !== "undefined";
+        return this.exists(key);
     }
 
     /**
@@ -738,7 +738,7 @@ class dyCache {
     public queueLength(key: string): number {
 
         // if queue referred by the key exists in the cache
-        if (typeof key !== 'undefined' && typeof this._cache[key] !== "undefined") {
+        if (typeof key !== 'undefined' && this.exists(key)) {
             return Object.keys(this._cache[key]).length;
         }
         return -1;
@@ -788,7 +788,7 @@ class dyCache {
      */
     public queueRPeek(key: string): any {
         // if queue referred by the key exists in the cache
-        if (typeof key !== 'undefined' && typeof this._cache[key] !== "undefined") {
+        if (typeof key !== 'undefined' && this.exists(key)) {
             // return just the element like: 10
             // and not in an array like: [10]
             return this._cache[key].slice(-1)[0];
@@ -807,7 +807,7 @@ class dyCache {
      */
     public queueLPeek(key: string): any {
         // if queue referred by the key exists in the cache
-        if (typeof key !== 'undefined' && typeof this._cache[key] !== "undefined") {
+        if (typeof key !== 'undefined' && this.exists(key)) {
             // return just the element like: 10
             // and not in an array like: [10]
             return this._cache[key].slice(0, 1)[0];
@@ -926,6 +926,120 @@ class dyCache {
         else {
             return {};
         }
+
+    }
+
+    /**
+     * This will remove all the key-value pairs from the LRU object referred by
+     * 'name' in the cache.
+     *
+     * On success return true. Otherwise, false.
+     *
+     * @param {string} name
+     * @returns {boolean}
+     */
+    public LRUPurge(name: string): boolean {
+
+        // if LRU object referred by 'name' does not exists
+        // then return false
+        if (!this.exists(name)) {
+            return false;
+        }
+
+        // get the existing size of the LRU object referred
+        // by 'name' in the cache
+        let size = this._cache[name]._size;
+
+        // now initialise the LRU
+        this.LRUInit(name, size);
+
+        return true;
+
+    }
+
+    /**
+     * This will delete the LRU object from the cache.
+     *
+     * On success return true. Otherwise false.
+     *
+     * @param {string} name
+     * @returns {boolean}
+     */
+    public LRUDelete(name: string): boolean {
+
+        // if LRU object referred by 'name' does not exists
+        // then return false
+        if (!this.exists(name)) {
+            return false;
+        }
+
+        // delete the object
+        this.del(name);
+
+        return true;
+
+    }
+
+    /**
+     * This will check if LRU referred by 'name' exists in the cache.
+     *
+     * On success return true. Otherwise false.
+     *
+     * @param {string} name
+     * @returns {boolean}
+     */
+    public LRUExists(name: string): boolean {
+        return this.exists(name);
+    }
+
+    /**
+     * This will resize the LRU referred by 'name' in the cache.
+     *
+     * If new 'size' is less than current size then least recently used
+     * key(s) and key-value pair(s) is/are removed from the data set and
+     * the queue.
+     *
+     * If 'size' is not mentioned then LRU size is set to 3.
+     *
+     * Returns true on success, false otherwise.
+     *
+     * @param {string} name
+     * @param {number} size
+     * @returns {boolean}
+     * @constructor
+     */
+    public LRUResize(name: string, size: number = 3): boolean {
+
+        // return false if LRU referred by 'name'
+        // does not exists
+        if (!this.exists(name)) {
+            return false;
+        }
+
+        // if new 'size' is greater than or equal to current size
+        // then update size and return true
+        if (size >= this._cache[name]._size) {
+            this._cache[name]._size = size;
+            return true;
+        }
+
+        // new 'size' is less than current size
+        else {
+
+            // get least recently used key(s) from the queue
+            let leastRecentlyUsedKeys = this._cache[name]._queue.splice(size);
+
+            // remove least recently used key-value pair(s) from the data set
+            leastRecentlyUsedKeys.forEach((key) => {
+                delete this._cache[name]._data[key];
+            });
+
+            // update LRU object size
+            this._cache[name]._size = size;
+
+        }
+
+        return true;
 
     }
 
