@@ -1552,6 +1552,41 @@ obj.LRUSet('myLRU', "k3", 30);    // k3: 30</code></pre>
 
             <hr>
 
+            <!-- LRUResize() -->
+            <a name="LRUResize"></a>
+            <h4><code>LRUResize(name, size)</code></h4>
+
+            <p>This will resize the LRU object
+                referred by <code>name</code> in the cache.</p>
+
+            <p>If <code>size</code> is not mentioned then LRU object is resized to 3.</p>
+
+            <p>If new <code>size</code> is less than the current size then,
+                first 'size'-th key is kept in the queue and data set and rest of the keys are removed.</p>
+
+            <p>For example, if current size is 10 and new size is 4,
+                then first 4 key is retained in the data set and queue while the
+                remaining keys are removed.</p>
+
+            <p>Returns <code>true</code> on success, <code>false</code> otherwise.</p>
+
+            <pre><code>obj.LRUResize('myLRU', 2);</code></pre>
+
+            <div>
+                <a class="btn btn-primary"
+                   role="button"
+                   data-toggle="collapse"
+                   href="#collapse-LRUResize"
+                   aria-expanded="false"
+                   aria-controls="collapse-LRUResize">Output</a>
+            </div>
+            <div class="collapse" id="collapse-LRUResize">
+            </div>
+
+            <!-- LRUResize() ends here -->
+
+            <hr>
+
             <!-- LRUPurge() -->
             <a name="LRUPurge"></a>
             <h4><code>LRUPurge(name)</code></h4>

@@ -50,7 +50,7 @@ outputJSON(obj, 'collapse-set');
 
 // set('user', { username: 'yusufshakeel', points: 10 });
 output("Adding a <code>user</code> key having string value <code>{ username: 'yusufshakeel', points: 10 }</code>.", 'collapse-set');
-obj.set('user', { username: 'yusufshakeel', points: 10 });
+obj.set('user', {username: 'yusufshakeel', points: 10});
 outputJSON(obj, 'collapse-set');
 
 // set('arr', [1, 2, 3]);
@@ -116,7 +116,7 @@ outputJSON(obj, 'collapse-arrPush');
 
 // arrMPush();
 output("Push multiple values in an array referred by <code>users</code> key in the cache from the right", 'collapse-arrMPush');
-obj.arrMPush('users', [100, 'superman', ['a1', 'b2', 200], { id: 10, points: 20}]);
+obj.arrMPush('users', [100, 'superman', ['a1', 'b2', 200], {id: 10, points: 20}]);
 output("Content of the cache.", 'collapse-arrMPush');
 outputJSON(obj, 'collapse-arrMPush');
 
@@ -128,7 +128,7 @@ outputJSON(obj, 'collapse-arrLPush');
 
 // arrMLPush();
 output("Push multiple values in an array referred by <code>users</code> key in the cache from the left", 'collapse-arrMLPush');
-obj.arrMLPush('users', [1, 'hi', [1, 3], { m: 1 }]);
+obj.arrMLPush('users', [1, 'hi', [1, 3], {m: 1}]);
 output("Content of the cache.", 'collapse-arrMLPush');
 outputJSON(obj, 'collapse-arrMLPush');
 
@@ -169,13 +169,16 @@ outputJSON(obj.arrGet('users'), 'collapse-arrInsertAt');
 
 // arrMInsertAt();
 output("Insert multiple values at given <code>index</code> in a array referred by key <code>users</code> in the cache.", 'collapse-arrMInsertAt');
-outputJSON(obj.arrMInsertAt('users', 1, [ {id: 9999, name: 'yusufshakeel'}, 10, 'happy', [100] ]), 'collapse-arrMInsertAt');
+outputJSON(obj.arrMInsertAt('users', 1, [{
+    id: 9999,
+    name: 'yusufshakeel'
+}, 10, 'happy', [100]]), 'collapse-arrMInsertAt');
 output("Fetch all the elements of the array referred by <code>users</code> key in the cache.", 'collapse-arrMInsertAt');
 outputJSON(obj.arrGet('users'), 'collapse-arrMInsertAt');
 
 // arrUpdateElem();
 output("Update value of an element at index 0 in the array referred by key <code>users</code> in the cache.", 'collapse-arrUpdateElem');
-outputJSON(obj.arrUpdateElem('users', 0, { username: 'tintin', points: 50 }), 'collapse-arrUpdateElem');
+outputJSON(obj.arrUpdateElem('users', 0, {username: 'tintin', points: 50}), 'collapse-arrUpdateElem');
 output("Fetch all the elements of the array referred by <code>users</code> key in the cache.", 'collapse-arrUpdateElem');
 outputJSON(obj.arrGet('users'), 'collapse-arrUpdateElem');
 
@@ -210,11 +213,11 @@ outputJSON(obj, 'collapse-oInit');
 
 // oSet();
 output("This will add <code>p1</code> oKey having value <code>{ id: 'p1', username: 'yusufshakeel' }</code> in the key <code>players</code> of the cache.", 'collapse-oSet');
-obj.oSet('players', 'p1', { id: 'p1', username: 'yusufshakeel' });
+obj.oSet('players', 'p1', {id: 'p1', username: 'yusufshakeel'});
 output("Content of the cache.", 'collapse-oSet');
 outputJSON(obj, 'collapse-oSet');
 output("This will add <code>p2</code> oKey having value <code>{ id: 'p2', username: 'dawoodshakeel' }</code> in the key <code>players</code> of the cache.", 'collapse-oSet');
-obj.oSet('players', 'p2', { id: 'p2', username: 'dawoodshakeel' });
+obj.oSet('players', 'p2', {id: 'p2', username: 'dawoodshakeel'});
 output("Content of the cache.", 'collapse-oSet');
 outputJSON(obj, 'collapse-oSet');
 
@@ -272,7 +275,7 @@ obj.stackPush('myStack', 'Yusuf Shakeel');
 output("Push array value in stack referred by key <code>myStack</code> in the cache.", 'collapse-stackPush');
 obj.stackPush('myStack', [1, 2]);
 output("Push object value in stack referred by key <code>myStack</code> in the cache.", 'collapse-stackPush');
-obj.stackPush('myStack', { a:10 });
+obj.stackPush('myStack', {a: 10});
 output("Content of the cache.", 'collapse-stackPush');
 outputJSON(obj, 'collapse-stackPush');
 
@@ -329,7 +332,7 @@ obj.enqueue('myQueue', 'Yusuf Shakeel');
 output("Enqueue array value from the right side in queue referred by key <code>myQueue</code> in the cache.", 'collapse-enqueue');
 obj.enqueue('myQueue', [1, 2]);
 output("Enqueue object value from the right side in queue referred by key <code>myQueue</code> in the cache.", 'collapse-enqueue');
-obj.enqueue('myQueue', { a:10 });
+obj.enqueue('myQueue', {a: 10});
 output("Content of the cache.", 'collapse-enqueue');
 outputJSON(obj, 'collapse-enqueue');
 
@@ -400,6 +403,13 @@ outputJSON(obj.LRUGet("myLRU", "k1"), 'collapse-LRUGet');
 output("Content of the cache after <code>LRUGet</code> operation.", 'collapse-LRUGet');
 outputJSON(obj, 'collapse-LRUGet');
 output("Note! 'k1' is moved from last index to 0th index in the queue after <code>LRUGet</code> operation.", 'collapse-LRUGet');
+
+// LRUResize();
+output("Content of the cache before <code>LRUResize</code> operation.", 'collapse-LRUResize');
+outputJSON(obj, 'collapse-LRUResize');
+obj.LRUResize('myLRU', 2);
+output("Content of the cache after <code>LRUResize</code> operation.", 'collapse-LRUResize');
+outputJSON(obj, 'collapse-LRUResize');
 
 // LRUPurge();
 output("Content of the cache before <code>LRUPurge</code> operation.", 'collapse-LRUPurge');
