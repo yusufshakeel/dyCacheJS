@@ -142,7 +142,7 @@ describe('Testing dyCacheJS', function () {
                 assert.equal(obj.arrGet('arr', 0), 'Yusuf Shakeel');
             });
 
-            it('should overwrite existing array on arrInit()', function () {
+            it('should overwrite existing arr on arrInit()', function () {
                 obj.arrPush('arr', 'Yusuf Shakeel');
                 assert.equal(obj.arrLength('arr'), 1);
                 assert.deepEqual(obj.arrGet('arr'), ['Yusuf Shakeel']);
@@ -529,15 +529,15 @@ describe('Testing dyCacheJS', function () {
 
             it('should initialise a new object and add a property', function () {
                 obj.oInit('obj');
-                obj.oSet('obj', 'user', { name: 'Yusuf Shakeel' });
+                obj.oSet('obj', 'user', {name: 'Yusuf Shakeel'});
                 assert.equal(obj.oLength('obj'), 1);
-                assert.deepEqual(obj.oGet('obj', 'user'), { name: 'Yusuf Shakeel' });
+                assert.deepEqual(obj.oGet('obj', 'user'), {name: 'Yusuf Shakeel'});
             });
 
             it('should overwrite existing object on oInit()', function () {
-                obj.oSet('obj', 'user', { name: 'Yusuf Shakeel' });
+                obj.oSet('obj', 'user', {name: 'Yusuf Shakeel'});
                 assert.equal(obj.oLength('obj'), 1);
-                assert.deepEqual(obj.oGet('obj', 'user'), { name: 'Yusuf Shakeel' });
+                assert.deepEqual(obj.oGet('obj', 'user'), {name: 'Yusuf Shakeel'});
                 obj.oInit('obj');
                 assert.equal(obj.oLength('obj'), 0);
                 assert.deepEqual(obj.oGetAll('obj'), {});
@@ -1045,6 +1045,156 @@ describe('Testing dyCacheJS', function () {
 
             it('should return null for non-existing queue', function () {
                 assert.isNull(obj.queueRPeek('unknown'));
+            });
+
+        });
+
+    });
+
+    describe('Testing LRU Methods', () => {
+
+        describe('Testing LRUInit()', () => {
+
+            it('should initialise an empty LRU referred by myLRU in the cache', function () {
+                obj.LRUInit('myLRU', 3);
+                assert.isTrue(obj.exists('myLRU'));
+            });
+
+        });
+
+        describe('Testing LRUSet()', () => {
+
+            it('should set 3 key-value pairs in the LRU referred by myLRU in the cache', function () {
+
+                let expected = {
+                    "myLRU": {
+                        "_size": 3,
+                        "_data": {
+                            "k1": 10,
+                            "k2": 20,
+                            "k3": 30
+                        },
+                        "_queue": [
+                            "k3",
+                            "k2",
+                            "k1"
+                        ]
+                    }
+                };
+
+                obj.LRUInit('myLRU', 3);
+                obj.LRUSet('myLRU', 'k1', 10);
+                obj.LRUSet('myLRU', 'k2', 20);
+                obj.LRUSet('myLRU', 'k3', 30);
+                assert.deepEqual(obj._cache, expected);
+
+            });
+
+            it('should set 4th key-value pair in the LRU referred by myLRU in the cache', function () {
+
+                let expected = {
+                    "myLRU": {
+                        "_size": 3,
+                        "_data": {
+                            "k2": 20,
+                            "k3": 30,
+                            "k4": 40
+                        },
+                        "_queue": [
+                            "k4",
+                            "k3",
+                            "k2"
+                        ]
+                    }
+                };
+
+                obj.LRUInit('myLRU', 3);
+                obj.LRUSet('myLRU', 'k1', 10);
+                obj.LRUSet('myLRU', 'k2', 20);
+                obj.LRUSet('myLRU', 'k3', 30);
+                obj.LRUSet('myLRU', 'k4', 40);
+                assert.deepEqual(obj._cache, expected);
+
+            });
+
+            it('should return false when setting a key-value pair in the LRU that does not exists in the cache', function () {
+
+                let result = obj.LRUSet('unknownLRU', 'k1', 10);
+                assert.isFalse(result);
+
+            });
+
+        });
+
+        describe('Testing LRUSet()', () => {
+
+            it('should return key-value pair when fetching "k1" key from the LRU referred by myLRU in the cache', function () {
+
+                let expected = {
+                    "k1": 10
+                };
+
+                obj.LRUInit('myLRU', 3);
+                obj.LRUSet('myLRU', 'k1', 10);
+                obj.LRUSet('myLRU', 'k2', 20);
+                obj.LRUSet('myLRU', 'k3', 30);
+
+                let result = obj.LRUGet("myLRU", "k1");
+                assert.deepEqual(result, expected);
+
+            });
+
+            it('should return {} object when fetching unknown key from the LRU referred by myLRU in the cache', function () {
+
+                obj.LRUInit('myLRU', 3);
+                obj.LRUSet('myLRU', 'k1', 10);
+                obj.LRUSet('myLRU', 'k2', 20);
+                obj.LRUSet('myLRU', 'k3', 30);
+
+                let result = obj.LRUGet("myLRU", "unknownKey");
+                assert.deepEqual(result, {});
+
+            });
+
+            it('should return false when fetching unknown key from the LRU that does not exists in the cache', function () {
+
+                let result = obj.LRUGet("unknownLRU", "unknownKey");
+                assert.isFalse(result);
+
+            });
+
+            it('should bring "k2" at the 0th index in the queue in the LRU referred by myLRU in the cache', function () {
+
+                let expected = {
+                    "myLRU": {
+                        "_size": 3,
+                        "_data": {
+                            "k1": 10,
+                            "k2": 20,
+                            "k3": 30
+                        },
+                        "_queue": [
+                            "k2",
+                            "k3",
+                            "k1"
+                        ]
+                    }
+                };
+
+                // init
+                obj.LRUInit('myLRU', 3);
+
+                // set data
+                obj.LRUSet('myLRU', 'k1', 10);
+                obj.LRUSet('myLRU', 'k2', 20);
+                obj.LRUSet('myLRU', 'k3', 30);
+
+                // get key-value pair
+                let result = obj.LRUGet("myLRU", "k2");
+
+                // check
+                assert.deepEqual(obj._cache, expected);
+
             });
 
         });

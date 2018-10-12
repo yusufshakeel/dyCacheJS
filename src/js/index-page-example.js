@@ -96,8 +96,8 @@ outputJSON(obj.exists('str'), 'collapse-exists');
 
 // purge()
 obj.purge();
-output("After purge", 'collapse-arrInit');
-outputJSON(obj, 'collapse-arrInit');
+output("After purge", 'collapse-purge');
+outputJSON(obj, 'collapse-purge');
 
 // arrInit();
 output("Initialise an <code>users</code> key in the cache which is an array.", 'collapse-arrInit');
