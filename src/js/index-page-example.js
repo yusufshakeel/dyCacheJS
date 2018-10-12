@@ -99,7 +99,7 @@ obj.purge();
 output("After purge", 'collapse-purge');
 outputJSON(obj, 'collapse-purge');
 
-// arrInit();
+// arrInit()
 output("Initialise an <code>users</code> key in the cache which is an array.", 'collapse-arrInit');
 obj.arrInit('users');
 output("Content of the cache.", 'collapse-arrInit');
@@ -201,8 +201,6 @@ outputJSON(obj.arrGet('users'), 'collapse-arrDeleteElems');
 
 // purge()
 obj.purge();
-output("Content of the cache after purge.", 'collapse-oInit');
-outputJSON(obj, 'collapse-oInit');
 
 // oInit();
 output("This will create a new object referred by <code>players</code> in the cache.", 'collapse-oInit');
@@ -255,8 +253,6 @@ outputJSON(obj.oGetAll('players'), 'collapse-oDel');
 
 // purge()
 obj.purge();
-output("Content of the cache after purge.", 'collapse-stackInit');
-outputJSON(obj, 'collapse-stackInit');
 
 // stackInit();
 output("Initialise stack referred by key <code>myStack</code> in the cache.", 'collapse-stackInit');
@@ -314,8 +310,6 @@ outputJSON(obj, 'collapse-stackDelete');
 
 // purge()
 obj.purge();
-output("Content of the cache after purge.", 'collapse-queueInit');
-outputJSON(obj, 'collapse-queueInit');
 
 // queueInit();
 output("Initialise queue referred by key <code>myQueue</code> in the cache.", 'collapse-queueInit');
@@ -376,3 +370,29 @@ output("This will delete the queue referred by key <code>myQueue</code> in the c
 outputJSON(obj.queueDelete('myQueue'), 'collapse-queueDelete');
 output("Content of the cache.", 'collapse-queueDelete');
 outputJSON(obj, 'collapse-queueDelete');
+
+// purge()
+obj.purge();
+
+// LRUInit();
+output("This will create a new object for LRU referred by <code>myLRU</code> of size 3 in the cache.", 'collapse-LRUInit');
+obj.LRUInit('myLRU');
+output("Content of the cache.", 'collapse-LRUInit');
+outputJSON(obj, 'collapse-LRUInit');
+
+// LRUSet();
+output("This will set 3 key-value pairs in the LRU object referred by <code>myLRU</code> in the cache.", 'collapse-LRUSet');
+obj.LRUSet("myLRU", "k1", 10);
+obj.LRUSet("myLRU", "k2", 20);
+obj.LRUSet("myLRU", "k3", 30);
+output("Content of the cache.", 'collapse-LRUSet');
+outputJSON(obj, 'collapse-LRUSet');
+
+// LRUGet();
+output("Content of the cache before <code>LRUGet</code> operation.", 'collapse-LRUGet');
+outputJSON(obj, 'collapse-LRUGet');
+output("Fetching 'k1'", 'collapse-LRUGet');
+outputJSON(obj.LRUGet("myLRU", "k1"), 'collapse-LRUGet');
+output("Content of the cache after <code>LRUGet</code> operation.", 'collapse-LRUGet');
+outputJSON(obj, 'collapse-LRUGet');
+output("Note! 'k1' is moved from last index to 0th index in the queue after <code>LRUGet</code> operation.", 'collapse-LRUGet');

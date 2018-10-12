@@ -97,6 +97,7 @@
                 <li><a href="#object-methods">Object Methods</a></li>
                 <li><a href="#stack-methods">Stack Methods</a></li>
                 <li><a href="#queue-methods">Queue Methods</a></li>
+                <li><a href="#lru-methods">LRU Methods</a></li>
             </ul>
 
             <hr>
@@ -952,7 +953,7 @@
             <h4><code>stackExists(key)</code></h4>
 
             <p>This will check if the stack referred by <code>key</code>
-               exists in the cache.</p>
+                exists in the cache.</p>
 
             <p>Return <code>true</code> if stack exists. Otherwise, <code>false</code>.</p>
 
@@ -1423,6 +1424,105 @@
             </div>
 
             <!-- queueDelete() ends here -->
+
+            <hr>
+
+            <a name="lru-methods"></a>
+            <h4 class="text-center"><a href="#lru-methods">LRU Methods</a></h4>
+
+            <p class="text-center">LRU - Least Recently Used</p>
+
+            <br>
+
+            <!-- LRUInit() -->
+            <a name="LRUInit"></a>
+            <h4><code>LRUInit(name, size)</code></h4>
+
+            <p>This will create a new object for the LRU in the cache by the name <code>name</code>
+                having the given <code>size</code>.</p>
+
+            <p>If object referred by <code>name</code> exists in the cache then it will be overwritten.</p>
+
+            <p>If <code>size</code> is not set then LRU object of queue size 3 is created.</p>
+
+            <pre><code>obj.LRUInit('myLRU', 3);    // creates a new LRU object myLRU</code></pre>
+
+            <div>
+                <a class="btn btn-primary"
+                   role="button"
+                   data-toggle="collapse"
+                   href="#collapse-LRUInit"
+                   aria-expanded="false"
+                   aria-controls="collapse-LRUInit">Output</a>
+            </div>
+            <div class="collapse" id="collapse-LRUInit">
+            </div>
+
+            <!-- LRUInit() ends here -->
+
+            <hr>
+
+            <!-- LRUSet() -->
+            <a name="LRUSet"></a>
+            <h4><code>LRUSet(name, key, value)</code></h4>
+
+            <p>This will set <code>key</code>-<code>value</code> pair in the LRU object referred
+                by <code>name</code> in the cache.</p>
+
+            <p><code>key</code> can be a string or number.</p>
+
+            <p><code>value</code> can be a number, string, array or object.</p>
+
+            <p>Returns <code>true</code> on success</p>
+
+            <p>Returns <code>false</code> if LRU object does not exists in the cache.</p>
+
+            <pre><code>obj.LRUSet('myLRU', "k1", 10);    // k1: 10
+obj.LRUSet('myLRU', "k2", 20);    // k2: 20
+obj.LRUSet('myLRU', "k3", 30);    // k3: 30</code></pre>
+
+            <div>
+                <a class="btn btn-primary"
+                   role="button"
+                   data-toggle="collapse"
+                   href="#collapse-LRUSet"
+                   aria-expanded="false"
+                   aria-controls="collapse-LRUSet">Output</a>
+            </div>
+            <div class="collapse" id="collapse-LRUSet">
+            </div>
+
+            <!-- LRUSet() ends here -->
+
+            <hr>
+
+            <!-- LRUGet() -->
+            <a name="LRUGet"></a>
+            <h4><code>LRUGet(name, key)</code></h4>
+
+            <p>This will fetch key-value pair for the given <code>key</code> from the LRU object
+                referred by <code>name</code> in the cache.</p>
+
+            <p>Returns <code>{ key: value }</code> on success.</p>
+
+            <p>Returns <code>{}</code> if <code>key</code> is not found in the LRU object.</p>
+
+            <p>Returns <code>false</code> if the LRU object does not exists in the cache.</p>
+
+            <pre><code>obj.LRUGet('myLRU', "k1");</code></pre>
+
+            <div>
+                <a class="btn btn-primary"
+                   role="button"
+                   data-toggle="collapse"
+                   href="#collapse-LRUGet"
+                   aria-expanded="false"
+                   aria-controls="collapse-LRUGet">Output</a>
+            </div>
+            <div class="collapse" id="collapse-LRUGet">
+            </div>
+
+            <!-- LRUGet() ends here -->
 
             <hr>
 
