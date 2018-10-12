@@ -1462,6 +1462,32 @@
 
             <hr>
 
+            <!-- LRUExists() -->
+            <a name="LRUExists"></a>
+            <h4><code>LRUExists(name)</code></h4>
+
+            <p>This will check if the LRU object
+                referred by <code>name</code> exists in the cache.</p>
+
+            <p>Returns <code>true</code> on success, <code>false</code> otherwise.</p>
+
+            <pre><code>obj.LRUExists('myLRU');</code></pre>
+
+            <div>
+                <a class="btn btn-primary"
+                   role="button"
+                   data-toggle="collapse"
+                   href="#collapse-LRUExists"
+                   aria-expanded="false"
+                   aria-controls="collapse-LRUExists">Output</a>
+            </div>
+            <div class="collapse" id="collapse-LRUExists">
+            </div>
+
+            <!-- LRUExists() ends here -->
+
+            <hr>
+
             <!-- LRUSet() -->
             <a name="LRUSet"></a>
             <h4><code>LRUSet(name, key, value)</code></h4>
@@ -1523,6 +1549,58 @@ obj.LRUSet('myLRU', "k3", 30);    // k3: 30</code></pre>
             </div>
 
             <!-- LRUGet() ends here -->
+
+            <hr>
+
+            <!-- LRUPurge() -->
+            <a name="LRUPurge"></a>
+            <h4><code>LRUPurge(name)</code></h4>
+
+            <p>This will purge the LRU object
+                referred by <code>name</code> in the cache.</p>
+
+            <p>Returns <code>true</code> on success, <code>false</code> otherwise.</p>
+
+            <pre><code>obj.LRUPurge('myLRU');</code></pre>
+
+            <div>
+                <a class="btn btn-primary"
+                   role="button"
+                   data-toggle="collapse"
+                   href="#collapse-LRUPurge"
+                   aria-expanded="false"
+                   aria-controls="collapse-LRUPurge">Output</a>
+            </div>
+            <div class="collapse" id="collapse-LRUPurge">
+            </div>
+
+            <!-- LRUPurge() ends here -->
+
+            <hr>
+
+            <!-- LRUDelete() -->
+            <a name="LRUDelete"></a>
+            <h4><code>LRUDelete(name)</code></h4>
+
+            <p>This will delete the LRU object
+                referred by <code>name</code> from the cache.</p>
+
+            <p>Returns <code>true</code> on success, <code>false</code> otherwise.</p>
+
+            <pre><code>obj.LRUDelete('myLRU');</code></pre>
+
+            <div>
+                <a class="btn btn-primary"
+                   role="button"
+                   data-toggle="collapse"
+                   href="#collapse-LRUDelete"
+                   aria-expanded="false"
+                   aria-controls="collapse-LRUDelete">Output</a>
+            </div>
+            <div class="collapse" id="collapse-LRUDelete">
+            </div>
+
+            <!-- LRUDelete() ends here -->
 
             <hr>
 

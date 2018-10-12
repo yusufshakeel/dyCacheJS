@@ -967,7 +967,7 @@ class dyCache {
      */
     public LRUDelete(name: string): boolean {
 
-        // if LRU object referred by 'name does not exists
+        // if LRU object referred by 'name' does not exists
         // then return false
         if (!this.exists(name)) {
             return false;

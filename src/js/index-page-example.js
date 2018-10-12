@@ -380,6 +380,10 @@ obj.LRUInit('myLRU');
 output("Content of the cache.", 'collapse-LRUInit');
 outputJSON(obj, 'collapse-LRUInit');
 
+// LRUExists();
+output("This will return <code>true</code> if LRU object referred by <code>myLRU</code> exists in the cache.", 'collapse-LRUExists');
+outputJSON(obj.LRUExists('myLRU'), 'collapse-LRUExists');
+
 // LRUSet();
 output("This will set 3 key-value pairs in the LRU object referred by <code>myLRU</code> in the cache.", 'collapse-LRUSet');
 obj.LRUSet("myLRU", "k1", 10);
@@ -396,3 +400,16 @@ outputJSON(obj.LRUGet("myLRU", "k1"), 'collapse-LRUGet');
 output("Content of the cache after <code>LRUGet</code> operation.", 'collapse-LRUGet');
 outputJSON(obj, 'collapse-LRUGet');
 output("Note! 'k1' is moved from last index to 0th index in the queue after <code>LRUGet</code> operation.", 'collapse-LRUGet');
+
+// LRUPurge();
+output("Content of the cache before <code>LRUPurge</code> operation.", 'collapse-LRUPurge');
+outputJSON(obj, 'collapse-LRUPurge');
+obj.LRUPurge('myLRU');
+output("Content of the cache after <code>LRUPurge</code> operation.", 'collapse-LRUPurge');
+outputJSON(obj, 'collapse-LRUPurge');
+
+// LRUDelete();
+output("This will return <code>true</code> after deleting LRU object referred by <code>myLRU</code> from the cache.", 'collapse-LRUDelete');
+outputJSON(obj.LRUDelete('myLRU'), 'collapse-LRUDelete');
+output("Content of the cache after <code>LRUDelete</code> operation.", 'collapse-LRUDelete');
+outputJSON(obj, 'collapse-LRUDelete');

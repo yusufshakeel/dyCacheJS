@@ -1126,7 +1126,7 @@ describe('Testing dyCacheJS', function () {
 
         });
 
-        describe('Testing LRUSet()', () => {
+        describe('Testing LRUGet()', () => {
 
             it('should return key-value pair when fetching "k1" key from the LRU referred by myLRU in the cache', function () {
 
@@ -1194,6 +1194,109 @@ describe('Testing dyCacheJS', function () {
 
                 // check
                 assert.deepEqual(obj._cache, expected);
+
+            });
+
+        });
+
+        describe('Testing LRUPurge()', () => {
+
+            it('should purge LRU referred by myLRU in the cache', function () {
+
+                let expected = {
+                    "myLRU": {
+                        "_size": 10,
+                        "_data": {},
+                        "_queue": []
+                    }
+                };
+
+                // init
+                obj.LRUInit('myLRU', 10);
+
+                // set data
+                obj.LRUSet('myLRU', 'k1', 10);
+
+                // purge
+                obj.LRUPurge('myLRU');
+
+                assert.deepEqual(obj._cache, expected);
+
+            });
+
+            it('should return true on successful purge of LRU referred by myLRU in the cache', function () {
+
+                // init
+                obj.LRUInit('myLRU', 10);
+
+                // set data
+                obj.LRUSet('myLRU', 'k1', 10);
+
+                // purge
+                assert.isTrue(obj.LRUPurge('myLRU'));
+
+            });
+
+            it('should return false if LRU does not exists in the cache', function () {
+
+                let result = obj.LRUPurge('unknownLRU');
+                assert.isFalse(result);
+
+            });
+
+        });
+
+        describe('Testing LRUDelete()', () => {
+
+            it('should delete LRU referred by myLRU in the cache', function () {
+
+                // init
+                obj.LRUInit('myLRU', 3);
+
+                // set data
+                obj.LRUSet('myLRU', 'k1', 10);
+
+                // delete
+                obj.LRUDelete('myLRU');
+
+                assert.isFalse(obj.exists('myLRU'));
+
+            });
+
+            it('should return true after deleting LRU referred by myLRU in the cache', function () {
+
+                // init
+                obj.LRUInit('myLRU', 3);
+
+                // set data
+                obj.LRUSet('myLRU', 'k1', 10);
+
+                // delete
+                assert.isTrue(obj.LRUDelete('myLRU'));
+
+            });
+
+            it('should return false if trying to delete LRU that does not exists in the cache', function () {
+
+                let result = obj.LRUDelete('unknownLRU');
+                assert.isFalse(result);
+
+            });
+
+        });
+
+        describe('Testing LRUExists()', () => {
+
+            it('should return true if LRU referred by myLRU exists in the cache', function () {
+
+                obj.LRUInit('myLRU', 3);
+                assert.isTrue(obj.LRUExists('myLRU'));
+
+            });
+
+            it('should return false if LRU does not exists in the cache', function () {
+
+                assert.isFalse(obj.LRUExists('unknownLRU'));
 
             });
 
