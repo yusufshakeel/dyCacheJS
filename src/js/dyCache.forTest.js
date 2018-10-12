@@ -211,7 +211,7 @@ var dyCache = /** @class */ (function () {
      * @returns {number}
      */
     dyCache.prototype.arrLength = function (key) {
-        if (typeof key !== 'undefined' && typeof this._cache[key] !== "undefined") {
+        if (typeof key !== 'undefined' && this.exists(key)) {
             return Object.keys(this._cache[key]).length;
         }
         return -1;
@@ -419,7 +419,7 @@ var dyCache = /** @class */ (function () {
      * @returns {boolean}
      */
     dyCache.prototype.oExists = function (key, oKey) {
-        return typeof this._cache[key] !== "undefined" && typeof this._cache[key][oKey] !== "undefined";
+        return this.exists(key) && typeof this._cache[key][oKey] !== "undefined";
     };
     /**
      * This will delete an oKey from the object denoted by key in the cache.
@@ -445,7 +445,7 @@ var dyCache = /** @class */ (function () {
      * @returns {number}
      */
     dyCache.prototype.oLength = function (key) {
-        if (typeof key !== 'undefined' && typeof this._cache[key] !== "undefined") {
+        if (typeof key !== 'undefined' && this.exists(key)) {
             return Object.keys(this._cache[key]).length;
         }
         return -1;
@@ -481,7 +481,7 @@ var dyCache = /** @class */ (function () {
      */
     dyCache.prototype.stackPop = function (key) {
         // if stack referred by the key exists in the cache
-        if (typeof key !== 'undefined' && typeof this._cache[key] !== "undefined") {
+        if (typeof key !== 'undefined' && this.exists(key)) {
             return this._cache[key].pop();
         }
         return undefined;
@@ -495,7 +495,7 @@ var dyCache = /** @class */ (function () {
      * @returns {boolean}
      */
     dyCache.prototype.stackExists = function (key) {
-        return typeof this._cache[key] !== "undefined";
+        return this.exists(key);
     };
     /**
      * This will return the top element in the stack referred by key
@@ -508,7 +508,7 @@ var dyCache = /** @class */ (function () {
      */
     dyCache.prototype.stackPeek = function (key) {
         // if stack referred by the key exists in the cache
-        if (typeof key !== 'undefined' && typeof this._cache[key] !== "undefined") {
+        if (typeof key !== 'undefined' && this.exists(key)) {
             // return just the element like: 10
             // and not in an array like: [10]
             return this._cache[key].slice(-1)[0];
@@ -527,7 +527,7 @@ var dyCache = /** @class */ (function () {
      */
     dyCache.prototype.stackLength = function (key) {
         // if stack referred by the key exists in the cache
-        if (typeof key !== 'undefined' && typeof this._cache[key] !== "undefined") {
+        if (typeof key !== 'undefined' && this.exists(key)) {
             return Object.keys(this._cache[key]).length;
         }
         return -1;
@@ -595,7 +595,7 @@ var dyCache = /** @class */ (function () {
      * @returns {boolean}
      */
     dyCache.prototype.queueExists = function (key) {
-        return typeof this._cache[key] !== "undefined";
+        return this.exists(key);
     };
     /**
      * This will return true if queue referred by key in the cache is empty.
@@ -656,7 +656,7 @@ var dyCache = /** @class */ (function () {
      */
     dyCache.prototype.queueLength = function (key) {
         // if queue referred by the key exists in the cache
-        if (typeof key !== 'undefined' && typeof this._cache[key] !== "undefined") {
+        if (typeof key !== 'undefined' && this.exists(key)) {
             return Object.keys(this._cache[key]).length;
         }
         return -1;
@@ -701,7 +701,7 @@ var dyCache = /** @class */ (function () {
      */
     dyCache.prototype.queueRPeek = function (key) {
         // if queue referred by the key exists in the cache
-        if (typeof key !== 'undefined' && typeof this._cache[key] !== "undefined") {
+        if (typeof key !== 'undefined' && this.exists(key)) {
             // return just the element like: 10
             // and not in an array like: [10]
             return this._cache[key].slice(-1)[0];
@@ -719,7 +719,7 @@ var dyCache = /** @class */ (function () {
      */
     dyCache.prototype.queueLPeek = function (key) {
         // if queue referred by the key exists in the cache
-        if (typeof key !== 'undefined' && typeof this._cache[key] !== "undefined") {
+        if (typeof key !== 'undefined' && this.exists(key)) {
             // return just the element like: 10
             // and not in an array like: [10]
             return this._cache[key].slice(0, 1)[0];
@@ -813,6 +813,57 @@ var dyCache = /** @class */ (function () {
         else {
             return {};
         }
+    };
+    /**
+     * This will remove all the key-value pairs from the LRU object referred by
+     * 'name' in the cache.
+     *
+     * On success return true. Otherwise, false.
+     *
+     * @param {string} name
+     * @returns {boolean}
+     */
+    dyCache.prototype.LRUPurge = function (name) {
+        // if LRU object referred by 'name' does not exists
+        // then return false
+        if (!this.exists(name)) {
+            return false;
+        }
+        // get the existing size of the LRU object referred
+        // by 'name' in the cache
+        var size = this._cache[name]._size;
+        // now initialise the LRU
+        this.LRUInit(name, size);
+        return true;
+    };
+    /**
+     * This will delete the LRU object from the cache.
+     *
+     * On success return true. Otherwise false.
+     *
+     * @param {string} name
+     * @returns {boolean}
+     */
+    dyCache.prototype.LRUDelete = function (name) {
+        // if LRU object referred by 'name does not exists
+        // then return false
+        if (!this.exists(name)) {
+            return false;
+        }
+        // delete the object
+        this.del(name);
+        return true;
+    };
+    /**
+     * This will check if LRU referred by 'name' exists in the cache.
+     *
+     * On success return true. Otherwise false.
+     *
+     * @param {string} name
+     * @returns {boolean}
+     */
+    dyCache.prototype.LRUExists = function (name) {
+        return this.exists(name);
     };
     return dyCache;
 }());

@@ -1,6 +1,6 @@
 {
   "name": "dycachejs",
-  "version": "1.6.0",
+  "version": "1.6.2",
   "description": "Cache data using JavaScript in the browser.",
   "main": "index.html",
   "scripts": {
