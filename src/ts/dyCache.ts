@@ -992,4 +992,55 @@ class dyCache {
         return this.exists(name);
     }
 
+    /**
+     * This will resize the LRU referred by 'name' in the cache.
+     *
+     * If new 'size' is less than current size then least recently used
+     * key(s) and key-value pair(s) is/are removed from the data set and
+     * the queue.
+     *
+     * If 'size' is not mentioned then LRU size is set to 3.
+     *
+     * Returns true on success, false otherwise.
+     *
+     * @param {string} name
+     * @param {number} size
+     * @returns {boolean}
+     * @constructor
+     */
+    public LRUResize(name: string, size: number = 3): boolean {
+
+        // return false if LRU referred by 'name'
+        // does not exists
+        if (!this.exists(name)) {
+            return false;
+        }
+
+        // if new 'size' is greater than or equal to current size
+        // then update size and return true
+        if (size >= this._cache[name]._size) {
+            this._cache[name]._size = size;
+            return true;
+        }
+
+        // new 'size' is less than current size
+        else {
+
+            // get least recently used key(s) from the queue
+            let leastRecentlyUsedKeys = this._cache[name]._queue.splice(size);
+
+            // remove least recently used key-value pair(s) from the data set
+            leastRecentlyUsedKeys.forEach((key) => {
+                delete this._cache[name]._data[key];
+            });
+
+            // update LRU object size
+            this._cache[name]._size = size;
+
+        }
+
+        return true;
+
+    }
+
 }
